@@ -1,0 +1,55 @@
+{
+  "name": "backbase",
+  "preferGlobal": "true",
+  "version": "0.0.2",
+  "bin": {
+    "backbase": "bin/backbase"
+  },
+  "description": "A tool for creating and developing Backbase Widgets and Modules.",
+  "homepage": "http://github.com/dragosh/backbase-cli",
+  "author": "Dragosh Oancea oancea.dragosh@gmail.com (http://dragos.me/)",
+  "keywords": [
+    "widget",
+    "backbase",
+    "tools",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/dragosh/backbase-cli"
+  },
+  "dependencies": {
+    "asking": "^0.1.2",
+    "colors": "^1.0.3",
+    "figlet": "^1.1.0",
+    "ronin": "^0.2.0"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0",
+    "generator-ronin": "^0.1.0"
+  },
+  "devDependencies": {
+    "coveralls": "^2.6.1",
+    "del": "^1.1.1",
+    "eslint": "^0.13.0",
+    "istanbul": "^0.2.3",
+    "mocha": "^1.17.0",
+    "mocha-lcov-reporter": "^0.0.1",
+    "should": "^4.0.0"
+  },
+  "scripts": {
+    "lint": "eslint . ",
+    "test": "npm run-script lint && mocha --reporter spec",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+  },
+
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/dragosh/backbase-cli/raw/master/LICENSE"
+    }
+  ]
+}

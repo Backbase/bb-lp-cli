@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var ronin = require('ronin');
+var figlet = require('figlet');
+var colors = require('colors');
+
+colors.setTheme({
+    silly: 'rainbow',
+    input: 'grey',
+    verbose: 'cyan',
+    prompt: 'grey',
+    info: 'green',
+    data: 'grey',
+    help: 'cyan',
+    warn: 'yellow',
+    debug: 'blue',
+    error: 'red'
+});
+
+var program = ronin(path.resolve(__dirname, '..')); // root path, where commands folder is
+
+program.set({
+    help: function help (argument) {
+        console.log( figlet.textSync('BackBase', {
+            // horizontalLayout: 'default',
+            // verticalLayout: 'default'
+        }).info);
+        console.log('Command line utility for building Backbase Widgets and Modules')
+    }
+});
+
+program.run();
