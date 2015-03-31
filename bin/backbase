@@ -1,33 +1,91 @@
 #!/usr/bin/env node
+var cliparse = require('cliparse');
+var pckJson = require('../package.json');
 
-var path = require('path');
-var ronin = require('ronin');
-var figlet = require('figlet');
-var colors = require('colors');
+/*----------------------------------------------------------------*/
+/* #TODO parse the commands folder and auto generate commands
+/*----------------------------------------------------------------*/
+var BBCLI = cliparse.cli({
+    name: pckJson.name,
+    version: pckJson.version,
+    description: 'Backbase CLI tool',
 
-colors.setTheme({
-    silly: 'rainbow',
-    input: 'grey',
-    verbose: 'cyan',
-    prompt: 'grey',
-    info: 'green',
-    data: 'grey',
-    help: 'cyan',
-    warn: 'yellow',
-    debug: 'blue',
-    error: 'red'
+    commands: [
+
+    /*----------------------------------------------------------------*/
+    /* Widget subcommand
+    /*----------------------------------------------------------------*/
+        //cliparse.command( 'widget', {
+            //description: 'perform simple arithmetic calculations',
+            //commands: [
+                /*----------------------------------------------------------------*/
+                /* Generate Widget
+                /*----------------------------------------------------------------*/
+                cliparse.command('generate', {
+                    description: 'Generate',
+                    args: [
+                        cliparse.argument('url', {
+                            description: 'Template repo url',
+                            default: 'https://stash.backbase.com/scm/lp/widget-ng-template.git'
+                        })
+                    ],
+                    options: [
+
+                    ]
+                }, require('../commands/common/generate') ),
+
+                /*----------------------------------------------------------------*/
+                /* Build Widget
+                /*----------------------------------------------------------------*/
+                cliparse.command('build', {
+                    description: 'Build',
+                    args: [
+
+                    ],
+                    options: [
+
+                    ]
+                }, require('../commands/common/build') ),
+
+                /*----------------------------------------------------------------*/
+                /* Start Widget
+                /*----------------------------------------------------------------*/
+                cliparse.command('start', {
+                    description: 'Start local development server',
+                    args: [
+
+                    ],
+                    options: [
+
+                    ]
+                }, require('../commands/common/start') ),
+                /*----------------------------------------------------------------*/
+                /* Install Widget Deps
+                /*----------------------------------------------------------------*/
+                cliparse.command('install', {
+                    description: 'Install dependencies',
+                    args: [
+
+                    ],
+                    options: [
+                        cliparse.flag('verbose', { aliases: ['v'], description: 'Makes output more verbose'})
+                    ]
+                }, require('../commands/common/install') ),
+                /*----------------------------------------------------------------*/
+                /* Test Widget
+                /*----------------------------------------------------------------*/
+                cliparse.command('test', {
+                    description: 'Test',
+                    args: [
+
+                    ],
+                    options: [
+                        cliparse.flag('watch', { aliases: ['w'], description: 'Watch files'})
+                    ]
+                }, require('../commands/common/test') )
+            //]
+        //})
+    ]
 });
 
-var program = ronin(path.resolve(__dirname, '..')); // root path, where commands folder is
-
-program.set({
-    help: function help (argument) {
-        console.log( figlet.textSync('BackBase', {
-            // horizontalLayout: 'default',
-            // verticalLayout: 'default'
-        }).info);
-        console.log('Command line utility for building Backbase Widgets and Modules')
-    }
-});
-
-program.run();
+cliparse.parse(BBCLI);

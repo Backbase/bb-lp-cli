@@ -1,8 +1,5 @@
 .DS_Store
-docs/
-web_modules
-resources
-vendors
+__tmp/
 lib-cov
 *.seed
 *.log

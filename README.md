@@ -1,8 +1,7 @@
 # BackBase-CLI 
 
-Backbase tool for widgets
+Backbase tool for widgets / modules
 
----- TBA ----
 
 
 #Information
@@ -12,18 +11,23 @@ Backbase tool for widgets
 
 ## Usage
 
+## Requirements
+- git
+- nodejs
+- bower
+
 ## Install
 
 ```
 npm i backbase -g 
-
 ```
-## Example
+
+## Commands
+
+Generate a new widget from template:
 
 ```bash
-
-EXAMPLEHERE
-
+backbase generate <url>
 ```
 
 
