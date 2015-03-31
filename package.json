@@ -23,6 +23,7 @@
     "cliparse": "^0.2.1",
     "clui": "^0.3.1",
     "colors": "^1.0.3",
+    "del": "^1.1.1",
     "eslint": "^0.17.1",
     "figlet-cli": "^0.1.0",
     "gulp": "^3.8.11",
@@ -53,7 +54,6 @@
     "webpack": "^1.7.3"
   },
   "devDependencies": {
-    "del": "^1.1.1",
     "gulp-concat": "^2.5.2",
     "gulp-uglify": "^1.1.0",
     "istanbul": "^0.2.3",
