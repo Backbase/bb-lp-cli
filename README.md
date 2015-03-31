@@ -2,8 +2,7 @@
 
 Backbase tool for widgets / modules
 
-
-#Information
+# Information
 | name                  | version       | node      |
 | ----------------------|:-------------:| ----------:|
 | backbase              | 0.0.1         | >= 0.10    |
@@ -65,3 +64,34 @@ options:
 backbase test
 ```
 
+
+### Configuration under the bower.json file
+```javascript
+"config": {
+    "paths" : {
+        "scripts": "./scripts",
+        "docs": "./docs",
+        "target": "./dist",
+        "templates": "./templates",
+        "styles": "./styles",
+        "test": "./test",
+        "index": "./index-dev.html"
+    },
+
+    "proxies": {
+      "/api":  "http://localhost:3030/"
+    }
+    ....    
+}
+```
+
+
+### TODO:
+--------
+
+Commands
+- bb link (bower link specific modules)
+- bb docs (generate documentation)
+- bb import (import to portal)
+- bb bump (bump the verion)
+- bb package (generate a zip package from dist folder)
