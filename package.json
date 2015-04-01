@@ -1,7 +1,7 @@
 {
   "name": "backbase",
   "preferGlobal": "true",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "bin": {
     "backbase": "bin/backbase"
   },
@@ -46,7 +46,6 @@
     "karma-webpack": "^1.5.0",
     "lodash": "^3.5.0",
     "logdown": "^1.1.1",
-    "nodegit": "^0.3.3",
     "promise": "^6.1.0",
     "proxy-middleware": "^0.11.0",
     "run-sequence": "^1.0.2",
