@@ -14,11 +14,7 @@ module.exports = function start(v) {
     logger.info('Using config:', utils.logObj(v));
     loading.start();
     loading.message('Testing');
-    gulp.start('test:lint', function(err) {
-        if(err) {
-            utils.handleError(err);
-        }
-    });
+    gulp.start('test:lint');
     tasks.test()
         .then(function() {
             logger.info('Clean up...');
