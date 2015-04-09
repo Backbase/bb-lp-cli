@@ -36,7 +36,7 @@ backbase generate <url>
 arguments:
     NONE
 options:
-    - v  'Verbose'
+    NONE
 
 ```bash
 backbase install
@@ -48,7 +48,7 @@ backbase install
 arguments:
     NONE
 options:
-    NONE
+    - l --link auto link dependencies (if they are already linked)
     
 ```bash
 backbase start
@@ -58,12 +58,43 @@ backbase start
 arguments:
     NONE
 options:
-    - w watch
+    - w --watch watch
 
 ```bash
 backbase test
 ```
 
+
+### Build: 
+arguments:
+    NONE
+options:
+    - s --skipTests skips unit tests
+
+```bash
+backbase build
+```
+
+
+### Register: Register bower package to registry endpoint
+arguments:
+    registry - registry url default is http://launchpad.backbase.com:5678
+options:
+   NONE
+
+```bash
+backbase register
+```
+
+### Unregister: Unregister bower package to registry endpoint
+arguments:
+    registry - registry url default is http://launchpad.backbase.com:5678
+options:
+   NONE
+
+```bash
+backbase unregister
+```
 
 ### Configuration under the bower.json file
 ```javascript
@@ -90,8 +121,14 @@ backbase test
 --------
 
 Commands
-- bb link (bower link specific modules)
 - bb docs (generate documentation)
 - bb import (import to portal)
 - bb bump (bump the verion)
 - bb package (generate a zip package from dist folder)
+
+Output
+- better output
+- use debug flag
+
+Test
+- add tests

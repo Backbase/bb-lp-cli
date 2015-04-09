@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 var cliparse = require('cliparse');
+var parsers = cliparse.parsers;
 var pckJson = require('../package.json');
+require('cute-stack')();
 
 /*----------------------------------------------------------------*/
 /* #TODO parse the commands folder and auto generate commands
@@ -16,13 +18,13 @@ var BBCLI = cliparse.cli({
     /* Widget subcommand
     /*----------------------------------------------------------------*/
         //cliparse.command( 'widget', {
-            //description: 'perform simple arithmetic calculations',
+            //description: '',
             //commands: [
                 /*----------------------------------------------------------------*/
                 /* Generate Widget
                 /*----------------------------------------------------------------*/
                 cliparse.command('generate', {
-                    description: 'Generate',
+                    description: 'Generate a widget/module based on a template default one is `widget-ng-template`.',
                     args: [
                         cliparse.argument('url', {
                             description: 'Template repo url',
@@ -32,57 +34,105 @@ var BBCLI = cliparse.cli({
                     options: [
 
                     ]
-                }, require('../commands/common/generate') ),
+                }, require('../lib/commands/common/generate') ),
 
                 /*----------------------------------------------------------------*/
                 /* Build Widget
                 /*----------------------------------------------------------------*/
                 cliparse.command('build', {
-                    description: 'Build',
+                    description: 'Builds the widget/module.',
                     args: [
 
                     ],
                     options: [
-
+                        cliparse.flag('skipTests', { aliases: ['s'], description: 'Skip tests'})
                     ]
-                }, require('../commands/common/build') ),
+                }, require('../lib/commands/common/build') ),
 
                 /*----------------------------------------------------------------*/
                 /* Start Widget
                 /*----------------------------------------------------------------*/
                 cliparse.command('start', {
-                    description: 'Start local development server',
+                    description: 'Start local development server on http://localhost:3000/',
                     args: [
 
                     ],
                     options: [
 
                     ]
-                }, require('../commands/common/start') ),
+                }, require('../lib/commands/common/start') ),
                 /*----------------------------------------------------------------*/
                 /* Install Widget Deps
                 /*----------------------------------------------------------------*/
                 cliparse.command('install', {
-                    description: 'Install dependencies',
+                    description: 'Install bower dependencies.',
+                    args: [
+                        cliparse.argument('package', {
+                            description: 'dependency package',
+                            default: '',
+                            parser: parsers.stringParser,
+                        })
+                    ],
+                    options: [
+                        cliparse.flag('link', { aliases: ['l'], description: 'Auto symlink'})
+                    ]
+                }, require('../lib/commands/common/install') ),
+                 /*----------------------------------------------------------------*/
+                /* Bower link
+                /*----------------------------------------------------------------*/
+                cliparse.command('link', {
+                    description: 'Links all the dependencies from bower directory',
                     args: [
 
                     ],
                     options: [
-                        cliparse.flag('verbose', { aliases: ['v'], description: 'Makes output more verbose'})
+
                     ]
-                }, require('../commands/common/install') ),
+                }, require('../lib/commands/common/link') ),
                 /*----------------------------------------------------------------*/
                 /* Test Widget
                 /*----------------------------------------------------------------*/
                 cliparse.command('test', {
-                    description: 'Test',
+                    description: 'Test the widget/module using karma test runner and PhantomJS',
                     args: [
 
                     ],
                     options: [
                         cliparse.flag('watch', { aliases: ['w'], description: 'Watch files'})
                     ]
-                }, require('../commands/common/test') )
+                }, require('../lib/commands/common/test') ),
+
+                /*----------------------------------------------------------------*/
+                /* Register bower package
+                /*----------------------------------------------------------------*/
+                cliparse.command('register', {
+                    description: 'Register bower package to registry endpoint. Default `http://launchpad.backbase.com:5678/`',
+                    args: [
+                        cliparse.argument('registry', {
+                            description: 'Bower registry endpoint.',
+                            default: 'http://launchpad.backbase.com:5678'
+                        })
+                    ],
+                    options: [
+
+                    ]
+                }, require('../lib/commands/common/register') ),
+                /*----------------------------------------------------------------*/
+                /* Unregister bower package
+                /*----------------------------------------------------------------*/
+                cliparse.command('unregister', {
+                    description: 'Unregister bower package to registry endpoint. Default `http://launchpad.backbase.com:5678/`',
+                    args: [
+                        cliparse.argument('registry', {
+                            description: 'Bower registry endpoint.',
+                            default: 'http://launchpad.backbase.com:5678'
+                        })
+                    ],
+                    options: [
+
+                    ]
+                }, require('../lib/commands/common/unregister') )
+
             //]
         //})
     ]
