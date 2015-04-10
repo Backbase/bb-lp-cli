@@ -3,7 +3,7 @@
   "preferGlobal": true,
   "version": "0.0.1",
   "bin": {
-    "bb-lp": "bin/backbase"
+    "bb": "bin/backbase"
   },
   "description": "A tool for creating and developing Backbase Launchpad specific Widgets and Modules.",
   "homepage": "http://github.com/dragosh/bb-lp-tools",
