@@ -1,6 +1,6 @@
 {
-  "name": "bb-lp-tools",
-  "version": "0.0.1",
+  "name": "backbase",
+  "version": "0.2.1",
   "dependencies": {
     "browser-sync": {
       "version": "2.5.3",
