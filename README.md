@@ -1,102 +1,129 @@
-# BackBase-CLI 
+# Backbase Launchpad-CLI tools
 
-Backbase tool for widgets / modules
+Backbase Launchpad tools for widgets / modules 
 
 # Information
 | name                  | version       | node      |
 | ----------------------|:-------------:| ----------:|
-| backbase              | 0.0.3         | >= 0.10    |
+| bb-lp-tools           | 0.0.1         | >= 0.10    |
 
 
 ## Requirements
 - git
 - nodejs
 - bower
+- curl
 
 ## Install
 
 ```
-npm i backbase -g 
+npm i bb-lp-tools -g 
 ```
 
 ## Usage
+
+Using **bb-lp** as binary.
+
 
 ### Generate widget/module:
 
 arguments:
     - url 'https://stash.backbase.com/scm/lp/widget-ng-template.git'
 options:
-    NONE
+- **NONE**
 
 ```bash
-backbase generate <url>
+bb-lp generate <url>
 ```
 
 ### Install bower dependencies:
 arguments:
-    NONE
+
+- **&lt;package-name&gt;**
+
 options:
-    NONE
+
+- **NONE**
 
 ```bash
-backbase install
+bb-lp install
 ```
 
 
 ### Start local server: http://localhost:3000
 
 arguments:
-    NONE
+
+- **NONE**
+
 options:
-    - l --link auto link dependencies (if they are already linked)
+
+- **l --link** auto link dependencies (if they are already linked)
     
+
 ```bash
-backbase start
+bb-lp start
 ```
 
 ### Test: 
 arguments:
-    NONE
+
+- **NONE**
+
 options:
-    - w --watch watch
+- **w --watch** watch test files and source files
 
 ```bash
-backbase test
+bb-lp test
 ```
 
 
 ### Build: 
+
 arguments:
-    NONE
+    
+- **NONE**
+
 options:
-    - s --skipTests skips unit tests
+
+- **- s --skipTests** skips unit tests
 
 ```bash
-backbase build
+bb-lp build
 ```
 
 
 ### Register: Register bower package to registry endpoint
+
 arguments:
-    registry - registry url default is http://launchpad.backbase.com:5678
+
+- **registry** - registry url default is http://launchpad.backbase.com:5678
+
 options:
-   NONE
+- **NONE**
 
 ```bash
-backbase register
+bb-lp register
 ```
 
 ### Unregister: Unregister bower package to registry endpoint
 arguments:
-    registry - registry url default is http://launchpad.backbase.com:5678
+
+- **registry** - registry url default is http://launchpad.backbase.com:5678
+
 options:
-   NONE
+
+- **NONE**
 
 ```bash
-backbase unregister
+bb-lp unregister
 ```
 
 ### Configuration under the bower.json file
+
+This is the default config structure if is not specified otherwise in **bower.json** file
+
+
 ```javascript
 "config": {
     "paths" : {
@@ -117,14 +144,14 @@ backbase unregister
 ```
 
 
-### TODO:
---------
+## TODO:
+
 
 Commands
-- bb docs (generate documentation)
-- bb import (import to portal)
-- bb bump (bump the verion)
-- bb package (generate a zip package from dist folder)
+- bb-lp docs (generate documentation)
+- bb-lp import (import to portal)
+- bb-lp bump (bump the verion)
+- bb-lp package (generate a zip package from dist folder)
 
 Output
 - better output
@@ -132,3 +159,7 @@ Output
 
 Test
 - add tests
+
+
+## Contributing
+ tba

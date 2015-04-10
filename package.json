@@ -1,22 +1,23 @@
 {
-  "name": "backbase",
+  "name": "bb-lp-tools",
   "preferGlobal": true,
-  "version": "0.2.0",
+  "version": "0.0.1",
   "bin": {
-    "backbase": "bin/backbase"
+    "bb-lp": "bin/backbase"
   },
-  "description": "A tool for creating and developing Backbase Widgets and Modules.",
-  "homepage": "http://github.com/dragosh/backbase-cli",
+  "description": "A tool for creating and developing Backbase Launchpad specific Widgets and Modules.",
+  "homepage": "http://github.com/dragosh/bb-lp-tools",
   "author": "Dragosh Oancea oancea.dragosh@gmail.com (http://dragos.me/)",
   "keywords": [
     "widget",
     "backbase",
     "tools",
+    "launchpad",
     "cli"
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/dragosh/backbase-cli"
+    "url": "http://github.com/dragosh/bb-lp-tools"
   },
   "dependencies": {
     "browser-sync": "^2.4.0",
