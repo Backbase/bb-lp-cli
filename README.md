@@ -5,7 +5,7 @@ Backbase Launchpad tools for widgets / modules
 # Information
 | name                  | version       | node      |
 | ----------------------|:-------------:| ----------:|
-| backbase              | 0.3.0         | >= 0.10    |
+| backbase              | 0.2.1         | >= 0.10    |
 
 
 ## Requirements
