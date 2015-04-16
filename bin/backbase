@@ -2,7 +2,6 @@
 var cliparse = require('cliparse');
 var parsers = cliparse.parsers;
 var pckJson = require('../package.json');
-require('cute-stack')();
 
 /*----------------------------------------------------------------*/
 /* #TODO parse the commands folder and auto generate commands
