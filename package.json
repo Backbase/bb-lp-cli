@@ -28,6 +28,7 @@
     "eslint": "^0.17.1",
     "figlet-cli": "^0.1.0",
     "gulp": "^3.8.11",
+    "gulp-changed": "^1.2.1",
     "gulp-concat": "^2.5.2",
     "gulp-eslint": "^0.7.0",
     "gulp-less": "^3.0.2",
