@@ -1,0 +1,54 @@
+#!/usr/bin/env node
+var cliparse = require('cliparse');
+var parsers = cliparse.parsers;
+var pckJson = require('../package.json');
+
+/*----------------------------------------------------------------*/
+/* #TODO parse the commands folder and auto generate commands
+/*----------------------------------------------------------------*/
+var BBCLI = cliparse.cli({
+    name: pckJson.name,
+    version: pckJson.version,
+    helpCommand: false,
+    description: 'Backbase Launchpad CLI tool',
+
+    commands: [
+
+    /*----------------------------------------------------------------*/
+    /* Widget subcommand
+    /*----------------------------------------------------------------*/
+        //cliparse.command( 'widget', {
+            //description: '',
+            //commands: [
+                /*----------------------------------------------------------------*/
+                /* Build Widget
+                /*----------------------------------------------------------------*/
+                cliparse.command('build', {
+                    description: 'Builds the widget/module.',
+                    args: [
+
+                    ],
+                    options: [
+                        cliparse.flag('skipTests', { aliases: ['s'], description: 'Skip tests'})
+                    ]
+                }, require('../lib/commands/common/build') ),
+
+                /*----------------------------------------------------------------*/
+                /* Start Widget
+                /*----------------------------------------------------------------*/
+                cliparse.command('start', {
+                    description: 'Start local development server for stand alone.',
+                    args: [
+
+                    ],
+                    options: [
+
+                    ]
+                }, require('../lib/commands/common/start') )
+
+            //]
+        //})
+    ]
+});
+
+cliparse.parse(BBCLI);
