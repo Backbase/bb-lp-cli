@@ -6,7 +6,7 @@
     "bblp": "bin/bblp"
   },
   "description": "A tool for creating and developing Backbase Launchpad specific Widgets and Modules.",
-  "homepage": "http://github.com/dragosh/bb-lp-cli",
+  "homepage": "http://github.com/Backbase/bb-lp-cli",
   "author": "Dragosh Oancea oancea.dragosh@gmail.com (http://dragos.me/)",
   "keywords": [
     "widget",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/dragosh/bb-lp-cli"
+    "url": "http://github.com/Backbase/bb-lp-cli"
   },
   "dependencies": {
     "browser-sync": "^2.4.0",
@@ -53,10 +53,5 @@
   "engines": {
     "node": ">= 0.10"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/dragosh/backbase-cli/raw/master/LICENSE"
-    }
-  ]
+  "licenses": []
 }

@@ -11,8 +11,6 @@ Backbase Launchpad tools for widgets / modules
 ## Requirements
 - git
 - nodejs
-- bower
-- curl
 
 ## Install
 
