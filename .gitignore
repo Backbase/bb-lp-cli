@@ -9,10 +9,10 @@ lib-cov
 *.pid
 *.gz
 pids
-logs
-results
+logs/
+results/
 npm-debug.log
-node_modules
+node_modules/
 *.sublime*
 *.node
 coverage
