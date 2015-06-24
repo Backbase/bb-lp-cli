@@ -23,6 +23,7 @@
     "browser-sync": "^2.4.0",
     "cliparse": "^0.2.1",
     "colors": "^1.0.3",
+    "connect-modrewrite": "^0.8.1",
     "deep-merge": "^1.0.0",
     "del": "^1.1.1",
     "eslint": "^0.17.1",
