@@ -66,6 +66,7 @@
     "webpack": "^1.7.3"
   },
   "devDependencies": {
+    "bower-webpack-plugin": "^0.1.8",
     "istanbul": "^0.2.3",
     "mocha": "^1.17.0",
     "mocha-lcov-reporter": "^0.0.1",
