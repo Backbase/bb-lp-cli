@@ -29,6 +29,7 @@
     "del": "^1.1.1",
     "eslint": "^0.17.1",
     "figlet-cli": "^0.1.0",
+    "git-config": "0.0.7",
     "gulp": "^3.8.11",
     "gulp-changed": "^1.2.1",
     "gulp-concat": "^2.5.2",
