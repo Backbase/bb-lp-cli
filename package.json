@@ -20,6 +20,7 @@
     "url": "https://github.com/Backbase/bb-lp-cli.git"
   },
   "dependencies": {
+    "bower-webpack-plugin": "^0.1.8",
     "browser-sync": "^2.4.0",
     "cliparse": "^0.2.1",
     "colors": "^1.0.3",
@@ -66,7 +67,6 @@
     "webpack": "^1.7.3"
   },
   "devDependencies": {
-    "bower-webpack-plugin": "^0.1.8",
     "istanbul": "^0.2.3",
     "mocha": "^1.17.0",
     "mocha-lcov-reporter": "^0.0.1",
