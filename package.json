@@ -22,7 +22,6 @@
   "dependencies": {
     "bower-webpack-plugin": "^0.1.8",
     "browser-sync": "^2.4.0",
-    "chalk": "^1.1.0",
     "cliparse": "^0.2.1",
     "colors": "^1.0.3",
     "connect-modrewrite": "^0.8.1",

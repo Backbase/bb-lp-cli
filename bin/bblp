@@ -2,7 +2,7 @@
 var cliparse = require('cliparse');
 var parsers = cliparse.parsers;
 var pckJson = require('../package.json');
-var chalk = require('chalk');
+var colors = require('colors');
 
 /*----------------------------------------------------------------*/
 /* #TODO parse the commands folder and auto generate commands
@@ -139,10 +139,10 @@ var BBCLI = cliparse.cli({
                     description: 'Bump version in bower, README.md and CHANGELOG.md',
                     args: [
                         cliparse.argument('VERSION', {
-                            description: chalk.gray('major') + ' [X.x.x], ' + chalk.gray('minor') + ' [x.X.x] or ' + chalk.gray('patch') + ' [x.x.X]',
+                            description: 'major'.gray + ' [X.x.x], ' + 'minor'.gray + ' [x.X.x] or ' + 'patch'.gray + ' [x.x.X]',
                             parser: function(v) {
                                 if (['major', 'minor', 'patch'].indexOf(v) !== -1) return {success: v};
-                                else return {error: chalk.red('Wrong version!')};
+                                else return {error: 'Wrong version!'.red};
                             }
                         }),
                         cliparse.argument('MESSAGE', {
