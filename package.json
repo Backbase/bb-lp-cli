@@ -1,7 +1,7 @@
 {
   "name": "backbase",
   "preferGlobal": true,
-  "version": "0.2.6",
+  "version": "0.3.0",
   "bin": {
     "bblp": "bin/bblp"
   },
@@ -30,6 +30,7 @@
     "del": "^1.1.1",
     "eslint": "^0.17.1",
     "figlet-cli": "^0.1.0",
+    "fs-extra-promise": "^0.2.0",
     "git-config": "0.0.7",
     "gulp": "^3.8.11",
     "gulp-cached": "^1.1.0",
@@ -59,10 +60,12 @@
     "less-loader": "^2.2.0",
     "lodash": "^3.5.0",
     "logdown": "^1.1.1",
+    "moment": "^2.10.3",
     "promise": "^6.1.0",
     "proxy-middleware": "^0.11.0",
     "raw-loader": "^0.5.1",
     "run-sequence": "^1.0.2",
+    "semver": "^5.0.1",
     "shelljs": "^0.4.0",
     "style-loader": "^0.12.3",
     "webpack": "^1.7.3"
