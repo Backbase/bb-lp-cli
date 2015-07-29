@@ -45,7 +45,8 @@ var BBCLI = cliparse.cli({
 
                     ],
                     options: [
-                        cliparse.flag('skipTests', { aliases: ['s'], description: 'Skip tests'})
+                        cliparse.flag('skipTests', { aliases: ['s'], description: 'Skip tests'}),
+                        cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'})
                     ]
                 }, require('../lib/commands/common/build') ),
 
