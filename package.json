@@ -9,11 +9,11 @@
   "homepage": "https://github.com/Backbase/bb-lp-cli.git",
   "author": "Dragosh Oancea oancea.dragosh@gmail.com (http://dragos.me/)",
   "keywords": [
-    "widget",
     "backbase",
-    "tools",
+    "cli",
     "launchpad",
-    "cli"
+    "tools",
+    "widget"
   ],
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "del": "^1.1.1",
     "eslint": "^0.17.1",
     "figlet-cli": "^0.1.0",
+    "findit": "^2.0.0",
     "fs-extra-promise": "^0.2.0",
     "git-config": "0.0.7",
     "gulp": "^3.8.11",
@@ -81,10 +82,10 @@
     "should": "^4.0.0"
   },
   "scripts": {
-    "postinstall": "figlet \"BackbaseCLI\"",
+    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "lint": "eslint . ",
-    "test": "npm run-script lint && mocha --reporter spec",
-    "coveralls": "istanbul cover _mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage"
+    "postinstall": "figlet \"BackbaseCLI\"",
+    "test": "npm run-script lint && mocha --reporter spec"
   },
   "engines": {
     "node": ">= 0.10"

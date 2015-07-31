@@ -153,7 +153,22 @@ var BBCLI = cliparse.cli({
                     ],
                     options: [
                     ]
-                }, require('../lib/commands/common/bump') )
+                }, require('../lib/commands/common/bump') ),
+
+                /*----------------------------------------------------------------*/
+                /* Lock Bower Dependencies
+                 /*----------------------------------------------------------------*/
+                cliparse.command('release-mobile', {
+                    description: 'Locks the bower dependencies to the latest changes in master',
+                    args: [
+                        cliparse.argument('master', {
+                            description: 'Get the latest commits in master branches',
+                            default: false
+                        })
+                    ],
+                    options: [
+                    ]
+                }, require('../lib/commands/common/release-mobile') )
 
             //]
         //})
