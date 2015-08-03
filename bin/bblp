@@ -161,12 +161,17 @@ var BBCLI = cliparse.cli({
                 cliparse.command('release-mobile', {
                     description: 'Locks the bower dependencies to the latest changes in master',
                     args: [
-                        cliparse.argument('master', {
-                            description: 'Get the latest commits in master branches',
-                            default: false
+                        cliparse.argument('branch', {
+                            description: 'Set the branch where to get the latest commits if latest flag is set',
+                            default: 'master'
+                        }),
+                        cliparse.argument('private', {
+                            description: 'Set the url to check for latest commits if latest flag is set',
+                            default: 'stash.backbase.com'
                         })
                     ],
                     options: [
+                        cliparse.flag('latest', { aliases: ['l'], description: 'Get latest commit in branch.'})
                     ]
                 }, require('../lib/commands/common/release-mobile') )
 
