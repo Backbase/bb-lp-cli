@@ -71,7 +71,7 @@
     "raw-loader": "^0.5.1",
     "run-sequence": "^1.0.2",
     "semver": "^5.0.1",
-    "shelljs": "^0.4.0",
+    "shelljs": "^0.5.3",
     "style-loader": "^0.12.3",
     "webpack": "^1.7.3"
   },
