@@ -148,6 +148,25 @@
 			"required": [
 				"text"
 			]
+		},
+
+		"components": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Components"
+				}
+			},
+			"required": [
+				"text"
+			]
 		}
 	}
 }
