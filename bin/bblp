@@ -152,6 +152,7 @@ var BBCLI = cliparse.cli({
                         })
                     ],
                     options: [
+                        cliparse.flag('silent', { aliases: ['S'], description: 'In silent mode only README version section will be updated'})
                     ]
                 }, require('../lib/commands/common/bump') )
             //]
