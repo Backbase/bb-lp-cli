@@ -23,6 +23,17 @@
 		]
 	},
 
+	"section": {
+		"oneOf": [
+			{
+				"$ref": "#/paragraph"
+			},
+			{
+				"$ref": "#/heading"
+			}
+		]
+	},
+
 	"table": {
 		"properties": {
 			"type": {
