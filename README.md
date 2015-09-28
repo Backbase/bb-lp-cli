@@ -17,7 +17,7 @@ CLI development tool for widgets / modules
 ## Install
 
 ```
-npm i @backbase/bb-lp-cli -g 
+npm i bb-lp-cli -g 
 ```
 
 ## Usage
