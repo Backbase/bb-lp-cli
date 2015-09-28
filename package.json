@@ -1,7 +1,7 @@
 {
-  "name": "bb-lp-cli",
+  "name": "@backbase/bb-lp-cli",
   "preferGlobal": true,
-  "version": "1.0.0-alpha",
+  "version": "1.0.0-alpha1",
   "bin": {
     "bblp": "bin/bblp"
   },
