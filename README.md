@@ -17,7 +17,7 @@ CLI development tool for widgets / modules
 ## Install
 
 ```
-npm i bb-lp-cli -g 
+npm i bb-lp-cli -g
 ```
 
 ## Usage
