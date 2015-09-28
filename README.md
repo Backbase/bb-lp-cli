@@ -187,6 +187,12 @@ Clone and link the repository
 git clone git@github.com:Backbase/bb-lp-cli.git && cd bb-lp-cli && npm link
 ```
 
+Use the develop branch
+
+```bash
+npm install backbase/bb-lp-cli#develop
+```
+
 Pull requests
 @tba
 
