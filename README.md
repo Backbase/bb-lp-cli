@@ -25,7 +25,7 @@ npm i @backbase/bb-lp-cli -g
 Using **bblp** as binary.
 
 
-### Help command
+### Help
 
 Check all the available commands that you can use.
 
@@ -45,7 +45,7 @@ Check command help
 bblp <command> --help
 ```
 
-### Generate widget/module:
+### Generate
 
 Clone a git repository template. Default is using `widget-ng-template`
 
@@ -59,7 +59,7 @@ bblp generate <url>
 ```
 
 
-### Start local server: http://localhost:3000
+### Start
 
 Start local development brwserSync server on http://localhost:3000/.
 
