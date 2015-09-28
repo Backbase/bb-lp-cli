@@ -114,7 +114,7 @@ Bump version in bower.json, README.md and CHANGELOG.md
 arguments:
 
 - **VERSION**  Semver compliant major [X.x.x], minor [x.X.x] or patch [x.x.X]
-- **[MESSAGE]**  Optionl bump message
+- **[MESSAGE]**  Optional bump message
 options:
 
 - **NONE**
@@ -184,7 +184,7 @@ This is the default config structure if is not specified otherwise in **bower.js
 Clone and link the repository
 
 ```bash
-git clone git@github.com:Backbase/bb-lp-cli.git && bb-lp-cli && npm link
+git clone git@github.com:Backbase/bb-lp-cli.git && cd bb-lp-cli && npm link
 ```
 
 Pull requests
