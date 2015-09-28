@@ -1,11 +1,11 @@
-# Backbase Launchpad-CLI tools
-
-Backbase Launchpad tools for widgets / modules 
+# Backbase Launchpad
+=========
+CLI development tool for widgets / modules 
 
 # Information
 | name                  | version       | node      |
 | ----------------------|:-------------:| ----------:|
-| backbase              | 0.2.6         | >= 0.10    |
+| bb-lp-cli             | 1.0.0-alpha   | >= 0.10    |
 
 
 ## Requirements
@@ -16,39 +16,38 @@ Backbase Launchpad tools for widgets / modules
 
 ## Install
 
-You can either install from NPM (stable) or install from Stash (experimental).
-
-### Install From NPM
-
 ```
-npm i backbase -g 
+npm i bb-lp-cli -g
 ```
-
-### Install From Stash
-
-1. Ensure it's not already installed:
-
-    `npm uninstall -g backbase`
-
-2. Clone the repository from stash:
-
-    `git clone ssh://git@stash.backbase.com:7999/lp/cli.git`
-
-3. Install from repo:
-
-    `cd cli && npm i . -g`
-
-4. Link to local repo, so you can also update the CLI.
-
-    `npm link`
 
 ## Usage
 
 Using **bblp** as binary.
 
-**Warning. One of the dependent libraries *cliparse* doesn't support JavaScript I/O.**
 
-### Generate widget/module:
+### Help
+
+Check all the available commands that you can use.
+
+```bash
+bblp
+```
+
+or
+
+```bash
+bblp --help
+```
+
+Check command help
+
+```bash
+bblp <command> --help
+```
+
+### Generate
+
+Clone a git repository template. Default is using `widget-ng-template`
 
 arguments:
     - url 'https://stash.backbase.com/scm/lp/widget-ng-template.git'
@@ -59,21 +58,10 @@ options:
 bblp generate <url>
 ```
 
-### Install bower dependencies:
-arguments:
 
-- **&lt;package-name&gt;**
+### Start
 
-options:
-
-- **NONE**
-
-```bash
-bblp install
-```
-
-
-### Start local server: http://localhost:3000
+Start local development brwserSync server on http://localhost:3000/.
 
 arguments:
 
@@ -81,7 +69,7 @@ arguments:
 
 options:
 
-- **l --link** auto link dependencies (if they are already linked)
+- **NONE**
     
 
 ```bash
@@ -89,12 +77,14 @@ bblp start
 ```
 
 ### Test: 
-arguments:
 
+Tests the widget / module using karma test runner and PhantomJS.
+
+arguments:
 - **NONE**
 
 options:
-- **w --watch** watch test files and source files
+- **-w --watch** Watch test files and source files
 
 ```bash
 bblp test
@@ -102,6 +92,7 @@ bblp test
 
 
 ### Build: 
+Bundle the widget/module.
 
 arguments:
     
@@ -109,14 +100,31 @@ arguments:
 
 options:
 
-- **- s --skipTests** skips unit tests
+- **-s --skipTests** Skips unit tests
+- **-t --withTemplates** Bundle HTML templates into build file (for widgets)
 
 ```bash
 bblp build
 ```
 
 
-### Register: Register bower package to registry endpoint
+### Bump:
+Bump version in bower.json, README.md and CHANGELOG.md
+
+arguments:
+
+- **VERSION**  Semver compliant major [X.x.x], minor [x.X.x] or patch [x.x.X]
+- **[MESSAGE]**  Optional bump message
+options:
+
+- **NONE**
+
+```bash
+bblp bump minor "Some relevant message"
+```
+
+### Register:
+Register bower package to registry endpoint
 
 arguments:
 
@@ -129,7 +137,9 @@ options:
 bblp register
 ```
 
-### Unregister: Unregister bower package to registry endpoint
+### Unregister:
+Unregister bower package to registry endpoint
+
 arguments:
 
 - **registry** - registry url default is http://launchpad.backbase.com:5678
@@ -141,6 +151,8 @@ options:
 ```bash
 bblp unregister
 ```
+
+
 
 ### Configuration under the bower.json file
 
@@ -160,28 +172,35 @@ This is the default config structure if is not specified otherwise in **bower.js
     },
 
     "proxies": {
-      "/api":  "http://localhost:3030/"
+      "/api":  "http://localhost:3030/"      
     }
     ....    
 }
 ```
 
 
-## TODO:
+## Develop & Contributing
 
+Clone and link the repository
 
-Commands
-- bblp docs (generate documentation)
-- bblp bump (bump the verion)
-- bblp package (generate a zip package from dist folder)
+```bash
+git clone git@github.com:Backbase/bb-lp-cli.git && cd bb-lp-cli && npm link
+```
 
-Output
-- better output
-- use debug flag
+Use the develop branch
 
-Test
-- add tests
+```bash
+npm install backbase/bb-lp-cli#develop
+```
 
+Pull requests
+@tba
 
-## Contributing
- tba
+## FAQ
+@tba
+
+## Tested
+
+MacOS
+- node: 0.12.x, 4.0.0
+- npm: 2.x 3.x
