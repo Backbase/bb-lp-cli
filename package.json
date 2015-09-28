@@ -68,6 +68,7 @@
     "less-loader": "^2.2.0",
     "lodash": "^3.5.0",
     "logdown": "^1.1.1",
+    "marked": "^0.3.5",
     "marked-to-md": "^1.0.1",
     "moment": "^2.10.3",
     "promise": "^6.1.0",
