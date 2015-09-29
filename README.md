@@ -237,7 +237,7 @@ You will also need to install:
     
   * On Windows:
     * [Python][windows-python] ([`v2.7.3`][windows-python-v2.7.3] recommended, `v3.x.x` is __*not*__ supported)
-      * Make sure that you have a PYTHON environment variable, and it is set to drive:\path\to\python.exe not to a folder
+      * Make sure that you have a PYTHON environment variable, and it is set to drive:\path\to\python.exe not to a folder (Append ;C:\Python27 to the Path variable.)
       http://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7
 
     * Windows XP/Vista/7:
