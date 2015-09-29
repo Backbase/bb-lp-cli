@@ -220,6 +220,10 @@ MacOS
 - node: 0.12.x, 4.0.0
 - npm: 2.x 3.x
 
+Win7
+node: 0.12.x, 4.1.x
+npm: 2.14.x
+
 ### Important Notes
 The cli uses [node-gyp](https://github.com/nodejs/node-gyp)
 
