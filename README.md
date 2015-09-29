@@ -6,7 +6,7 @@ CLI development tool for widgets / modules
 # Information
 | name                  | version       | node      |
 | ----------------------|:-------------:| ----------:|
-| bb-lp-cli             | 1.0.0-beta.1   | >= 0.10    |
+| bb-lp-cli             | 1.0.0   | >= 0.10    |
 
 
 ## Requirements
