@@ -198,8 +198,21 @@ npm install backbase/bb-lp-cli#develop
 ```
 
 
-## FAQ
+Publish a beta version
 
+```base
+git tag x.x.x-beta.0
+git tag push --tags
+npm login
+npm publish --tags beta
+npm info
+```
+
+## HOWTO
+
+- Windows
+### Adding environments paths for python
+http://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7
 
 ## Tested
 
@@ -225,6 +238,8 @@ You will also need to install:
   * On Windows:
     * [Python][windows-python] ([`v2.7.3`][windows-python-v2.7.3] recommended, `v3.x.x` is __*not*__ supported)
       * Make sure that you have a PYTHON environment variable, and it is set to drive:\path\to\python.exe not to a folder
+      http://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7
+
     * Windows XP/Vista/7:
       * Microsoft Visual Studio C++ 2013 ([Express][msvc2013] version works well)
         * If the install fails, try uninstalling any C++ 2010 x64&x86 Redistributable that you have installed first
@@ -260,3 +275,9 @@ An easy way to obtain these is to install XCode from Apple,
 and then use it to install the command line tools (under Preferences -> Downloads).
 
 Check [node-gyp](https://github.com/nodejs/node-gyp) project for more info.
+
+
+[windows-python]: http://www.python.org/getit/windows
+[windows-python-v2.7.3]: http://www.python.org/download/releases/2.7.3#download
+[msvc2013]: http://www.microsoft.com/en-gb/download/details.aspx?id=44914
+[win7sdk]: http://www.microsoft.com/en-us/download/details.aspx?id=8279
