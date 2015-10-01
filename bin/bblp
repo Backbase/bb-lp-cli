@@ -88,6 +88,7 @@ var BBCLI = cliparse.cli({
                 })
             ],
             options: [
+                cliparse.flag('readme-only', { aliases: ['r'], description: 'In readme-only mode only README version section will be updated'})
             ]
         }, require('../lib/commands/common/bump') ),
         /*----------------------------------------------------------------*/
@@ -149,7 +150,7 @@ var BBCLI = cliparse.cli({
             options: [
 
             ]
-        }, require('../lib/commands/common/link') ),
+        }, require('../lib/commands/common/link') )
     ]
 });
 

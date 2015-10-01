@@ -1,0 +1,183 @@
+{
+	"name": "marked",
+
+	"paragraph": {
+		"properties": {
+			"type": {
+				"enum": ["paragraph"]
+			}
+		},
+		"required": [
+			"type"
+		]
+	},
+
+	"heading": {
+		"properties": {
+			"type": {
+				"enum": ["heading"]
+			}
+		},
+		"required": [
+			"type"
+		]
+	},
+
+	"section": {
+		"oneOf": [
+			{
+				"$ref": "#/paragraph"
+			},
+			{
+				"$ref": "#/heading"
+			}
+		]
+	},
+
+	"table": {
+		"properties": {
+			"type": {
+				"enum": ["table"]
+			},
+			"cells": {
+				"type": "array"
+			}
+		},
+		"required": [
+			"type",
+			"cells"
+		]
+	},
+
+	"list_start": {
+		"properties": {
+			"type": {
+				"enum": ["list_start"]
+			}
+		},
+		"required": [
+			"type"
+		]
+	},
+
+	"list_end": {
+		"properties": {
+			"type": {
+				"enum": ["list_end"]
+			}
+		},
+		"required": [
+			"type"
+		]
+	},
+
+	"text": {
+		"properties": {
+			"type": {
+				"enum": ["text"]
+			}
+		},
+		"required": [
+			"type"
+		]
+	},
+
+	"backbase": {
+		"information": {
+			"oneOf": [
+				{
+					"$ref": "#/table"
+				}
+			],
+			"properties": {
+				"header": {
+					"type": "array",
+					"items": [{
+						"enum": ["name"]
+					}, {
+						"enum": ["version"]
+					}, {
+						"enum": ["bundle"]
+					}],
+            		"additionalItems": false
+				}
+			}
+		},
+
+		"dependencies": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Dependencies"
+				}
+			},
+			"required": [
+				"text"
+			]
+		},
+
+		"dev-dependencies": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Dev Dependencies"
+				}
+			},
+			"required": [
+				"text"
+			]
+		},
+
+		"preferences": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Preferences"
+				}
+			},
+			"required": [
+				"text"
+			]
+		},
+
+		"components": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Components"
+				}
+			},
+			"required": [
+				"text"
+			]
+		}
+	}
+}
