@@ -88,7 +88,7 @@ var BBCLI = cliparse.cli({
                 })
             ],
             options: [
-                cliparse.flag('readme-only', { aliases: ['r'], description: 'In readme-only mode only README version section will be updated'})
+                cliparse.flag('version-only', { aliases: ['v'], description: 'In version-only mode only README version section will be updated'})
             ]
         }, require('../lib/commands/common/bump') ),
         /*----------------------------------------------------------------*/
