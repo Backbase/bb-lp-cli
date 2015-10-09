@@ -89,6 +89,11 @@ arguments:
 
 options:
 - **-w --watch** Watch test files and source files
+- **-c --coverage** With coverage
+- **--browsers** A comma separated list of browsers to launch and capture
+    + `--browsers Firefox,Chrome,Safari`
+- **--config** Custom karma configuration file
+    + `--config karma.config.js`
 
 ```bash
 bblp test
@@ -172,16 +177,72 @@ This is the default config structure if is not specified otherwise in **bower.js
         "templates": "./templates",
         "styles": "./styles",
         "test": "./test",
+        "reports": "./reports",
         "index": "./index-dev.html"
     },
 
     "proxies": {
       "/api":  "http://localhost:3030/"      
-    }
+    },
+
+    "eslint": "configs/eslint.conf.yaml",
+    "karma": "configs/karma.conf.yaml"
     ....    
 }
 ```
 
+
+### Extending configurations:
+By default the cli is looking for an **configs** folder in the root folder of the app. Possible extensions are on **karma** options:
+
+Example karma.conf.yaml
+
+```yaml
+# Karma Configuration Options
+default:
+  browsers:
+    - Chrome
+
+production:
+    browsers:
+        - Firefox
+        - Chrome
+
+```
+
+Example eslint.conf.yaml
+
+```yaml
+---
+  rules:
+    eqeqeq: 0
+    curly: 2
+    quotes:
+      - 2
+      - "double"
+
+```
+
+```bash
+NODE_ENV=production bblp test -c
+```
+
+YAML configuration is preferred format but you can also opt for a `.json` format.
+
+The same is possible also for **eslint** options:
+
+
+**IMPORTANT TO NOTE** the file name needs to be `karma.conf.yaml` and `eslint.conf.yaml`. If you prefer a different name then you can set it up in the `bower.json config`
+
+```json
+...
+"karma": "configs/karma.configuration.yaml"
+...
+```
+
+
+@todo
+- add the webpack extension support
 
 ## Develop & Contributing
 
@@ -207,6 +268,24 @@ npm login
 npm publish --tags beta
 npm info
 ```
+
+## FAQ
+
+Q. How can i disable some folders, file, or rules from being linted?
+A. They are two options: Global and Inline.
+
+    1. Global: use a `.eslintignore` file in the root of the project and specify that to ignore, for ex:
+
+    ```
+    # Ignore scripts but not the main file
+    scripts/
+    !scripts/main.js
+    ```
+
+    2. Inline: using a comment inside of your JavaScript file, use the following format
+    /*eslint-disable */
+
+
 
 ## HOWTO
 
