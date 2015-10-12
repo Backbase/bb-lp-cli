@@ -45,13 +45,20 @@ var BBCLI = cliparse.cli({
         /*----------------------------------------------------------------*/
         /* Test Widget
         /*----------------------------------------------------------------*/
+        /**
+         * @todo add unit / functional / api tests
+         * @type {String}
+         */
         cliparse.command('test', {
             description: 'Test the widget/module using karma test runner and PhantomJS',
             args: [
-
+                // cliparse.argument('type', { description: "Unit test", default: 'unit', })
             ],
             options: [
-                cliparse.flag('watch', { aliases: ['w'], description: 'Watch files'})
+                cliparse.flag('watch', { aliases: ['w'], description: 'Watch files'}),
+                cliparse.flag('coverage', { aliases: ['c'], description: 'With coverage'}),
+                cliparse.option('config', { description: 'Custom karma configuration file'}),
+                cliparse.option('browsers', { description: 'A comma separated list of browsers to launch and capture'})
             ]
         }, require('../lib/commands/common/test') ),
 
@@ -120,37 +127,7 @@ var BBCLI = cliparse.cli({
             options: [
 
             ]
-        }, require('../lib/commands/common/unregister') ),
-
-
-        /*----------------------------------------------------------------*/
-        /* Deprecated
-        /*----------------------------------------------------------------*/
-        cliparse.command('install', {
-            description: '[DEP] Install bower dependencies.',
-            args: [
-                cliparse.argument('package', {
-                    description: 'dependency package',
-                    default: '',
-                    parser: parsers.stringParser,
-                })
-            ],
-            options: [
-                cliparse.flag('link', { aliases: ['l'], description: 'Auto symlink'})
-            ]
-        }, require('../lib/commands/common/install') ),
-         /*----------------------------------------------------------------*/
-        /* Bower link
-        /*----------------------------------------------------------------*/
-        cliparse.command('link', {
-            description: '[DEP] inks all the dependencies from bower directory',
-            args: [
-
-            ],
-            options: [
-
-            ]
-        }, require('../lib/commands/common/link') )
+        }, require('../lib/commands/common/unregister') )
     ]
 });
 

@@ -1,8 +1,4 @@
 {
-    "rulesPaths": [
-        "./eslint-rules"
-    ],
-
     "rules": {
         "quotes": [2, "single"],
         "no-unused-vars": [2, {"vars": "local", "args": "none"}],
@@ -13,7 +9,7 @@
 
     },
 
-    "envs": {
+    "env": {
         "browser": true,
         "amd": true,
         "node": true,
