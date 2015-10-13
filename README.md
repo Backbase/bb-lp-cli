@@ -105,16 +105,106 @@ Bundle the widget/module.
 
 arguments:
     
-- **NONE**
+- **config** path to config file for components management. E.g. `bblp build -c ./my-conf.json`.
+- **excludes** Array of components to exclude. E.g. `bblp build -e touch,color-picker,focus`.
+- **destination** name of target file. E.g. `bblp build -d ./scripts/my-custom-dist-file.js`.
 
 options:
 
-- **-s --skipTests** Skips unit tests
-- **-t --withTemplates** Bundle HTML templates into build file (for widgets)
+- **- s --skipTests** skips unit tests
+- **- r --skipClean** skips cleaning destination directory
+- **- t --withTemplates** Bundle HTML templates into build file (for widgets)
+- **- m --withModuleId** Build with AMD module ID in definition
+- **- c --withConfig** Build with config using path from arguments
+- **- d --withDestination** Build to specified destination file
+- **- e --withExcludes** Exclude components from main file
 
 ```bash
 bblp build
 ```
+
+### Custom build
+
+```bash
+bblp custom-build <config>
+```
+
+options:
+
+- **- t --withTemplates** Bundle HTML templates into build file (for widgets)
+- **- u --useUnminified** Build with unminified scripts
+- **- v --useDist** Flag to turn on/off webpack output
+
+Description:
+
+Custom build is aimed at reducing number of scripts on a page. It combines several widgets and their dependencies into a single bundle using configuration. As a result you'll get the bundle and custom requirejs config which defines paths to concatenated widgets and dependencies.
+
+Arguments:
+
+- **config** - path to config file for components customization
+
+Here is the config example:
+
+```javascript
+{
+    "dist": "./bundles",
+    "base": "launchpad",
+    "componentBase": "bower_components",
+    "componentMain": "scripts/main.js",
+    "componentDistModule": "dist/scripts/main",
+    "bundles": {
+        "login-page": {
+            "widgets": [
+                "widget-login-multifactor-engage",
+                "widget-device-dna"
+            ],
+            "customComponents": {
+                "ui": {
+                    "excludes": [
+                        "input-overflow",
+                        "touch",
+                        "amount",
+                        "list",
+                        "field",
+                        "responsive",
+                        "wizard",
+                        "timer",
+                        "switcher",
+                        "card",
+                        "aria",
+                        "number-input",
+                        "nav-icon",
+                        "modal-dialog",
+                        "scrolling-hook",
+                        "smartsuggest",
+                        "placeholder",
+                        "color-picker",
+                        "infinite-scroll",
+                        "element-resize"
+                    ]
+                }
+            }
+        }
+    },
+    "externals": ["angular", {"name": "jquery", "value": "jQuery"}],
+    "bundlesConfigPath": "./config/bundles-conf.js"
+}
+```
+
+Config description:
+
+ - `config.dist` (String) - path to bundles destination folder;
+ - `config.componentBase` (String) - path to used components;
+ - `config.componentMain` (String) - path to main script file;
+ - `config.componentDistModule` (String) - path to destination main file;
+ - `config.bundles` (Object) - set of bundles configuration;
+ - `config.bundle[NAME]` (String) NAME is a bundle identifier wich is used to create chunk;
+ - `config.bundle[NAME].widgets` (Array) - array of widget names which are going to be used as an entry points;
+ - `config.bundle[NAME].customComponents` (Object) - set of customised components;
+ - `config.bundle[NAME].customComponents[CNAME]` (String) CNAME is a name of customised component;
+ - `config.bundle[NAME].customComponents[CNAME].excludes` (Array) - Array of components to exclude;
+ - `config.externals` (Array) - exterlan libraries array. Values can be both "String" and {"name": "libName", "value": "libGlobalName"} objects. If value is a String - module name is going to be used as a global name for the dependency, overwise passed value is going to be used;
+ - `config.bundlesConfigPath` (String) - path to require config output.
 
 
 ### Bump:
