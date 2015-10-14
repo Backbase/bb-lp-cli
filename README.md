@@ -103,21 +103,50 @@ bblp test
 ### Build: 
 Bundle the widget/module.
 
-arguments:
+Arguments:
     
 - **config** path to config file for components management. E.g. `bblp build -c ./my-conf.json`.
-- **excludes** Array of components to exclude. E.g. `bblp build -e touch,color-picker,focus`.
-- **destination** name of target file. E.g. `bblp build -d ./scripts/my-custom-dist-file.js`.
+If config contains entryPoint and excludes whey are going to be used instead of corresponding arguments. Here is the config example for UI module:
 
-options:
+```javascript
+{
+    "entryPoint": "./scripts/custom-ui.js",
+    "excludes": [
+        "input-overflow",
+        "touch",
+        "amount",
+        "list",
+        "field",
+        "responsive",
+        "wizard",
+        "timer",
+        "switcher",
+        "card",
+        "modal-dialog",
+        "scrolling-hook",
+        "smartsuggest",
+        "placeholder",
+        "infinite-scroll",
+        "element-resize"
+    ]
+
+}
+```
+
+- **excludes** Array of components to exclude. Please note, that if custom entry point isn't specified current main is used.
+Usage example: `bblp build -x touch,color-picker,focus`.
+- **entryPoint** name of entry point file. It is used to create custom entry point due to the excludes array and corresponding dest file. 
+Usage example: `bblp build -ex touch,color-picker,focus ./scripts/my-custom-dist-file.js`.
+
+Options:
 
 - **- s --skipTests** skips unit tests
 - **- r --skipClean** skips cleaning destination directory
 - **- t --withTemplates** Bundle HTML templates into build file (for widgets)
 - **- m --withModuleId** Build with AMD module ID in definition
 - **- c --withConfig** Build with config using path from arguments
-- **- d --withDestination** Build to specified destination file
-- **- e --withExcludes** Exclude components from main file
+- **- e --withCustomEntry** Build using specified custom entry point (works with excludes)
+- **- x --withExcludes** Exclude components from main file due to specified as an argument excludes array
 
 ```bash
 bblp build
