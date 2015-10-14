@@ -159,6 +159,25 @@
 			]
 		},
 
+		"dev-preferences": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Developer Preferences"
+				}
+			},
+			"required": [
+				"text"
+			]
+		},
+
 		"preferences": {
 			"oneOf": [
 				{
@@ -171,6 +190,25 @@
 			"properties": {
 				"text": {
 					"pattern": "Preferences"
+				}
+			},
+			"required": [
+				"text"
+			]
+		},
+
+		"templates": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Templates"
 				}
 			},
 			"required": [
