@@ -13,6 +13,7 @@ var BBCLI = cliparse.cli({
     description: 'Backbase CLI tool',
 
     commands: [
+
         /*----------------------------------------------------------------*/
         /* Generate Widget
         /*----------------------------------------------------------------*/
@@ -45,27 +46,50 @@ var BBCLI = cliparse.cli({
         /*----------------------------------------------------------------*/
         /* Test Widget
         /*----------------------------------------------------------------*/
+        /**
+         * @todo add unit / functional / api tests
+         * @type {String}
+         */
         cliparse.command('test', {
             description: 'Test the widget/module using karma test runner and PhantomJS',
             args: [
-
+                // cliparse.argument('type', { description: "Unit test", default: 'unit', })
             ],
             options: [
-                cliparse.flag('watch', { aliases: ['w'], description: 'Watch files'})
+                cliparse.flag('watch', { aliases: ['w'], description: 'Watch files'}),
+                cliparse.flag('coverage', { aliases: ['c'], description: 'With coverage'}),
+                cliparse.option('config', { description: 'Custom karma configuration file'}),
+                cliparse.option('browsers', { description: 'A comma separated list of browsers to launch and capture'})
             ]
         }, require('../lib/commands/common/test') ),
 
-         /*----------------------------------------------------------------*/
+        /*----------------------------------------------------------------*/
         /* Build Widget
         /*----------------------------------------------------------------*/
         cliparse.command('build', {
             description: 'Builds the widget/module.',
             args: [
-
+                cliparse.argument('config', {
+                    description: 'path to config file for components management',
+                    default: ''
+                }),
+                cliparse.argument('excludes', {
+                    description: 'array of components to exclude',
+                    default: ''
+                }),
+                cliparse.argument('destination', {
+                    description: 'name of target file',
+                    default: ''
+                })
             ],
             options: [
                 cliparse.flag('skipTests', { aliases: ['s'], description: 'Skip tests'}),
-                cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'})
+                cliparse.flag('skipClean', { aliases: ['r'], description: 'Skip clean'}),
+                cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'}),
+                cliparse.flag('withModuleId', { aliases: ['m'], description: 'Build with AMD module ID in definition'}),
+                cliparse.flag('withConfig', { aliases: ['c'], description: 'Build with config witch is passed as an argument'}),
+                cliparse.flag('withDestination', { aliases: ['d'], description: 'Build to specified file'}),
+                cliparse.flag('withExcludes', { aliases: ['e'], description: 'Exclude components from main file'})
             ]
         }, require('../lib/commands/common/build') ),
 
@@ -122,35 +146,32 @@ var BBCLI = cliparse.cli({
             ]
         }, require('../lib/commands/common/unregister') ),
 
-
         /*----------------------------------------------------------------*/
-        /* Deprecated
+        /* Custom Build
         /*----------------------------------------------------------------*/
-        cliparse.command('install', {
-            description: '[DEP] Install bower dependencies.',
+        cliparse.command('custom-build', {
+            description: 'Builds the widget/module using custom entry points.',
             args: [
-                cliparse.argument('package', {
-                    description: 'dependency package',
-                    default: '',
-                    parser: parsers.stringParser,
+                cliparse.argument('config', {
+                    description: 'path to config file for components management',
+                    default: ''
                 })
             ],
             options: [
-                cliparse.flag('link', { aliases: ['l'], description: 'Auto symlink'})
+                cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'}),
+                cliparse.flag('useUnminified', { aliases: ['u'], description: 'Build with unminified scripts'}),
+                cliparse.flag('verbose', { aliases: ['v'], description: 'Flag to turn on/off webpack output'}),
             ]
-        }, require('../lib/commands/common/install') ),
-         /*----------------------------------------------------------------*/
-        /* Bower link
+        }, require('../lib/commands/common/custom-build') ),
+
         /*----------------------------------------------------------------*/
-        cliparse.command('link', {
-            description: '[DEP] inks all the dependencies from bower directory',
-            args: [
-
-            ],
-            options: [
-
-            ]
-        }, require('../lib/commands/common/link') )
+        /* Clean Widget
+        /*----------------------------------------------------------------*/
+        cliparse.command('clean', {
+            description: 'Clean the widget/module dist folder',
+            args: [],
+            options: []
+        }, require('../lib/commands/common/clean') )
     ]
 });
 
