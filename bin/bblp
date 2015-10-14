@@ -139,7 +139,7 @@ var BBCLI = cliparse.cli({
                 cliparse.flag('link', { aliases: ['l'], description: 'Auto symlink'})
             ]
         }, require('../lib/commands/common/install') ),
-         /*----------------------------------------------------------------*/
+        /*----------------------------------------------------------------*/
         /* Bower link
         /*----------------------------------------------------------------*/
         cliparse.command('link', {
@@ -150,7 +150,20 @@ var BBCLI = cliparse.cli({
             options: [
 
             ]
-        }, require('../lib/commands/common/link') )
+        }, require('../lib/commands/common/link') ),
+
+        /*----------------------------------------------------------------*/
+        /* Bower link
+        /*----------------------------------------------------------------*/
+        cliparse.command('docs', {
+            description: 'Generates documentation',
+            args: [
+
+            ],
+            options: [
+
+            ]
+        }, require('../lib/commands/common/docs') )
     ]
 });
 

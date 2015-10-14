@@ -1,0 +1,9 @@
+`<%= preferences %>`: Project preferances described.
+`<%= components %>`: Custom components described.
+`<%= dependencies %>`: Project dependencies described.
+`<%= devDependencies %>`: Project developer dependencies described.
+`<%= description %>`: Functional description of the widget or wireframe.
+`<%= test %>`: Description of unit tests.
+`<%= screenshot %>`: Screenshot
+`<%= diagram %>`: Sequence diagram
+`<%= date %>`: Checklist updated

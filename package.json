@@ -28,6 +28,7 @@
     "css-loader": "^0.15.1",
     "deep-merge": "^1.0.0",
     "del": "^1.1.1",
+    "escomplex-js": "^1.2.0",
     "eslint": "^0.17.1",
     "figlet-cli": "^0.1.0",
     "file-loader": "^0.8.4",

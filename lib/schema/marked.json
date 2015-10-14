@@ -9,7 +9,24 @@
 		},
 		"required": [
 			"type"
-		]
+		],
+
+		"text": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				}
+			],
+			"properties": {
+				"text": {
+					"type": "string",
+					"minLength":1
+				}
+			},
+			"required": [
+				"text"
+			]
+		}
 	},
 
 	"heading": {
@@ -173,6 +190,25 @@
 			"properties": {
 				"text": {
 					"pattern": "Components"
+				}
+			},
+			"required": [
+				"text"
+			]
+		},
+
+		"test": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Test"
 				}
 			},
 			"required": [
