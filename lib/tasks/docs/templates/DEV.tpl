@@ -31,17 +31,17 @@
 
 ##### Complexity
 
-- `<%= css.metrics.complexSelectors %>`: number of complex selectors (consisting of more than three expressions, e.g. header ul li .foo)
-- `<%= css.metrics.oldIEFixes %>`: number of fixes for old versions of Internet Explorer (e.g. * html .foo {} and .foo { *zoom: 1 }, read more)
-- `<%= css.metrics.imports %>`: imports number of @import rules
-- `<%= css.metrics.importants %>`: number of properties with value forced by !important
+- <%= category({ value: css.metrics.complexSelectors, good: 1, bad: 1 }) %>: number of complex selectors (consisting of more than three expressions, e.g. header ul li .foo)
+- <%= category({ value: css.metrics.oldIEFixes, good: 1, bad: 1 }) %>: number of fixes for old versions of Internet Explorer (e.g. * html .foo {} and .foo { *zoom: 1 }, read more)
+- <%= category({ value: css.metrics.imports, good: 1, bad: 1 }) %>: imports number of @import rules
+- <%= category({ value: css.metrics.importants, good: 1, bad: 1 }) %>: number of properties with value forced by !important
 - `<%= css.metrics.mediaQueries %>`: number of media queries (e.g. @media screen and (min-width: 1370px))
-- `<%= css.metrics.oldPropertyPrefixes %>`: number of properties with no longer needed vendor prefix, powered by data provided by autoprefixer (e.g. --moz-border-radius)
-- `<%= css.metrics.selectorLengthAvg.toFixed(2) %>`: average length of selector (e.g. for .foo .bar, #test div > span { color: red } will be set as 2.5)
-- `<%= css.metrics.selectorsByAttribute %>`: number of selectors by attribute (e.g. .foo[value=bar])
-- `<%= css.metrics.selectorsById %>`: number of selectors by ID
-- `<%= css.metrics.selectorsByTag %>`: number of selectors by tag name
-- `<%= css.metrics.universalSelectors %>`: number of selectors trying to match every element (e.g. .foo > *)
+- <%= category({ value: css.metrics.oldPropertyPrefixes, good: 1, bad: Number.MAX_SAFE_INTEGER }) %>: number of properties with no longer needed vendor prefix, powered by data provided by autoprefixer (e.g. --moz-border-radius)
+- <%= category({ value: css.metrics.selectorLengthAvg.toFixed(2), good: 2, bad: 3 }) %>: average length of selector (e.g. for .foo .bar, #test div > span { color: red } will be set as 2.5)
+- <%= category({ value: css.metrics.selectorsByAttribute, good: 1, bad: 1 }) %>: number of selectors by attribute (e.g. .foo[value=bar])
+- <%= category({ value: css.metrics.selectorsById, good: 1, bad: 1 }) %>: number of selectors by ID
+- <%= category({ value: css.metrics.selectorsByTag, good: 1, bad: 1 }) %>: number of selectors by tag name
+- <%= category({ value: css.metrics.universalSelectors, good: 1, bad: 1 }) %>: number of selectors trying to match every element (e.g. .foo > *)
 
 ## Extensibility
 
