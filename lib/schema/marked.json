@@ -9,7 +9,24 @@
 		},
 		"required": [
 			"type"
-		]
+		],
+
+		"text": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				}
+			],
+			"properties": {
+				"text": {
+					"type": "string",
+					"minLength":1
+				}
+			},
+			"required": [
+				"text"
+			]
+		}
 	},
 
 	"heading": {
@@ -142,6 +159,25 @@
 			]
 		},
 
+		"dev-preferences": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Developer Preferences"
+				}
+			},
+			"required": [
+				"text"
+			]
+		},
+
 		"preferences": {
 			"oneOf": [
 				{
@@ -161,6 +197,25 @@
 			]
 		},
 
+		"templates": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Templates"
+				}
+			},
+			"required": [
+				"text"
+			]
+		},
+
 		"components": {
 			"oneOf": [
 				{
@@ -173,6 +228,25 @@
 			"properties": {
 				"text": {
 					"pattern": "Components"
+				}
+			},
+			"required": [
+				"text"
+			]
+		},
+
+		"test": {
+			"oneOf": [
+				{
+					"$ref": "#/paragraph"
+				},
+				{
+					"$ref": "#/heading"
+				}
+			],
+			"properties": {
+				"text": {
+					"pattern": "Test"
 				}
 			},
 			"required": [
