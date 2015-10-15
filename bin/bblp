@@ -147,19 +147,6 @@ var BBCLI = cliparse.cli({
         }, require('../lib/commands/common/unregister') ),
 
         /*----------------------------------------------------------------*/
-        /* Bower link
-        /*----------------------------------------------------------------*/
-        cliparse.command('link', {
-            description: '[DEP] inks all the dependencies from bower directory',
-            args: [
-
-            ],
-            options: [
-
-            ]
-        }, require('../lib/commands/common/link') ),
-
-        /*----------------------------------------------------------------*/
         /* Custom Build
         /*----------------------------------------------------------------*/
         cliparse.command('custom-build', {
