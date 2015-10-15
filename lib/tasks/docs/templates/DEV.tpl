@@ -9,7 +9,7 @@
 - `<%= javascript.lloc %>`: Logical lines for the project.
 - `<%= javascript.modules.length %>`: The number of project's JavaScript modules. <% _.forEach(javascript.modules, function(module) { %>
 	- <%- module %> <% }); %>
-- <%= category({ value: javascript.dependencies.length, good: 3, bad: 6, text: javascript.dependencies.length + ': The number of dependencies for the project.' }) %><% _.forEach(javascript.dependencies, function(dependency) { %>
+- <%= category({ value: javascript.dependencies.length, good: 3, bad: 6 }) %>: The number of dependencies for the project.<% _.forEach(javascript.dependencies, function(dependency) { %>
 	- <%- dependency %> <% }); %>
 
 ##### Complexity
