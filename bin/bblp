@@ -147,6 +147,19 @@ var BBCLI = cliparse.cli({
         }, require('../lib/commands/common/unregister') ),
 
         /*----------------------------------------------------------------*/
+        /* Bower link
+        /*----------------------------------------------------------------*/
+        cliparse.command('link', {
+            description: '[DEP] inks all the dependencies from bower directory',
+            args: [
+
+            ],
+            options: [
+
+            ]
+        }, require('../lib/commands/common/link') ),
+
+        /*----------------------------------------------------------------*/
         /* Custom Build
         /*----------------------------------------------------------------*/
         cliparse.command('custom-build', {
@@ -163,19 +176,6 @@ var BBCLI = cliparse.cli({
                 cliparse.flag('verbose', { aliases: ['v'], description: 'Flag to turn on/off webpack output'}),
             ]
         }, require('../lib/commands/common/custom-build') ),
-
-        /*----------------------------------------------------------------*/
-        /* Bower link
-        /*----------------------------------------------------------------*/
-        cliparse.command('link', {
-            description: '[DEP] inks all the dependencies from bower directory',
-            args: [
-
-            ],
-            options: [
-
-            ]
-        }, require('../lib/commands/common/link') ),
 
         /*----------------------------------------------------------------*/
         /* Clean Widget
