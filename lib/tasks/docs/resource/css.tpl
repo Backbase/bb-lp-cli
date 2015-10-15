@@ -1,0 +1,37 @@
+`<%= redundantBodySelectors %>`: number of redundant body selectors (e.g. body .foo, section body h2, but not body > h1)
+`<%= redundantChildNodesSelectors %>`: number of redundant child nodes selectors (e.g. ul li, table tr)
+`<%= colors %>`: number of unique colors used in CSS
+`<%= comments %>`: number of comments in CSS source
+`<%= commentsLength %>`: length of comments content in CSS source
+`<%= complexSelectors %>`: number of complex selectors (consisting of more than three expressions, e.g. header ul li .foo)
+`<%= complexSelectorsByAttribute %>`: number of selectors with complex matching by attribute (e.g. [class$="foo"])
+`<%= duplicatedSelectors %>`: number of CSS selectors defined more than once in CSS source
+`<%= duplicatedProperties %>`: number of CSS property definitions duplicated within a selector
+`<%= emptyRules %>`: number of rules with no properties (e.g. .foo { })
+`<%= expressions %>`: number of rules with CSS expressions (e.g. expression( document.body.clientWidth > 600 ? "600px" : "auto" ))
+`<%= oldIEFixes %>`: number of fixes for old versions of Internet Explorer (e.g. * html .foo {} and .foo { *zoom: 1 }, read more)
+`<%= imports %>`: imports number of @import rules
+`<%= importants %>`: number of properties with value forced by !important
+`<%= mediaQueries %>`: number of media queries (e.g. @media screen and (min-width: 1370px))
+`<%= multiClassesSelectors %>`: reports selectors with multiple classes (e.g. span.foo.bar)
+`<%= parsingErrors %>`: number of CSS parsing errors
+`<%= oldPropertyPrefixes %>`: number of properties with no longer needed vendor prefix, powered by data provided by autoprefixer (e.g. --moz-border-radius)
+`<%= propertyResets %>`: number of accidental property resets
+`<%= qualifiedSelectors %>`: number of qualified selectors (e.g. header#nav, .foo#bar, h1.title)
+`<%= specificityIdAvg %>`: average specificity for ID
+`<%= specificityIdTotal %>`: total specificity for ID
+`<%= specificityClassAvg %>`: average specificity for class, pseudo-class or attribute
+`<%= specificityClassTotal %>`: total specificity for class, pseudo-class or attribute
+`<%= specificityTagAvg %>`: average specificity for element
+`<%= specificityTagTotal %>`: total specificity for element
+`<%= selectors %>`: number of selectors (e.g. .foo, .bar { color: red } is counted as two selectors - .foo and .bar)
+`<%= selectorLengthAvg %>`: average length of selector (e.g. for .foo .bar, #test div > span { color: red } will be set as 2.5)
+`<%= selectorsByAttribute %>`: number of selectors by attribute (e.g. .foo[value=bar])
+`<%= selectorsByClass %>`: number of selectors by class
+`<%= selectorsById %>`: number of selectors by ID
+`<%= selectorsByPseudo %>`: number of pseudo-selectors (e,g. :hover)
+`<%= selectorsByTag %>`: number of selectors by tag name
+`<%= universalSelectors %>`: number of selectors trying to match every element (e.g. .foo > *)
+`<%= length %>`: length of CSS source (in bytes)
+`<%= rules %>`: number of rules (e.g. .foo, .bar { color: red } is counted as one rule)
+`<%= declarations %>`: number of declarations (e.g. .foo, .bar { color: red } is counted as one declaration - color: red)

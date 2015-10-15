@@ -20,6 +20,7 @@
     "url": "http://github.com/backbase/bb-lp-cli"
   },
   "dependencies": {
+    "analyze-css": "^0.10.2",
     "bower-webpack-plugin": "^0.1.8",
     "browser-sync": "^2.4.0",
     "cliparse": "^0.2.1",
