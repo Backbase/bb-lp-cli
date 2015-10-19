@@ -4,12 +4,12 @@
 
 ### JavaScript
 
-- `<%= javascript.length %>`: Length of dist/build/main.js source (in bytes).
+- `<%= javascript.length %>`: Length of dist source code (in bytes).
 - `<%= javascript.ploc %>`: Physical lines for the project.
 - `<%= javascript.lloc %>`: Logical lines for the project.
-- `<%= javascript.modules.length %>`: The number of project's JavaScript modules. <% _.forEach(javascript.modules, function(module) { %>
+- <%= category({ value: javascript.modules.length, good: 5, bad: 10 }) %>: The number of project's JavaScript modules. <% _.forEach(javascript.modules, function(module) { %>
 	- <%- module %> <% }); %>
-- <%= category({ value: javascript.dependencies.length, good: 3, bad: 6 }) %>: The number of dependencies for the project.<% _.forEach(javascript.dependencies, function(dependency) { %>
+- <%= category({ value: javascript.dependencies.length, good: 4, bad: 7 }) %>: The number of dependencies for the project.<% _.forEach(javascript.dependencies, function(dependency) { %>
 	- <%- dependency %> <% }); %>
 
 ##### Complexity
@@ -20,6 +20,7 @@
 - `<%= javascript.params.toFixed(2) %>`: The average per-function parameter count.
 - `<%= javascript.maintainability.toFixed(2) %>`: The average per-module maintainability index.
 
+<% if (css.metrics.length) { %>
 ### CSS
 
 - `<%= css.metrics.length %>`: length of CSS source (in bytes)
@@ -42,6 +43,7 @@
 - <%= category({ value: css.metrics.selectorsById, good: 1, bad: 1 }) %>: number of selectors by ID
 - <%= category({ value: css.metrics.selectorsByTag, good: 1, bad: 1 }) %>: number of selectors by tag name
 - <%= category({ value: css.metrics.universalSelectors, good: 1, bad: 1 }) %>: number of selectors trying to match every element (e.g. .foo > *)
+<% } %>
 
 ## Extensibility
 

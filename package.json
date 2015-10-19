@@ -59,7 +59,7 @@
     "isparta-loader": "^1.0.0",
     "jasmine-core": "^2.2.0",
     "jasmine-expect": "^2.0.0-beta1",
-    "jjv-utils": "0.0.1",
+    "jjv-utils": "^1.0.1",
     "js-yaml": "^3.4.2",
     "json-loader": "^0.5.2",
     "jxon": "^1.5.4",
