@@ -171,7 +171,21 @@ var BBCLI = cliparse.cli({
             description: 'Clean the widget/module dist folder',
             args: [],
             options: []
-        }, require('../lib/commands/common/clean') )
+        }, require('../lib/commands/common/clean') ),
+
+        /*----------------------------------------------------------------*/
+        /* Build docs
+        /*----------------------------------------------------------------*/
+        cliparse.command('docs', {
+            description: 'Generates documentation',
+            args: [
+
+            ],
+            options: [
+                cliparse.flag('generate', { aliases: ['g'], description: 'Generate checklist into DEV.md internal readme file.'}),
+                cliparse.flag('update', { aliases: ['u'], description: 'Update manual checklist.'})
+            ]
+        }, require('../lib/commands/common/docs') )
     ]
 });
 

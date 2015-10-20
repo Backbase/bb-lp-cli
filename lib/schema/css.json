@@ -1,0 +1,83 @@
+{
+	"name": "css",
+
+	"scroll": {
+		"properties": {
+			"type": {
+				"enum": ["declaration"]
+			},
+			"property": {
+				"enum": ["overflow"]
+			},
+			"value": {
+				"enum": ["auto", "scroll"]
+			}
+		},
+		"required": [
+			"type", "property", "value"
+		]
+	},
+
+	"user-select": {
+		"properties": {
+			"type": {
+				"enum": ["declaration"]
+			},
+			"property": {
+				"enum": ["-moz-user-select", "-webkit-user-select", "-ms-user-select"]
+			}
+		},
+		"required": [
+			"type", "property", "value"
+		]
+	},
+
+	"touch-callout": {
+		"properties": {
+			"type": {
+				"enum": ["declaration"]
+			},
+			"property": {
+				"enum": ["-webkit-touch-callout"]
+			}
+		},
+		"required": [
+			"type", "property", "value"
+		]
+	},
+
+	"backbase": {
+		"momentum-scroll": {
+			"properties": {
+				"type": {
+					"enum": ["declaration"]
+				},
+				"property": {
+					"enum": ["-webkit-overflow-scrolling"]
+				},
+				"value": {
+					"enum": ["touch"]
+				}
+			},
+			"required": [
+				"type", "property", "value"
+			]
+		},
+
+		"disable-select": {
+			"oneOf": [
+				{
+					"$ref": "#/user-select"
+				},
+				{
+					"$ref": "#/touch-callout"
+				}
+			],
+			"properties": {
+				"value": {
+					"enum": ["none"]
+				}
+			}
+		}
+	}
+}
