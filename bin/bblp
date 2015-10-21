@@ -89,7 +89,8 @@ var BBCLI = cliparse.cli({
                 cliparse.flag('withModuleId', { aliases: ['m'], description: 'Build with AMD module ID in definition'}),
                 cliparse.flag('withConfig', { aliases: ['c'], description: 'Build with config witch is passed as an argument'}),
                 cliparse.flag('withCustomEntry', { aliases: ['e'], description: 'Build with custom entry point (works with excludes)'}),
-                cliparse.flag('withExcludes', { aliases: ['x'], description: 'Exclude components from main file'})
+                cliparse.flag('withExcludes', { aliases: ['x'], description: 'Exclude components from main file'}),
+                cliparse.flag('withPerformance', { aliases: ['p'], description: 'Parse performance annotations'})
             ]
         }, require('../lib/commands/common/build') ),
 
@@ -161,6 +162,7 @@ var BBCLI = cliparse.cli({
                 cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'}),
                 cliparse.flag('useUnminified', { aliases: ['u'], description: 'Build with unminified scripts'}),
                 cliparse.flag('verbose', { aliases: ['v'], description: 'Flag to turn on/off webpack output'}),
+                cliparse.flag('withPerformance', { aliases: ['p'], description: 'Parse performance annotations'})
             ]
         }, require('../lib/commands/common/custom-build') ),
 
