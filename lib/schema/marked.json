@@ -110,11 +110,11 @@
 				"header": {
 					"type": "array",
 					"items": [{
-						"enum": ["name"]
+						"pattern": ["name", "i"]
 					}, {
-						"enum": ["version"]
+						"pattern": ["version", "i"]
 					}, {
-						"enum": ["bundle"]
+						"pattern": ["bundle", "i"]
 					}],
             		"additionalItems": false
 				}
