@@ -182,6 +182,7 @@ var BBCLI = cliparse.cli({
 
             ],
             options: [
+                cliparse.flag('generate', { aliases: ['g'], description: 'Generate checklist into DEV.md internal readme file.'}),
                 cliparse.flag('update', { aliases: ['u'], description: 'Update manual checklist.'})
             ]
         }, require('../lib/commands/common/docs') )
