@@ -1,3 +1,7 @@
 ## Manual
 
-- `340`: Physical lines of js code for the project.
+- Demo Service : ``
+- Code Modularity: ``
+- Portal manager preferences described : ``
+- Works RTL: ``
+- Componentised: ``
