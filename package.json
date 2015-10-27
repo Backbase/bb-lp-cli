@@ -27,7 +27,7 @@
     "colors": "^1.0.3",
     "connect-modrewrite": "^0.8.1",
     "css": "^2.2.1",
-    "css-loader": "^0.15.1",
+    "css-loader": "^0.21.0",
     "deep-merge": "^1.0.0",
     "del": "^1.1.1",
     "escomplex-js": "^1.2.0",
