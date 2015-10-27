@@ -97,7 +97,7 @@
     "webpack-stream": "^2.1.0",
     "escodegen": "^1.7.0",
     "esprima": "^2.6.0",
-    "nodejs-stash-client": "^0.0.2"
+    "stash-rest-api": "^2.6.0"
   },
   "devDependencies": {
     "gulp-size": "^2.0.0",
