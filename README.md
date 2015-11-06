@@ -1,7 +1,7 @@
 # Backbase Launchpad
 =========
 
-CLI development tool for widgets / modules 
+CLI development tool for widgets / modules
 
 # Information
 | name                  | version       | node      |
@@ -74,13 +74,13 @@ arguments:
 options:
 
 - **NONE**
-    
+
 
 ```bash
 bblp start
 ```
 
-### Test: 
+### Test:
 
 Tests the widget / module using karma test runner and PhantomJS.
 
@@ -100,11 +100,11 @@ bblp test
 ```
 
 
-### Build: 
+### Build:
 Bundle the widget/module.
 
 Arguments:
-    
+
 - **config** path to config file for components management. E.g. `bblp build -c ./my-conf.json`.
 If config contains entryPoint and excludes whey are going to be used instead of corresponding arguments. Here is the config example for UI module:
 
@@ -135,7 +135,7 @@ If config contains entryPoint and excludes whey are going to be used instead of 
 
 - **excludes** Array of components to exclude. Please note, that if custom entry point isn't specified current main is used.
 Usage example: `bblp build -x touch,color-picker,focus`.
-- **entryPoint** name of entry point file. It is used to create custom entry point due to the excludes array and corresponding dest file. 
+- **entryPoint** name of entry point file. It is used to create custom entry point due to the excludes array and corresponding dest file.
 Usage example: `bblp build -ex touch,color-picker,focus ./scripts/my-custom-dist-file.js`.
 
 Options:
@@ -147,6 +147,7 @@ Options:
 - **- c --withConfig** Build with config using path from arguments
 - **- e --withCustomEntry** Build using specified custom entry point (works with excludes)
 - **- x --withExcludes** Exclude components from main file due to specified as an argument excludes array
+- **- p --withPerformance** Build with performance annotations converted into performance module API calls
 
 ```bash
 bblp build
@@ -163,6 +164,7 @@ options:
 - **- t --withTemplates** Bundle HTML templates into build file (for widgets)
 - **- u --useUnminified** Build with unminified scripts
 - **- v --useDist** Flag to turn on/off webpack output
+- **- p --withPerformance** Build with performance annotations converted into performance module API calls
 
 Description:
 
@@ -301,12 +303,12 @@ This is the default config structure if is not specified otherwise in **bower.js
     },
 
     "proxies": {
-      "/api":  "http://localhost:3030/"      
+      "/api":  "http://localhost:3030/"
     },
 
     "eslint": "configs/eslint.conf.yaml",
     "karma": "configs/karma.conf.yaml"
-    ....    
+    ....
 }
 ```
 
@@ -436,7 +438,7 @@ You will also need to install:
     * [Xcode](https://developer.apple.com/xcode/downloads/)
       * You also need to install the `Command Line Tools` via Xcode. You can find this under the menu `Xcode -> Preferences -> Downloads`
       * This step will install `gcc` and the related toolchain containing `make`
-    
+
   * On Windows:
     * [Python][windows-python] ([`v2.7.3`][windows-python-v2.7.3] recommended, `v3.x.x` is __*not*__ supported)
       * Make sure that you have a PYTHON environment variable, and it is set to drive:\path\to\python.exe not to a folder (Append ;C:\Python27 to the Path variable.)
