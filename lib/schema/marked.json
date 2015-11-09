@@ -209,7 +209,7 @@
 			],
 			"properties": {
 				"text": {
-					"pattern": "Preferences"
+					"pattern": "^Preferences"
 				}
 			},
 			"required": [
