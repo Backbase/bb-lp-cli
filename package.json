@@ -1,7 +1,7 @@
 {
   "name": "bb-lp-cli",
   "preferGlobal": true,
-  "version": "1.0.1",
+  "version": "null",
   "bin": {
     "bblp": "bin/bblp"
   },
@@ -113,7 +113,7 @@
     "test": "npm run-script lint && mocha --reporter spec"
   },
   "engines": {
-    "node": ">= 0.10"
+    "node": ">=0.12 < 5.0"
   },
   "licenses": [
     {
