@@ -1,7 +1,7 @@
 {
   "name": "bb-lp-cli",
   "preferGlobal": true,
-  "version": "null",
+  "version": "1.0.1",
   "bin": {
     "bblp": "bin/bblp"
   },
@@ -112,8 +112,8 @@
     "postinstall": "figlet \"BackbaseCLI\"",
     "test": "npm run-script lint && mocha --reporter spec"
   },
-  "engines": {
-    "node": ">=0.12 < 5.0"
+  "engines" : {
+    "node" : ">=0.12 < 5.0"
   },
   "licenses": [
     {
