@@ -40,22 +40,21 @@ define branch
 	git checkout -b $$BRANCH
 endef
 
+define publish
+	VERSION=`node -pe "require('./package.json').version"` && \
+	echo "Publishing tag: $$VERSION $(1)" && \
+	git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
+	git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) && \
+	npm publish --tag $(1)
+endef
 bump:
 	@$(call bump,$(V),$(RC))
 
 release:
 	@$(call branch,$(V),$(RC))
 	@$(call bump,$(V),$(RC))
-pubish:
-	@echo "Publishing tag: $(NEXT_VERSION)"  && \
-	git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
-	git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) && \
-	npm publish --tag $(1)
+publish:
+	@$(call publish,$(RC))
 
-pubish:
-	@echo "Publishing tag: $(NEXT_VERSION)"  && \
-	git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
-	git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) && \
-	npm publish --tag $(1)
 
 .PHONY: all latest install dev link doc clean uninstall test man doc-clean docclean release
