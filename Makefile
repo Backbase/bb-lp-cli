@@ -1,6 +1,6 @@
 SHELL = bash
 BIN = ./node_modules/.bin
-CURRENT_BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
+BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 PUBLIC_REMOTE = "http://github.com/backbase/bb-lp-cli"
 PRIVATE_REMOTE = "ssh://git@stash.backbase.com:7999/lp/cli.git"
 V?=prerelease
@@ -31,9 +31,6 @@ define bump
 	git commit -m "release version - $$NEXT_VERSION" -- package.json && \
 	echo "Tagging release: $$NEXT_VERSION" && \
 	git tag "$$NEXT_VERSION" -m "release $$NEXT_VERSION"
-	git push --tags $$PUBLIC_REMOTE HEAD:$$BRANCH && \
-	git push --tags $$PRIVATE_REMOTE HEAD:$$BRANCH && \
-	npm publish --tag $(1)
 endef
 
 define branch
@@ -49,6 +46,12 @@ bump:
 release:
 	@$(call branch,$(V),$(RC))
 	@$(call bump,$(V),$(RC))
+pubish:
+	@echo "Publishing tag: $(NEXT_VERSION)"  && \
+	git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
+	git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) && \
+	npm publish --tag $(1)
+
 pubish:
 	@echo "Publishing tag: $(NEXT_VERSION)"  && \
 	git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
