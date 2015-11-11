@@ -33,20 +33,12 @@ define release
 	git commit -m "release version - $$NEXT_VERSION" -- package.json && \
 	echo "Tagging release: $$NEXT_VERSION" && \
 	git tag "$$NEXT_VERSION" -m "release $$NEXT_VERSION"
-endef
-
-define publish
-	#@echo $(1)
-	#git push --tags origin HEAD:master
-	#npm publish
+	git push --tags $$PUBLIC_REMOTE HEAD:$$BRANCH && \
+	git push --tags $$PRIVATE_REMOTE HEAD:$$BRANCH && \
 	npm publish --tag $(1)
 endef
 
-
-release:
+release: test
 	@$(call release,$(V),$(RC))
-
-publish:
-	@$(call publish)
 
 .PHONY: all latest install dev link doc clean uninstall test man doc-clean docclean release
