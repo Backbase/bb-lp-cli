@@ -2,10 +2,11 @@
 
 SHELL = bash
 BIN = ./node_modules/.bin
-BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
-PUBLIC_REMOTE = "http://github.com/backbase/bb-lp-cli"
-PRIVATE_REMOTE = "ssh://git@stash.backbase.com:7999/lp/cli.git"
-RELSEASE_TAG = $(strip $(call get_release_tag,$(BUMP),$(RC)))
+BRANCH?= $(shell git rev-parse --abbrev-ref HEAD)
+PUBLIC_REMOTE?= "http://github.com/backbase/bb-lp-cli"
+PRIVATE_REMOTE?= "ssh://git@stash.backbase.com:7999/lp/cli.git"
+VERSION?=$(strip $(call get_current_version))
+RELSEASE_TAG?=$(strip $(call get_next_version,$(BUMP),$(RC)))
 BUMP?=prerelease
 RC?=""
 
@@ -22,11 +23,16 @@ test:
 	@$(BIN)/eslint .
 	@$(BIN)/mocha --reporter spec
 
-define get_release_tag
+define get_next_version
 	$(shell node -pe "require('./scripts/release.js').getNextVersion('$(1)','$(2)')")
 endef
 
+define get_current_version
+	$(shell node -pe "require('./scripts/release.js').getVersion()")
+endef
+
 define bump_version
+	echo "Bumping to version: $(1)" \
 	$(shell node -e "require('./scripts/release.js').bump('$(1)')")
 endef
 
@@ -50,15 +56,15 @@ endef
 
 
 bump:
-	@$(call bump_version,$(RELSEASE_TAG),$(RC))
-	@$(call tag,$(RELSEASE_TAG),$(RC))
+	@$(call bump_version,$(RELSEASE_TAG))
+	@$(call tag,$(VERSION))
 
 release:
 	@$(call branch,$(RELSEASE_TAG),$(RC))
 	@$(call bump,$(RELSEASE_TAG),$(RC))
 
 publish: test bump
-	@$(call publish,$(RELSEASE_TAG),$(RC))
+	@$(call publish,$(VERSION),$(RC))
 
 
 .PHONY: all latest install dev link doc clean uninstall test man doc-clean docclean release

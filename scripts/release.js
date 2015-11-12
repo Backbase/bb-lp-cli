@@ -6,6 +6,13 @@ var pJson = require(pJsonPath)
 var semver = require('semver')
 
 /**
+ * Return current package version
+ * @return {String} package version
+ */
+exports.getVersion = function() {
+    return pJson.version
+}
+/**
  * Increase the next version value
  * @param  {String} inc  patch, minor, major
  * @param  {String} suffix Alpha/Beta suffix
