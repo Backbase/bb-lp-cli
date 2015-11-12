@@ -49,9 +49,9 @@ endef
 
 define publish
 	echo "Publishing tag: $(1) $(2)"
-	#git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
-	#git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) && \
-	#npm publish --tag $(1)
+	git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
+	git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) && \
+	npm publish --tag $(1)
 endef
 
 
