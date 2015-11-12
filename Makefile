@@ -6,7 +6,7 @@ BRANCH?= $(shell git rev-parse --abbrev-ref HEAD)
 PUBLIC_REMOTE?= "http://github.com/backbase/bb-lp-cli"
 PRIVATE_REMOTE?= "ssh://git@stash.backbase.com:7999/lp/cli.git"
 VERSION?=$(strip $(call get_current_version))
-RELSEASE_TAG?=$(strip $(call get_next_version,$(BUMP),$(RC)))
+RELEASE_TAG?=$(strip $(call get_next_version,$(BUMP),$(RC)))
 BUMP?=prerelease
 RC?=""
 
@@ -55,13 +55,13 @@ define publish
 endef
 
 check:
-	@echo "Check next release version: $(RELSEASE_TAG)"
+	@echo "Check next release version: $(RELEASE_TAG)"
 
 branch:
-	@$(call branch,$(RELSEASE_TAG),$(RC))
+	@$(call branch,$(RELEASE_TAG),$(RC))
 
 bump:
-	@$(call bump_version,$(RELSEASE_TAG))
+	@$(call bump_version,$(RELEASE_TAG))
 	@$(call tag,$(VERSION))
 
 publish: test
