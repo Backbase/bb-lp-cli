@@ -48,23 +48,32 @@ define branch
 endef
 
 define publish
-	echo "Publishing tag: $(1) $(2)"
+	echo "git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) $(1)" && \
 	git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
-	git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) && \
-	npm publish --tag $(1)
+	echo "git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) $(1)" && \
+	git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH)
 endef
 
+check:
+	@echo "Check next release version: $(RELSEASE_TAG)"
+
+branch:
+	@$(call branch,$(RELSEASE_TAG),$(RC))
 
 bump:
 	@$(call bump_version,$(RELSEASE_TAG))
 	@$(call tag,$(VERSION))
 
-release:
-	@$(call branch,$(RELSEASE_TAG),$(RC))
-	@$(call bump,$(RELSEASE_TAG),$(RC))
+publish: test
+	@$(call publish,$(RC))
+ifeq ($(RC),"")
+	@echo "npm publish $(2)";
+	@npm publish $(2)
+else
+	@echo "npm publish --tag $(2)"
+	@npm publish --tag $(2)
+endif
 
-publish: test bump
-	@$(call publish,$(VERSION),$(RC))
-
+release: check branch bump publish
 
 .PHONY: all latest install dev link doc clean uninstall test man doc-clean docclean release
