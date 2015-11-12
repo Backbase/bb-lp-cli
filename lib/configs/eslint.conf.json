@@ -1,19 +1,18 @@
 {
-    "rulesPaths": [
-        "./eslint-rules"
-    ],
-
     "rules": {
         "quotes": [2, "single"],
         "no-unused-vars": [2, {"vars": "local", "args": "none"}],
         "no-debugger": [1],
-        "dot-notation": [0]
+        "dot-notation": [0],
+        "max-statements":[2, 15],
+        "max-depth":[1, 2],
+        "complexity":[2, 5]
     },
     "globals": {
 
     },
 
-    "envs": {
+    "env": {
         "browser": true,
         "amd": true,
         "node": true,

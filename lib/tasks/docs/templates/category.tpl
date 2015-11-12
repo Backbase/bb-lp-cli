@@ -1,0 +1,1 @@
+<span style="color:<% if (value < good) { %>green<% } else if(value < bad) { %>#FF9933<% } else { %>red<% } %>"><%= typeof text === 'undefined' ? value: text %><% if ((typeof silent === 'undefined' || !silent) && value >= good) { if(value < bad) { %> [Warning]<% } else { %> [Critical]<% } } %></span>
