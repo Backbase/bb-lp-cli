@@ -1,10 +1,15 @@
+# vim: set softtabstop=4 shiftwidth=4:
+
 SHELL = bash
 BIN = ./node_modules/.bin
-BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
-PUBLIC_REMOTE = "http://github.com/backbase/bb-lp-cli"
-PRIVATE_REMOTE = "ssh://git@stash.backbase.com:7999/lp/cli.git"
-V?=prerelease
+BRANCH?= $(shell git rev-parse --abbrev-ref HEAD)
+PUBLIC_REMOTE?= "http://github.com/backbase/bb-lp-cli"
+PRIVATE_REMOTE?= "ssh://git@stash.backbase.com:7999/lp/cli.git"
+VERSION?=$(strip $(call get_current_version))
+RELEASE_TAG?=$(strip $(call get_next_version,$(BUMP),$(RC)))
+BUMP?=prerelease
 RC?=""
+
 
 install link:
 	@npm $@
@@ -18,44 +23,57 @@ test:
 	@$(BIN)/eslint .
 	@$(BIN)/mocha --reporter spec
 
-define bump
-	VERSION=`node -pe "require('./package.json').version"` && \
-	NEXT_VERSION=`node -pe "require('semver').inc(\"$$VERSION\", '$(1)', '$(2)')"` && \
-	echo "Bump version: $$NEXT_VERSION" && \
-	node -e "\
-		var j = require('./package.json');\
-		j.version = \"$$NEXT_VERSION\";\
-		var s = JSON.stringify(j, null, 2);\
-		require('fs').writeFileSync('./package.json', s);\
-	" && \
-	git commit -m "release version - $$NEXT_VERSION" -- package.json && \
-	echo "Tagging release: $$NEXT_VERSION" && \
-	git tag "$$NEXT_VERSION" -m "release $$NEXT_VERSION"
+define get_next_version
+	$(shell node -pe "require('./scripts/release.js').getNextVersion('$(1)','$(2)')")
+endef
+
+define get_current_version
+	$(shell node -pe "require('./scripts/release.js').getVersion()")
+endef
+
+define bump_version
+	echo "Bumping to version: $(1)" \
+	$(shell node -e "require('./scripts/release.js').bump('$(1)')")
+endef
+
+define tag
+	git commit -m "release version - $(1)" -- package.json && \
+	echo "Tagging release: $(1)" && \
+	git tag "$(1)" -m "release $(1)"
 endef
 
 define branch
-	VERSION=`node -pe "require('./package.json').version"` && \
-	NEXT_VERSION=`node -pe "require('semver').inc(\"$$VERSION\", '$(1)', '$(2)')"` && \
-	BRANCH="rc-$$NEXT_VERSION" && \
+	BRANCH="rc-$(1)" && \
 	git checkout -b $$BRANCH
 endef
 
+define publish
+	echo "git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) $(1)" && \
+	git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
+	echo "git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) $(1)" && \
+	git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH)
+endef
+
+check:
+	@echo "Check next release version: $(RELEASE_TAG)"
+
+branch:
+	@$(call branch,$(RELEASE_TAG),$(RC))
+
 bump:
-	@$(call bump,$(V),$(RC))
+	@$(call bump_version,$(RELEASE_TAG))
+	@$(call tag,$(VERSION))
 
-release:
-	@$(call branch,$(V),$(RC))
-	@$(call bump,$(V),$(RC))
-pubish:
-	@echo "Publishing tag: $(NEXT_VERSION)"  && \
-	git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
-	git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) && \
-	npm publish --tag $(1)
+publish: test
+	@$(call publish,$(RC))
+ifeq ($(RC),"")
+	@echo "npm publish $(2)";
+	@npm publish $(2)
+else
+	@echo "npm publish --tag $(2)"
+	@npm publish --tag $(2)
+endif
 
-pubish:
-	@echo "Publishing tag: $(NEXT_VERSION)"  && \
-	git push --tags $(PRIVATE_REMOTE) HEAD:$(BRANCH) && \
-	git push --tags $(PUBLIC_REMOTE) HEAD:$(BRANCH) && \
-	npm publish --tag $(1)
+release: check branch bump publish
 
 .PHONY: all latest install dev link doc clean uninstall test man doc-clean docclean release

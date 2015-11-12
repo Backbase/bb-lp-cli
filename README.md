@@ -6,15 +6,19 @@ CLI development tool for widgets / modules
 # Information
 | name                  | version       | node      |
 | ----------------------|:-------------:| ----------:|
-| bb-lp-cli             | 1.0.1   | >=0.12.x < 5.0.x    |
+| bb-lp-cli             | 1.1.0        | >=0.12.x < 5.0.x    |
 
 
 ## Requirements
+
 General 
+
 - git
 - nodejs
 - curl
+
 Dev - Server
+
 - python
 - gcc / visual c++
 
