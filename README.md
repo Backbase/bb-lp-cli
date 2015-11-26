@@ -59,7 +59,7 @@ bblp <command> --help
 Clone a git repository template. Default is using `widget-ng-template`
 
 arguments:
-    - url 'https://stash.backbase.com/scm/lp/widget-ng-template.git'
+    - url 'https://stash.backbase.com/scm/lpg/generator-widget-ng.git'
 options:
 - **NONE**
 
