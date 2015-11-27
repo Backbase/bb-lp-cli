@@ -22,7 +22,7 @@ var BBCLI = cliparse.cli({
             args: [
                 cliparse.argument('url', {
                     description: 'Template repository url',
-                    default: 'https://stash.backbase.com/scm/lp/widget-ng-template.git'
+                    default: 'https://stash.backbase.com/scm/lpg/generator-widget-ng.git'
                 })
             ],
             options: [
@@ -59,7 +59,8 @@ var BBCLI = cliparse.cli({
                 cliparse.flag('watch', { aliases: ['w'], description: 'Watch files'}),
                 cliparse.flag('coverage', { aliases: ['c'], description: 'With coverage'}),
                 cliparse.option('config', { description: 'Custom karma configuration file'}),
-                cliparse.option('browsers', { description: 'A comma separated list of browsers to launch and capture'})
+                cliparse.option('browsers', { description: 'A comma separated list of browsers to launch and capture'}),
+                cliparse.option('moduleDirectories', { description: 'A comma separated list of the shared components'})
             ]
         }, require('../lib/commands/common/test') ),
 
@@ -90,7 +91,8 @@ var BBCLI = cliparse.cli({
                 cliparse.flag('withConfig', { aliases: ['c'], description: 'Build with config witch is passed as an argument'}),
                 cliparse.flag('withCustomEntry', { aliases: ['e'], description: 'Build with custom entry point (works with excludes)'}),
                 cliparse.flag('withExcludes', { aliases: ['x'], description: 'Exclude components from main file'}),
-                cliparse.flag('withPerformance', { aliases: ['p'], description: 'Parse performance annotations'})
+                cliparse.flag('withPerformance', { aliases: ['p'], description: 'Parse performance annotations'}),
+                cliparse.option('moduleDirectories', { description: 'A comma separated list of the shared components'})
             ]
         }, require('../lib/commands/common/build') ),
 
