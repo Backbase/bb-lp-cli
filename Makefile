@@ -1,4 +1,19 @@
 # vim: set softtabstop=4 shiftwidth=4:
+#
+# Release Beta
+# 1. make check BUMP=preminor RC=beta // beta
+# 2. make release BUMP=preminor RC=beta
+#
+# Fix stuff
+# 1. make check
+# 2. make bump RC=beta
+# 3. make publish RC=beta
+#
+# Release
+# 1 make release BUMP=patch
+#
+# Quick Patch
+# 1 make release BUMP=patch
 
 SHELL = bash
 BIN = ./node_modules/.bin
@@ -37,7 +52,7 @@ define bump_version
 endef
 
 define tag
-	git commit -m "release version - $(1)" -- package.json && \
+	git commit -m "release version - $(1)" --all && \
 	echo "Tagging release: $(1)" && \
 	git tag "$(1)" -m "release $(1)"
 endef
@@ -67,11 +82,11 @@ bump:
 publish: test
 	@$(call publish,$(RC))
 ifeq ($(RC),"")
-	@echo "npm publish $(2)";
-	@npm publish $(2)
+	@echo "npm publish";
+	@npm publish
 else
-	@echo "npm publish --tag $(2)"
-	@npm publish --tag $(2)
+	@echo "npm publish --tag $(RC)"
+	@npm publish --tag $(RC)
 endif
 
 release: check branch bump publish
