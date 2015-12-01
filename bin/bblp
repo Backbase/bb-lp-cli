@@ -22,7 +22,7 @@ var BBCLI = cliparse.cli({
             args: [
                 cliparse.argument('url', {
                     description: 'Template repository url',
-                    default: 'ssh://git@stash.backbase.com:7999/lpg/generator-widget-ng.git'
+                    default: 'git@bitbucket.org:backbase/lpg-generator-widget-ng.git'
                 })
             ],
             options: [
