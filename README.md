@@ -6,7 +6,7 @@ CLI development tool for widgets / modules
 # Information
 | name                  | version       | node      |
 | ----------------------|:-------------:| ----------:|
-| bb-lp-cli             | 1.1.0        | >=0.12.x < 5.0.x    |
+| bb-lp-cli             | 1.2.1        | >=0.12.x < 5.0.x    |
 
 
 ## Requirements
@@ -59,7 +59,7 @@ bblp <command> --help
 Clone a git repository template. Default is using `widget-ng-template`
 
 arguments:
-    - url 'https://stash.backbase.com/scm/lp/widget-ng-template.git'
+    - url 'https://stash.backbase.com/scm/lpg/generator-widget-ng.git'
 options:
 - **NONE**
 
@@ -99,9 +99,12 @@ options:
     + `--browsers Firefox,Chrome,Safari`
 - **--config** Custom karma configuration file
     + `--config karma.config.js`
+- **--moduleDirectories** A comma separated list of the shared components
+    + `--moduleDirectories 'target/bower_components'`
 
 ```bash
 bblp test
+bblp test -c --browsers Firefox,Chrome --moduleDirectories '../../portal/myportal/statics/dist/itemRoot/static/features/[BBHOST]','target/bower_components'
 ```
 
 
@@ -153,9 +156,17 @@ Options:
 - **- e --withCustomEntry** Build using specified custom entry point (works with excludes)
 - **- x --withExcludes** Exclude components from main file due to specified as an argument excludes array
 - **- p --withPerformance** Build with performance annotations converted into performance module API calls
+- **--moduleDirectories** A comma separated list of the shared components
+    + `--moduleDirectories 'target/bower_components'`
 
 ```bash
 bblp build
+```
+
+with moduleDirectories
+
+```bash
+bblp build --moduleDirectories '../../portal/myportal/statics/dist/itemRoot/static/features/[BBHOST]','target/bower_components'
 ```
 
 ### Custom build
