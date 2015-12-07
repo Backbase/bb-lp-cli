@@ -61,7 +61,7 @@ Clone a git repository template. Default is using `widget-ng-template`
 arguments:
     - url 'https://stash.backbase.com/scm/lpg/generator-widget-ng.git'
 options:
-- **NONE**
+- **-i --processImages** Process images by template engine. Images are excluded by default (they will be added to destination folder 'as it is').
 
 ```bash
 bblp generate <url>

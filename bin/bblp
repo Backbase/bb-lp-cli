@@ -26,7 +26,7 @@ var BBCLI = cliparse.cli({
                 })
             ],
             options: [
-
+                cliparse.flag('prcessImages', { aliases: ['i'], description: 'Process images by template engine. Images are excluded by default.'})
             ]
         }, require('../lib/commands/common/generate') ),
 
