@@ -3,10 +3,13 @@
 
 CLI development tool for widgets / modules
 
-# Information
-| name                  | version       | node      |
-| ----------------------|:-------------:| ----------:|
-| bb-lp-cli             | 1.2.1        | >=0.12.x < 5.0.x    |
+## Information
+
+| Name       |  bb-lp-cli |
+|------------|---|
+| Version    | 1.2.1   |
+| Bundle     | tools |
+| Status     | node >=0.12.x < 5.0.x |
 
 
 ## Requirements
@@ -168,6 +171,13 @@ with moduleDirectories
 ```bash
 bblp build --moduleDirectories '../../portal/myportal/statics/dist/itemRoot/static/features/[BBHOST]','target/bower_components'
 ```
+
+
+**Compile styles:**
+Some convention is required to compile styles files (less, scss). The name of the main file should be named as:
+- **styles/base.less** (for less file)
+- **styles/index.scss** (for scss file)
+
 
 ### Custom build
 
