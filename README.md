@@ -327,7 +327,10 @@ This is the default config structure if is not specified otherwise in **bower.js
         "reports": "./reports",
         "index": "./index-dev.html"
     },
-
+    "data": {
+        "route": "/services/mock", // url access to the mock raml api
+        "path": "./data" // place .raml file in here
+    },
     "proxies": {
       "/api":  "http://localhost:3030/"
     },
