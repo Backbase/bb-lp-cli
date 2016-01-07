@@ -7,7 +7,7 @@ CLI development tool for widgets / modules
 
 | Name       |  bb-lp-cli |
 |------------|---|
-| Version    | 1.2.1   |
+| Version    | 1.3.0   |
 | Bundle     | tools |
 | Status     | node >=0.12.x < 5.0.x |
 
@@ -327,7 +327,10 @@ This is the default config structure if is not specified otherwise in **bower.js
         "reports": "./reports",
         "index": "./index-dev.html"
     },
-
+    "data": {
+        "route": "/services/mock", // url access to the mock raml api
+        "files": ['./**/data/**/*.raml'] // .raml
+    },
     "proxies": {
       "/api":  "http://localhost:3030/"
     },
