@@ -22,11 +22,11 @@ var BBCLI = cliparse.cli({
             args: [
                 cliparse.argument('url', {
                     description: 'Template repository url',
-                    default: 'https://stash.backbase.com/scm/lpg/generator-widget-ng.git'
+                    default: 'git@bitbucket.org:backbase/lpg-generator-widget-ng.git'
                 })
             ],
             options: [
-
+                cliparse.flag('prcessImages', { aliases: ['i'], description: 'Process images by template engine. Images are excluded by default.'})
             ]
         }, require('../lib/commands/common/generate') ),
 

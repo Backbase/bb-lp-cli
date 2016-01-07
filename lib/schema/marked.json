@@ -131,12 +131,7 @@
 					"type": "array",
 					"items": [{
 						"pattern": ["name", "i"]
-					}, {
-						"pattern": ["version", "i"]
-					}, {
-						"pattern": ["bundle", "i"]
-					}],
-            		"additionalItems": false
+					}]
 				}
 			}
 		},
