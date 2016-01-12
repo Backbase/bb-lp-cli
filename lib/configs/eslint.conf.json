@@ -6,6 +6,8 @@
         "dot-notation": [0],
         "max-statements":[1, 15],
         "max-depth":[1, 2],
+        "new-cap": [0],
+        "no-underscore-dangle": [1],
         "complexity":[1, 5]
     },
     "globals": {
