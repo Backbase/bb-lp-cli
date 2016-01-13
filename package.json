@@ -111,7 +111,6 @@
     "karma-osx-reporter": "^0.2.0",
     "mocha": "^1.17.0",
     "mocha-lcov-reporter": "^0.0.1",
-    "semantic-release": "^4.3.5",
     "should": "^4.0.0"
   },
   "scripts": {
