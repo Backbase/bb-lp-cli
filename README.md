@@ -7,7 +7,7 @@ CLI development tool for widgets / modules
 
 | Name       |  bb-lp-cli |
 |------------|---|
-| Version    | 1.3.2   |
+| Version    | 1.3.3   |
 | Bundle     | tools |
 | Status     | node >=0.12.x < 5.0.x |
 
@@ -310,7 +310,7 @@ bblp unregister
 
 
 
-### Configuration under the bower.json file
+### Configuration under the bower.json or package.json file
 
 This is the default config structure if is not specified otherwise in **bower.json** file
 
