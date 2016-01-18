@@ -151,8 +151,7 @@ Usage example: `bblp build -ex touch,color-picker,focus ./scripts/my-custom-dist
 
 Options:
 
-- **- s --skipTests** skips unit tests
-- **- r --skipClean** skips cleaning destination directory
+- **- f --fulltest** with unit tests and linting
 - **- t --withTemplates** Bundle HTML templates into build file (for widgets)
 - **- m --withModuleId** Build with AMD module ID in definition
 - **- c --withConfig** Build with config using path from arguments
