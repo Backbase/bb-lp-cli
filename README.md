@@ -81,11 +81,11 @@ arguments:
 
 options:
 
-- **NONE**
+- **-p --port** Server port
 
 
 ```bash
-bblp start
+bblp start [-p3030]
 ```
 
 ### Test:

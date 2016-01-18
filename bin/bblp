@@ -39,7 +39,12 @@ var BBCLI = cliparse.cli({
 
             ],
             options: [
-
+                cliparse.option('port', {
+                    aliases: ['p'],
+                    parser: cliparse.parsers.intParser,
+                    description: 'Server port',
+                    defaultValue: null
+                })
             ]
         }, require('../lib/commands/common/start') ),
 
