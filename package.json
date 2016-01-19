@@ -20,7 +20,6 @@
     "url": "http://github.com/backbase/bb-lp-cli"
   },
   "dependencies": {
-    "@backbase/eslint-config-backbase": "^1.0.1",
     "analyze-css": "^0.10.2",
     "bower-webpack-plugin": "^0.1.8",
     "browser-sync": "^2.4.0",
