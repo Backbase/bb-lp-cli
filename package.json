@@ -1,7 +1,7 @@
 {
   "name": "bb-lp-cli",
   "preferGlobal": true,
-  "version": "1.3.1",
+  "version": "1.3.2",
   "bin": {
     "bblp": "bin/bblp"
   },
@@ -20,7 +20,6 @@
     "url": "http://github.com/backbase/bb-lp-cli"
   },
   "dependencies": {
-    "@backbase/eslint-config-backbase": "^1.0.1",
     "analyze-css": "^0.10.2",
     "bower-webpack-plugin": "^0.1.8",
     "browser-sync": "^2.4.0",
@@ -47,6 +46,7 @@
     "gulp-eslint": "^0.15.0",
     "gulp-header": "^1.7.1",
     "gulp-insert": "^0.4.0",
+    "gulp-jsdoc-to-markdown": "^1.2.1",
     "gulp-less": "^3.0.5",
     "gulp-load-plugins": "^0.9.0",
     "gulp-minify-html": "^1.0.4",
