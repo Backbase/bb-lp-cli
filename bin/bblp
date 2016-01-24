@@ -3,6 +3,7 @@ var cliparse = require('cliparse');
 var parsers = cliparse.parsers;
 var pckJson = require('../package.json');
 var colors = require('colors');
+var utils = require('../lib/utils');
 
 /*----------------------------------------------------------------*/
 /* #TODO parse the commands folder and auto generate commands
@@ -134,10 +135,10 @@ var BBCLI = cliparse.cli({
                 }),
                 /**
                  * @todo
+                 *  - template
                  * Update the CHANGELOG file
                  */
                 cliparse.option('changelog', {
-                    aliases: ['l'],
                     description: 'Update CHANGELOG with commit messages',
                     default: 'CHANGELOG.md'
                 })
@@ -146,33 +147,60 @@ var BBCLI = cliparse.cli({
             ]
         }, require('../lib/commands/common/bump') ),
         /*----------------------------------------------------------------*/
-        /* Register bower package
+        /* Register package
         /*----------------------------------------------------------------*/
         cliparse.command('register', {
-            description: 'Register bower package to registry endpoint. Default `http://launchpad.backbase.com:5678/`',
+            description: 'Package manager type. Eg. `bblp register npm/bower`',
             args: [
-                cliparse.argument('registry', {
-                    description: 'Bower registry endpoint.',
-                    default: 'http://launchpad.backbase.com:5678'
+                cliparse.argument('manager', {
+                    description: 'Package manager',
+                    parser: function(v) {
+                        if (['bower', 'npm'].indexOf(v) !== -1) return {success: v};
+                        else return {error: 'Wrong manager name!'.red};
+                    },
+                    default: 'bower' // will be deprecated in favor for npm
                 })
             ],
             options: [
+                cliparse.option('registry', {
+                    description: 'Registry endpoint.',
+                    parser: function(value) {
+                        if( !utils.isString(value) || !utils.isUrl(value)  ) {
+                            return {error: colors.error('Registry option must be an valid url endpoint')}
+                        }
+                        return {success: value}
 
+                    }
+                })
             ]
         }, require('../lib/commands/common/register') ),
         /*----------------------------------------------------------------*/
-        /* Unregister bower package
+        /* Unregister package
         /*----------------------------------------------------------------*/
         cliparse.command('unregister', {
-            description: 'Unregister bower package to registry endpoint. Default `http://launchpad.backbase.com:5678/`',
+            description: 'Package manager type. Eg. `bblp unregister npm/bower`',
             args: [
-                cliparse.argument('registry', {
-                    description: 'Bower registry endpoint.',
-                    default: 'http://launchpad.backbase.com:5678'
+                cliparse.argument('manager', {
+                    description: 'Package manager',
+                    parser: function(v) {
+                        if (['bower', 'npm'].indexOf(v) !== -1) return {success: v};
+                        else return {error: 'Wrong manager name!'.red};
+                    },
+                    default: 'bower' // will be deprecated in favor for npm
                 })
             ],
             options: [
+                cliparse.option('registry', {
+                    description: 'Registry endpoint.',
+                    parser: function(value) {
+                        if( !utils.isString(value) || !utils.isUrl(value)  ) {
+                            return {error: colors.error('Registry option must be an valid url endpoint')}
+                        }
+                        return {success: value}
 
+                    }
+                }),
+                cliparse.flag('force', { aliases: ['f'], description: 'force', default: false})
             ]
         }, require('../lib/commands/common/unregister') ),
 
