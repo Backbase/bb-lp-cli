@@ -7,7 +7,7 @@ CLI development tool for widgets / modules
 
 | Name       |  bb-lp-cli |
 |------------|---|
-| Version    | 1.4.0   |
+| Version    | 1.5.0   |
 | Bundle     | tools |
 | Status     | node >=0.12.x < 5.0.x |
 
@@ -264,7 +264,9 @@ Config description:
 
 
 ### Bump:
-Bump version in bower.json, README.md and CHANGELOG.md
+Bump version in package.json, model.xml, bower.json, README.md and CHANGELOG.md
+
+**NOTE** if a version property is not found in **model.xml** file will be created
 
 arguments:
 
@@ -272,39 +274,42 @@ arguments:
 - **[MESSAGE]**  Optional bump message
 options:
 
-- **NONE**
+- **--suffix** - Prerelease suffix name EX. .pre, .beta, .rc, **Default .pre**
+- **--changelog** - CHANGELOG file name  **Default CHANGELOG.md**
 
 ```bash
-bblp bump minor "Some relevant message"
+bblp bump minor [increment] "Some relevant message"
 ```
 
 ### Register:
-Register bower package to registry endpoint
+Register package to launchpad registry endpoints
+bower - http://launchpad.backbase.com:5678
+npm - http://launchpad.backbase.com:8765
 
 arguments:
 
-- **registry** - registry url default is http://launchpad.backbase.com:5678
+- **manager** npm or bower. Default to bower.
 
 options:
-- **NONE**
+- **--registry** Custom registry endpoint
 
 ```bash
-bblp register
+bblp register [npm]
 ```
 
 ### Unregister:
-Unregister bower package to registry endpoint
+Unregister package to launchpad registry endpoints
 
 arguments:
 
-- **registry** - registry url default is http://launchpad.backbase.com:5678
+- **manager** npm or bower. Default to bower.
 
 options:
-
-- **NONE**
+- **--registry** Custom registry endpoint
+- **- f --force** - 'use the force' npm functionality.
 
 ```bash
-bblp unregister
+bblp unregister [npm] [-f]
 ```
 
 

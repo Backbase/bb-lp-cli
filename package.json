@@ -1,7 +1,7 @@
 {
   "name": "bb-lp-cli",
   "preferGlobal": true,
-  "version": "1.3.2",
+  "version": "1.5.0",
   "bin": {
     "bblp": "bin/bblp"
   },
@@ -105,7 +105,9 @@
     "vinyl-named": "^1.1.0",
     "webpack": "^1.12.2",
     "webpack-core": "~0.6.0",
-    "webpack-stream": "^2.1.0"
+    "webpack-stream": "^2.1.0",
+    "xml2js": "^0.4.16",
+    "xml2js-xpath": "^0.5.0"
   },
   "devDependencies": {
     "istanbul": "^0.2.3",
