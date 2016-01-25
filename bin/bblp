@@ -108,9 +108,14 @@ var BBCLI = cliparse.cli({
             description: 'Bump version in bower, README.md and CHANGELOG.md',
             args: [
                 cliparse.argument('VERSION', {
-                    description: 'major'.gray + ' [X.x.x], ' + 'minor'.gray + ' [x.X.x] or ' + 'patch'.gray + ' [x.x.X]',
+                    description: [  'major'.gray + ' [X'.green + '.x.x]',
+                                    'minor'.gray + ' [x.' +'X'.green + '.x]',
+                                    'patch'.gray + ' [x.x.'+ 'X'.green + ']',
+                                    'pre'.gray + ' [x.x.x-pre.'+ 'X'.green + ']'
+                                    // @todo support for specific tags
+                                ].join(' '),
                     parser: function(v) {
-                        if (['major', 'minor', 'patch'].indexOf(v) !== -1) return {success: v};
+                        if (['major', 'minor', 'patch','pre'].indexOf(v) !== -1) return {success: v};
                         else return {error: 'Wrong version!'.red};
                     }
                 }),
@@ -120,7 +125,24 @@ var BBCLI = cliparse.cli({
                 })
             ],
             options: [
-                cliparse.flag('version-only', { aliases: ['v'], description: 'In version-only mode only README version section will be updated'})
+                /**
+                 * Add suffix for pre release versions
+                 */
+                cliparse.option('suffix', {
+                    description: 'Pre-release suffix. Ex: -beta.0, -rc.0',
+                    default: 'pre'
+                }),
+                /**
+                 * @todo
+                 * Update the CHANGELOG file
+                 */
+                cliparse.option('changelog', {
+                    aliases: ['l'],
+                    description: 'Update CHANGELOG with commit messages',
+                    default: 'CHANGELOG.md'
+                })
+                // deprecated will be moved to bblp docs
+                // cliparse.flag('version-only', { aliases: ['v'], description: 'In version-only mode only README version section will be updated'})
             ]
         }, require('../lib/commands/common/bump') ),
         /*----------------------------------------------------------------*/
