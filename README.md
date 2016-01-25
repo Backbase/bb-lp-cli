@@ -264,7 +264,9 @@ Config description:
 
 
 ### Bump:
-Bump version in bower.json, README.md and CHANGELOG.md
+Bump version in package.json, model.xml, bower.json, README.md and CHANGELOG.md
+
+**NOTE** if a version property is not found in **model.xml** file will be created
 
 arguments:
 
