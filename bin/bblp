@@ -3,6 +3,7 @@ var cliparse = require('cliparse');
 var parsers = cliparse.parsers;
 var pckJson = require('../package.json');
 var colors = require('colors');
+var utils = require('../lib/utils');
 
 /*----------------------------------------------------------------*/
 /* #TODO parse the commands folder and auto generate commands
@@ -39,7 +40,12 @@ var BBCLI = cliparse.cli({
 
             ],
             options: [
-
+                cliparse.option('port', {
+                    aliases: ['p'],
+                    parser: cliparse.parsers.intParser,
+                    description: 'Server port',
+                    defaultValue: null
+                })
             ]
         }, require('../lib/commands/common/start') ),
 
@@ -84,7 +90,7 @@ var BBCLI = cliparse.cli({
                 })
             ],
             options: [
-                cliparse.flag('skipTests', { aliases: ['s'], description: 'Skip tests'}),
+                cliparse.flag('fullTest', { aliases: ['f'], description: 'Run a full test (unit/lint)'}),
                 cliparse.flag('skipClean', { aliases: ['r'], description: 'Skip clean'}),
                 cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'}),
                 cliparse.flag('withModuleId', { aliases: ['m'], description: 'Build with AMD module ID in definition'}),
@@ -103,9 +109,14 @@ var BBCLI = cliparse.cli({
             description: 'Bump version in bower, README.md and CHANGELOG.md',
             args: [
                 cliparse.argument('VERSION', {
-                    description: 'major'.gray + ' [X.x.x], ' + 'minor'.gray + ' [x.X.x] or ' + 'patch'.gray + ' [x.x.X]',
+                    description: [  'major'.gray + ' [X'.green + '.x.x]',
+                                    'minor'.gray + ' [x.' +'X'.green + '.x]',
+                                    'patch'.gray + ' [x.x.'+ 'X'.green + ']',
+                                    'pre'.gray + ' [x.x.x-pre.'+ 'X'.green + ']'
+                                    // @todo support for specific tags
+                                ].join(' '),
                     parser: function(v) {
-                        if (['major', 'minor', 'patch'].indexOf(v) !== -1) return {success: v};
+                        if (['major', 'minor', 'patch','pre'].indexOf(v) !== -1) return {success: v};
                         else return {error: 'Wrong version!'.red};
                     }
                 }),
@@ -115,37 +126,81 @@ var BBCLI = cliparse.cli({
                 })
             ],
             options: [
-                cliparse.flag('version-only', { aliases: ['v'], description: 'In version-only mode only README version section will be updated'})
+                /**
+                 * Add suffix for pre release versions
+                 */
+                cliparse.option('suffix', {
+                    description: 'Pre-release suffix. Ex: -beta.0, -rc.0',
+                    default: 'pre'
+                }),
+                /**
+                 * @todo
+                 *  - template
+                 * Update the CHANGELOG file
+                 */
+                cliparse.option('changelog', {
+                    description: 'Update CHANGELOG with commit messages',
+                    default: 'CHANGELOG.md'
+                })
+                // deprecated will be moved to bblp docs
+                // cliparse.flag('version-only', { aliases: ['v'], description: 'In version-only mode only README version section will be updated'})
             ]
         }, require('../lib/commands/common/bump') ),
         /*----------------------------------------------------------------*/
-        /* Register bower package
+        /* Register package
         /*----------------------------------------------------------------*/
         cliparse.command('register', {
-            description: 'Register bower package to registry endpoint. Default `http://launchpad.backbase.com:5678/`',
+            description: 'Package manager type. Eg. `bblp register npm/bower`',
             args: [
-                cliparse.argument('registry', {
-                    description: 'Bower registry endpoint.',
-                    default: 'http://launchpad.backbase.com:5678'
+                cliparse.argument('manager', {
+                    description: 'Package manager',
+                    parser: function(v) {
+                        if (['bower', 'npm'].indexOf(v) !== -1) return {success: v};
+                        else return {error: 'Wrong manager name!'.red};
+                    },
+                    default: 'bower' // will be deprecated in favor for npm
                 })
             ],
             options: [
+                cliparse.option('registry', {
+                    description: 'Registry endpoint.',
+                    parser: function(value) {
+                        if( !utils.isString(value) || !utils.isUrl(value)  ) {
+                            return {error: colors.error('Registry option must be an valid url endpoint')}
+                        }
+                        return {success: value}
 
+                    }
+                })
             ]
         }, require('../lib/commands/common/register') ),
         /*----------------------------------------------------------------*/
-        /* Unregister bower package
+        /* Unregister package
         /*----------------------------------------------------------------*/
         cliparse.command('unregister', {
-            description: 'Unregister bower package to registry endpoint. Default `http://launchpad.backbase.com:5678/`',
+            description: 'Package manager type. Eg. `bblp unregister npm/bower`',
             args: [
-                cliparse.argument('registry', {
-                    description: 'Bower registry endpoint.',
-                    default: 'http://launchpad.backbase.com:5678'
+                cliparse.argument('manager', {
+                    description: 'Package manager',
+                    parser: function(v) {
+                        if (['bower', 'npm'].indexOf(v) !== -1) return {success: v};
+                        else return {error: 'Wrong manager name!'.red};
+                    },
+                    default: 'bower' // will be deprecated in favor for npm
                 })
             ],
             options: [
+                cliparse.option('registry', {
+                    description: 'Registry endpoint.',
+                    parser: function(value) {
+                        if( !utils.isString(value) || !utils.isUrl(value)  ) {
+                            return {error: colors.error('Registry option must be an valid url endpoint')}
+                        }
+                        return {success: value}
 
+                    }
+                }),
+                cliparse.flag('force', { aliases: ['f'], description: 'force', default: false})
             ]
         }, require('../lib/commands/common/unregister') ),
 
@@ -186,9 +241,10 @@ var BBCLI = cliparse.cli({
 
             ],
             options: [
-                cliparse.flag('generate', { aliases: ['g'], description: 'Generate checklist into DEV.md internal readme file'}),
-                cliparse.flag('report', { aliases: ['r'], description: 'Generate checklist report into dev-report.csv'}),
-                cliparse.flag('update', { aliases: ['u'], description: 'Update manual checklist'})
+                cliparse.flag('api', { aliases: ['a'], description: 'Generate API reference markdown', default: true}),
+                cliparse.flag('stats', { aliases: ['s'], description: 'Generate checklist statistics markdown'}),
+                cliparse.flag('report', { aliases: ['r'], description: 'Generate checklist report markdown'}),
+                cliparse.option('update', { description: 'Update manual checklist'})
             ]
         }, require('../lib/commands/common/docs') )
     ]
