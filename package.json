@@ -1,7 +1,7 @@
 {
   "name": "bb-lp-cli",
   "preferGlobal": true,
-  "version": "1.4.0",
+  "version": "1.5.0",
   "bin": {
     "bblp": "bin/bblp"
   },
@@ -57,7 +57,8 @@
     "gulp-size": "^2.0.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-template": "^3.0.0",
-    "gulp-uglify": "^1.1.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-webpack": "^1.5.0",
     "html-minify-loader": "^1.0.0",
     "inquirer": "^0.8.2",
     "isparta": "^3.1.0",
@@ -88,6 +89,7 @@
     "marked": "^0.3.5",
     "marked-to-md": "^1.0.1",
     "moment": "^2.10.3",
+    "ng-annotate-webpack-plugin": "^0.1.2",
     "node-yaml-config": "0.0.3",
     "promise": "^6.1.0",
     "proxy-middleware": "^0.11.0",
