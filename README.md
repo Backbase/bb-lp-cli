@@ -7,7 +7,6 @@ CLI development tool for widgets / modules
 
 | Name       |  bb-lp-cli |
 |------------|---|
-| Version    | 1.5.0   |
 | Bundle     | tools |
 | Status     | node >=0.12.x < 5.0.x |
 
