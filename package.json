@@ -1,13 +1,7 @@
 {
   "name": "bb-lp-cli",
   "preferGlobal": true,
-<<<<<<< HEAD
-  "version": "1.5.0",
-||||||| merged common ancestors
-  "version": "1.4.0",
-=======
   "version": "1.6.0",
->>>>>>> develop
   "bin": {
     "bblp": "bin/bblp"
   },
