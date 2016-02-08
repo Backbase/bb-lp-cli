@@ -333,7 +333,7 @@ This is the default config structure if is not specified otherwise in **bower.js
     },
     "data": {
         "route": "/services/mock", // url access to the mock raml api
-        "files": ['./**/data/**/*.raml'] // .raml
+        "files": ['./**/*.raml'] // .raml
     },
     "proxies": {
       "/api":  "http://localhost:3030/"
