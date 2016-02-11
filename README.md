@@ -280,6 +280,48 @@ options:
 bblp bump minor [increment] "Some relevant message"
 ```
 
+### Docs:
+Generating different types of documentation.
+
+
+arguments:
+
+- **NONE**
+
+options:
+- **--api** Generate API reference MarkDown in the **docs** folder. Based on [JSDoc](http://usejsdoc.org/) annotations. Default
+
+- **--services** Generate reference MarkDown and HTML files in the **docs/services** folder. based on [RAML 0.8](https://github.com/raml-org/raml-spec/blob/master/raml-0.8.md) specifications. Optional you can pass the domain name.
+
+Basic Usage:
+
+```bash
+bblp docs
+```
+
+
+```bash
+bblp docs --services https://my.domain.com/services/rest
+```
+
+### Unregister:
+Unregister package to launchpad registry endpoints
+
+arguments:
+
+- **manager** npm or bower. Default to bower.
+
+options:
+- **--registry** Custom registry endpoint
+- **- f --force** - 'use the force' npm functionality.
+
+```bash
+bblp unregister [npm] [-f]
+```
+
+
+
+
 ### Register:
 Register package to launchpad registry endpoints
 bower - http://launchpad.backbase.com:5678
