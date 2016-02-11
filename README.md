@@ -177,7 +177,7 @@ Some convention is required to compile styles files (less, scss). The name of th
 - **styles/index.scss** (for scss file)
 
 
-### Custom build
+### Custom build [DEP] - will be revisited
 
 ```bash
 bblp custom-build <config>
