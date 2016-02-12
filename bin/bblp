@@ -45,6 +45,20 @@ var BBCLI = cliparse.cli({
                     parser: cliparse.parsers.intParser,
                     description: 'Server port',
                     defaultValue: null
+                }),
+                cliparse.option('logLevel', {
+                    aliases: ['l'],
+                    description: 'Log level notifications' + [,
+                                    'info'.info,
+                                    //'debug'.debug,
+                                    //'warn'.warn,
+                                    'silent'.gray
+                    ].join(' | '),
+                    parser: function(v) {
+                        if (['debug', 'info', 'silent', 'warn', 'error'].indexOf(v) !== -1) return {success: v};
+                        else return {error: 'Wrong log level setting indicator'.red};
+                    },
+                    default: 'info'
                 })
             ]
         }, require('../lib/commands/common/start') ),
