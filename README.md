@@ -81,10 +81,14 @@ arguments:
 options:
 
 - **-p --port** Server port
+- **-l --logLevel** Log level information info | silent
+    - info is the default setting
+    - silent will disable linting and notifications
+    - debug/warn/ TODO
 
 
 ```bash
-bblp start [-p3030]
+bblp start [-p3030] [-l silent]
 ```
 
 ### Test:
