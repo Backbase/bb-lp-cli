@@ -41,12 +41,6 @@ var BBCLI = cliparse.cli({
             ],
             options: [
                 cliparse.flag('apiVersion', { aliases: ['a'], description: 'Add version to raml api paths'}),
-                cliparse.option('port', {
-                    aliases: ['p'],
-                    parser: cliparse.parsers.intParser,
-                    description: 'Server port',
-                    defaultValue: null
-                }),
                 cliparse.option('logLevel', {
                     aliases: ['l'],
                     description: 'Log level notifications' + [,
@@ -60,6 +54,17 @@ var BBCLI = cliparse.cli({
                         else return {error: 'Wrong log level setting indicator'.red};
                     },
                     default: 'info'
+                }),
+                cliparse.option('port', {
+                    aliases: ['p'],
+                    parser: cliparse.parsers.intParser,
+                    description: 'Server port',
+                    defaultValue: null
+                }),
+                cliparse.option('template', {
+                    parser: cliparse.parsers.stringParser,
+                    description: 'Template to use for standalone mode',
+                    defaultValue: null
                 })
             ]
         }, require('../lib/commands/common/start') ),
