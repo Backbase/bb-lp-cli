@@ -40,6 +40,7 @@ var BBCLI = cliparse.cli({
 
             ],
             options: [
+                cliparse.flag('apiVersion', { aliases: ['a'], description: 'Add version to raml api paths'}),
                 cliparse.option('port', {
                     aliases: ['p'],
                     parser: cliparse.parsers.intParser,
