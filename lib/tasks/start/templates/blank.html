@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:g="http://www.backbase.com/2008/gadget" xml:lang="en">
+
+<head>
+    <title>Widget Standalone Blank</title>
+    <meta http-equiv="Content-Type" content="text/xml; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <script src="support/backbase-widget-engine/dist/portal-kit.js"></script>
+</head>
+
+<body class="container">
+    <header class="engine-header"></header>
+    <main class="engine-main">
+        <div id="widget-root"></div>
+    </main>
+    <footer class="engine-footer">
+        <div id="details"></div>
+        <h3>Model Config</h3>
+        <div id="widgetModel"></div>
+    </footer>
+    <script>
+        //setup a widget engine
+        var widgetEngine = new portalKit.WidgetEngine({
+            logLevel: 'trace'
+        });
+
+        widgetEngine.init({
+            widgetUrl: '/',
+            widgetEl: document.getElementById('widget-root'),
+            configFile: 'model.xml',
+            parser: new portalKit.AutoConfigParser(),
+            reader: new portalKit.XhrWidgetReader({
+                noCache: true
+            })
+        });
+
+        widgetEngine.addPlugin(new portalKit.ReplaceConfigVarsPlugin({
+            servicesPath: '',
+            itemRoot: 'itemRoot'
+        }, { full: true }));
+
+        widgetEngine.addPlugin({
+            name: "Get Config Params",
+            postRender: function(widgetInstance, widgetRenderer, widgetModel) {
+                document.getElementById('widgetModel').innerHTML = JSON.stringify(widgetModel, null, 4);
+
+                return [ widgetInstance, widgetRenderer, widgetModel ]
+            }
+        });
+
+        //By default add the backbase format plugin
+        widgetEngine.addPlugin(new portalKit.BackbaseFormatPlugin({
+            storage: widgetEngine.widgetEngine.config.storage,
+            makeIncludedRefsAbsolute: true,
+            portalConf: {
+                contextItemName: 'browser-demo-app'
+            }
+        }));
+
+        //start it up
+        widgetEngine.start().then(function(details) {
+            console.log(details.message);
+            document.getElementById('details').innerHTML = '<p>' + details.message + '</p>';
+        }).catch(function(err) {
+            console.error(err);
+            document.getElementById('details').innerHTML = '<p>' + err.stack.split('\n').join('<br>') + '</p>';
+        });
+    </script>
+</body>
+
+</html>

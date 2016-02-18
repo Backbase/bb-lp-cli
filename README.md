@@ -13,7 +13,7 @@ CLI development tool for widgets / modules
 
 ## Requirements
 
-General 
+General
 
 - git
 - nodejs
@@ -80,12 +80,13 @@ arguments:
 
 options:
 
+- **-a --apiVersion** Add version to raml api paths, false by default (v12.0/api/... vs /api/...)
 - **-p --port** Server port
 - **-l --logLevel** Log level information info | silent
     - info is the default setting
     - silent will disable linting and notifications
     - debug/warn/ TODO
-
+- **--template** Template to use for standalone mode. `blank.html` be default. 'lp.html' as an alternative. You can use a custom one, which will be taken from running item folder.
 
 ```bash
 bblp start [-p3030] [-l silent]
