@@ -325,7 +325,7 @@ bblp commit
 How to add your commit convention adapter.
 
 ```bash
-npm i cz-conventional-changelog
+npm i cz-conventional-changelog -D
 ```
 
 ... configure it after inside the `package.json`
