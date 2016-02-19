@@ -63,7 +63,10 @@ var BBCLI = cliparse.cli({
                 }),
                 cliparse.option('template', {
                     parser: cliparse.parsers.stringParser,
-                    description: 'Template to use for standalone mode',
+                    description: 'Template to use for standalone mode, default to local ' + 'index.dev.html'.green +  [,
+                        'lp'.red,
+                        'cxp'.gray
+                    ].join(' | '),
                     defaultValue: null
                 })
             ]

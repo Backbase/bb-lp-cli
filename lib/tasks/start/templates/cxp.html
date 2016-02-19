@@ -11,19 +11,11 @@
 </head>
 
 <body class="container">
-    <header class="engine-header"></header>
-    <main class="engine-main">
-        <div id="widget-root"></div>
-    </main>
-    <footer class="engine-footer">
-        <div id="details"></div>
-        <h3>Model Config</h3>
-        <div id="widgetModel"></div>
-    </footer>
+    <div id="widget-root"></div>
     <script>
         //setup a widget engine
         var widgetEngine = new portalKit.WidgetEngine({
-            logLevel: 'trace'
+            logLevel: 'info'
         });
 
         widgetEngine.init({
@@ -54,13 +46,7 @@
         }));
 
         //start it up
-        widgetEngine.start().then(function(details) {
-            console.log(details.message);
-            document.getElementById('details').innerHTML = '<p>' + details.message + '</p>';
-        }).catch(function(err) {
-            console.error(err);
-            document.getElementById('details').innerHTML = '<p>' + err.stack.split('\n').join('<br>') + '</p>';
-        });
+        widgetEngine.start();
     </script>
 </body>
 

@@ -86,7 +86,7 @@ options:
     - info is the default setting
     - silent will disable linting and notifications
     - debug/warn/ TODO
-- **--template** Template to use for standalone mode. `blank.html` be default. 'lp.html' as an alternative. You can use a custom one, which will be taken from running item folder.
+- **--template** Template to use for standalone mode. `./index.dev.html` be default. `lp` and `cxp` as an alternative. You can use a custom one, which will be taken from running item folder.
 
 ```bash
 bblp start [-p3030] [-l silent]
