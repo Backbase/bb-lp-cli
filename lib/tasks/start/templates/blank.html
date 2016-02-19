@@ -30,6 +30,9 @@
             widgetUrl: '/',
             widgetEl: document.getElementById('widget-root'),
             configFile: 'model.xml',
+            configVars: {
+                contextRoot: ''
+            },
             parser: new portalKit.AutoConfigParser(),
             reader: new portalKit.XhrWidgetReader({
                 noCache: true
@@ -40,15 +43,6 @@
             servicesPath: '',
             itemRoot: 'itemRoot'
         }, { full: true }));
-
-        widgetEngine.addPlugin({
-            name: "Get Config Params",
-            postRender: function(widgetInstance, widgetRenderer, widgetModel) {
-                document.getElementById('widgetModel').innerHTML = JSON.stringify(widgetModel, null, 4);
-
-                return [ widgetInstance, widgetRenderer, widgetModel ]
-            }
-        });
 
         //By default add the backbase format plugin
         widgetEngine.addPlugin(new portalKit.BackbaseFormatPlugin({
