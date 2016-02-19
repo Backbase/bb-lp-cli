@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:g="http://www.backbase.com/2008/gadget" xml:lang="en">
+
+<head>
+    <title>Widget Standalone Blank</title>
+    <meta http-equiv="Content-Type" content="text/xml; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <script src="support/backbase-widget-engine/dist/portal-kit.js"></script>
+</head>
+
+<body class="container">
+    <div id="widget-root"></div>
+    <script>
+        //setup a widget engine
+        var widgetEngine = new portalKit.WidgetEngine({
+            logLevel: 'info'
+        });
+
+        widgetEngine.init({
+            widgetUrl: '/',
+            widgetEl: document.getElementById('widget-root'),
+            configFile: 'model.xml',
+            configVars: {
+                contextRoot: ''
+            },
+            parser: new portalKit.AutoConfigParser(),
+            reader: new portalKit.XhrWidgetReader({
+                noCache: true
+            })
+        });
+
+        widgetEngine.addPlugin(new portalKit.ReplaceConfigVarsPlugin({
+            servicesPath: '',
+            itemRoot: 'itemRoot'
+        }, { full: true }));
+
+        //By default add the backbase format plugin
+        widgetEngine.addPlugin(new portalKit.BackbaseFormatPlugin({
+            storage: widgetEngine.widgetEngine.config.storage,
+            makeIncludedRefsAbsolute: true,
+            portalConf: {
+                contextItemName: 'browser-demo-app'
+            }
+        }));
+
+        //start it up
+        widgetEngine.start();
+    </script>
+</body>
+
+</html>
