@@ -34,6 +34,7 @@
     "escomplex-js": "^1.2.0",
     "eslint": "^1.10.0",
     "esprima": "^2.6.0",
+    "exports-loader": "^0.6.3",
     "file-loader": "^0.8.4",
     "findit": "^2.0.0",
     "fs-extra-promise": "^0.2.0",
