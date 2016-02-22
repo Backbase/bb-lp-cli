@@ -13,7 +13,7 @@ CLI development tool for widgets / modules
 
 ## Requirements
 
-General 
+General
 
 - git
 - nodejs
@@ -80,11 +80,16 @@ arguments:
 
 options:
 
+- **-a --apiVersion** Add version to raml api paths, false by default (v12.0/api/... vs /api/...)
 - **-p --port** Server port
-
+- **-l --logLevel** Log level information info | silent
+    - info is the default setting
+    - silent will disable linting and notifications
+    - debug/warn/ TODO
+- **--template** Template to use for standalone mode. `./index.dev.html` be default. `lp` and `cxp` as an alternative. You can use a custom one, which will be taken from running item folder.
 
 ```bash
-bblp start [-p3030]
+bblp start [-p3030] [-l silent] [--template cxp]
 ```
 
 ### Test:
@@ -113,7 +118,42 @@ bblp test -c --browsers Firefox,Chrome --moduleDirectories '../../portal/myporta
 ### Build:
 Bundle the widget/module.
 
-Arguments:
+arguments:
+
+- **NONE**
+
+
+options:
+
+- **- f --fulltest** with unit tests and linting
+- **- t --withTemplates** Bundle HTML templates into build file (for widgets)
+- **- m --withModuleId** Build with AMD module ID in definition
+- **- c --withConfig** Build with config using path from arguments
+- **- e --withCustomEntry** Build using specified custom entry point (works with excludes)
+- **- x --withExcludes** Exclude components from main file due to specified as an argument excludes array
+- **- p --withPerformance** Build with performance annotations converted into performance module API calls
+- **--moduleDirectories** A comma separated list of the shared components
+    + `--moduleDirectories 'target/bower_components'`
+
+```bash
+bblp build
+```
+
+with moduleDirectories
+
+```bash
+bblp build --moduleDirectories '../../portal/myportal/statics/dist/itemRoot/static/features/[BBHOST]','target/bower_components'
+```
+
+
+**Compile & build styles:**
+Some convention is required to compile styles files (less, scss, css). The name of the main file should be named as:
+- **styles/base.less** (for less file)
+- **styles/index.scss** (for scss file)
+- **styles/index.css** (will be minified)
+
+
+With custom configuration:
 
 - **config** path to config file for components management. E.g. `bblp build -c ./my-conf.json`.
 If config contains entryPoint and excludes whey are going to be used instead of corresponding arguments. Here is the config example for UI module:
@@ -145,39 +185,12 @@ If config contains entryPoint and excludes whey are going to be used instead of 
 
 - **excludes** Array of components to exclude. Please note, that if custom entry point isn't specified current main is used.
 Usage example: `bblp build -x touch,color-picker,focus`.
+
 - **entryPoint** name of entry point file. It is used to create custom entry point due to the excludes array and corresponding dest file.
 Usage example: `bblp build -ex touch,color-picker,focus ./scripts/my-custom-dist-file.js`.
 
-Options:
+### Custom build [DEP] - will be revisited
 
-- **- f --fulltest** with unit tests and linting
-- **- t --withTemplates** Bundle HTML templates into build file (for widgets)
-- **- m --withModuleId** Build with AMD module ID in definition
-- **- c --withConfig** Build with config using path from arguments
-- **- e --withCustomEntry** Build using specified custom entry point (works with excludes)
-- **- x --withExcludes** Exclude components from main file due to specified as an argument excludes array
-- **- p --withPerformance** Build with performance annotations converted into performance module API calls
-- **--moduleDirectories** A comma separated list of the shared components
-    + `--moduleDirectories 'target/bower_components'`
-
-```bash
-bblp build
-```
-
-with moduleDirectories
-
-```bash
-bblp build --moduleDirectories '../../portal/myportal/statics/dist/itemRoot/static/features/[BBHOST]','target/bower_components'
-```
-
-
-**Compile styles:**
-Some convention is required to compile styles files (less, scss). The name of the main file should be named as:
-- **styles/base.less** (for less file)
-- **styles/index.scss** (for scss file)
-
-
-### Custom build
 
 ```bash
 bblp custom-build <config>
@@ -280,6 +293,48 @@ options:
 bblp bump minor [increment] "Some relevant message"
 ```
 
+### Docs:
+Generating different types of documentation.
+
+
+arguments:
+
+- **NONE**
+
+options:
+- **--api** Generate API reference MarkDown in the **docs** folder. Based on [JSDoc](http://usejsdoc.org/) annotations. Default
+
+- **--services** Generate reference MarkDown and HTML files in the **docs/services** folder. based on [RAML 0.8](https://github.com/raml-org/raml-spec/blob/master/raml-0.8.md) specifications. Optional you can pass the domain name.
+
+Basic Usage:
+
+```bash
+bblp docs
+```
+
+
+```bash
+bblp docs --services https://my.domain.com/services/rest
+```
+
+### Unregister:
+Unregister package to launchpad registry endpoints
+
+arguments:
+
+- **manager** npm or bower. Default to bower.
+
+options:
+- **--registry** Custom registry endpoint
+- **- f --force** - 'use the force' npm functionality.
+
+```bash
+bblp unregister [npm] [-f]
+```
+
+
+
+
 ### Register:
 Register package to launchpad registry endpoints
 bower - http://launchpad.backbase.com:5678
@@ -331,11 +386,14 @@ This is the default config structure if is not specified otherwise in **bower.js
         "index": "./index-dev.html"
     },
     "data": {
-        "route": "/services/mock", // url access to the mock raml api
-        "files": ['./**/*.raml'] // .raml
+        "route": "", // url access to the mock raml api
+        "files": [
+            './**/raml/**/*.raml',
+            './**/services/**/*.raml'
+        ]
     },
     "proxies": {
-      "/api":  "http://localhost:3030/"
+      
     },
 
     "eslint": "configs/eslint.conf.yaml",
