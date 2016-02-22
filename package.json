@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "analyze-css": "^0.10.2",
-    "backbase-widget-engine": "^6.0.0-b82",
     "bower-webpack-plugin": "^0.1.8",
     "browser-sync": "^2.4.0",
     "cliparse": "^0.2.5",
