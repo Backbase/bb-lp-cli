@@ -137,10 +137,5 @@
       "type": "Apache-2.0",
       "url": "https://github.com/backbase/bb-lp-cli/LICENSE"
     }
-  ],
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  }
+  ]
 }
