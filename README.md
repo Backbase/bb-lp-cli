@@ -80,16 +80,16 @@ arguments:
 
 options:
 
-- **-a --apiVersion** Add version to raml api paths, false by default (v12.0/api/... vs /api/...)
+- **-a --apiVersion** Add version to server route from the raml version files. Default version is not included.
 - **-p --port** Server port
 - **-l --logLevel** Log level information info | silent
     - info is the default setting
     - silent will disable linting and notifications
     - debug/warn/ TODO
-- **--template** Template to use for standalone mode. `./index.dev.html` be default. `lp` and `cxp` as an alternative. You can use a custom one, which will be taken from running item folder.
+- **--template** Template to use for standalone mode. `./index.dev.html` is the default. You can provide a custom path.
 
 ```bash
-bblp start [-p3030] [-l silent] [--template cxp]
+bblp start [-a] [-p3030] [-l silent] [--template cxp]
 ```
 
 ### Test:
