@@ -113,7 +113,7 @@ var BBCLI = cliparse.cli({
                 cliparse.flag('fullTest', { aliases: ['f'], description: 'Run a full test (unit/lint)'}),
                 cliparse.flag('skipClean', { aliases: ['r'], description: 'Skip clean'}),
                 cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'}),
-                cliparse.flag('withModuleId', { aliases: ['m'], description: 'Build with AMD module ID in definition'}),
+                cliparse.flag('withModuleId', { aliases: ['m'], description: 'Build with AMD module ID in definition', default: true}),
                 cliparse.flag('withConfig', { aliases: ['c'], description: 'Build with config witch is passed as an argument'}),
                 cliparse.flag('withCustomEntry', { aliases: ['e'], description: 'Build with custom entry point (works with excludes)'}),
                 cliparse.flag('withExcludes', { aliases: ['x'], description: 'Exclude components from main file'}),
