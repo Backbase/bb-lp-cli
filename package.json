@@ -1,7 +1,7 @@
 {
   "name": "bb-lp-cli",
   "preferGlobal": true,
-  "version": "1.7.1",
+  "version": "1.8.0",
   "bin": {
     "bblp": "bin/bblp"
   },
@@ -54,6 +54,7 @@
     "gulp-ng-annotate": "^1.0.0",
     "gulp-ng-html2js": "^0.2.0",
     "gulp-notify": "^2.2.0",
+    "gulp-postcss": "^6.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^2.1.1",
@@ -95,6 +96,7 @@
     "moment": "^2.10.3",
     "ng-annotate-webpack-plugin": "^0.1.2",
     "node-yaml-config": "0.0.3",
+    "postcss-loader": "^0.8.1",
     "promise": "^6.1.0",
     "proxy-middleware": "^0.11.0",
     "raml-mocker": "https://github.com/dragosh/raml-mocker.git",
