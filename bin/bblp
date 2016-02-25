@@ -65,7 +65,8 @@ var BBCLI = cliparse.cli({
                     parser: cliparse.parsers.stringParser,
                     description: 'Template to use for standalone mode, default to local ' + 'index.dev.html'.green,
                     defaultValue: null
-                })
+                }),
+                cliparse.flag('import', { aliases: ['i'], description: 'Import item' })
             ]
         }, require('../lib/commands/common/start') ),
 
