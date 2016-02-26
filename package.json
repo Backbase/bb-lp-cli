@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "analyze-css": "^0.10.2",
+    "autoprefixer": "^6.3.3",
     "bower-webpack-plugin": "^0.1.8",
     "browser-sync": "^2.4.0",
     "cliparse": "^0.2.5",

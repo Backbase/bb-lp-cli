@@ -94,7 +94,7 @@ var BBCLI = cliparse.cli({
         /* Build Widget
         /*----------------------------------------------------------------*/
         cliparse.command('build', {
-            description: 'Builds the widget/module.',
+            description: 'Builds package.',
             args: [
                 cliparse.argument('config', {
                     description: 'path to config file for components management',
@@ -112,6 +112,7 @@ var BBCLI = cliparse.cli({
             options: [
                 cliparse.flag('fullTest', { aliases: ['f'], description: 'Run a full test (unit/lint)'}),
                 cliparse.flag('skipClean', { aliases: ['r'], description: 'Skip clean'}),
+                cliparse.flag('all', { aliases: ['a'], description: 'Include all external dependencies.'}),
                 cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'}),
                 cliparse.flag('withModuleId', { aliases: ['m'], description: 'Build with AMD module ID in definition', default: true}),
                 cliparse.flag('withConfig', { aliases: ['c'], description: 'Build with config witch is passed as an argument'}),
