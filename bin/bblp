@@ -245,7 +245,7 @@ var BBCLI = cliparse.cli({
         }, require('../lib/commands/common/custom-build') ),
 
         /*----------------------------------------------------------------*/
-        /* Clean Widget
+        /* Clean Package
         /*----------------------------------------------------------------*/
         cliparse.command('clean', {
             description: 'Clean the widget/module dist folder',
@@ -253,6 +253,14 @@ var BBCLI = cliparse.cli({
             options: []
         }, require('../lib/commands/common/clean') ),
 
+        /*----------------------------------------------------------------*/
+        /* Import package
+        /*----------------------------------------------------------------*/
+        cliparse.command('import', {
+            description: 'Import package in CXP portal.',
+            args: [],
+            options: []
+        }, require('../lib/commands/common/import') ),
         /*----------------------------------------------------------------*/
         /* Build docs
         /*----------------------------------------------------------------*/
