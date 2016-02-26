@@ -317,22 +317,35 @@ bblp docs
 bblp docs --services https://my.domain.com/services/rest
 ```
 
-### Unregister:
-Unregister package to launchpad registry endpoints
+
+### Commit:
+Use conventional commit messaged. Default will run git commit.
 
 arguments:
-
-- **manager** npm or bower. Default to bower.
+- **NONE**
 
 options:
-- **--registry** Custom registry endpoint
-- **- f --force** - 'use the force' npm functionality.
+- **NONE**
 
 ```bash
-bblp unregister [npm] [-f]
+bblp commit
 ```
 
+How to add your commit convention adapter.
 
+```bash
+npm i cz-conventional-changelog -D
+```
+
+... configure it after inside the `package.json`
+
+```json
+"config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+```
 
 
 ### Register:
@@ -365,7 +378,6 @@ options:
 ```bash
 bblp unregister [npm] [-f]
 ```
-
 
 
 ### Configuration under the bower.json or package.json file
