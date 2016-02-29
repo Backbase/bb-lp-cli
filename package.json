@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@backbase/cli-config": "^1.0.0-alpha.0",
-    "@backbase/import": "^1.0.0-alpha.5",
+    "@backbase/import": "^1.0.0-alpha.6",
     "analyze-css": "^0.10.2",
     "bower-webpack-plugin": "^0.1.8",
     "browser-sync": "^2.4.0",
