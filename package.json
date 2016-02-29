@@ -20,6 +20,8 @@
     "url": "http://github.com/backbase/bb-lp-cli"
   },
   "dependencies": {
+    "@backbase/cli-config": "^1.0.0-alpha.0",
+    "@backbase/import": "^1.0.0-alpha.6",
     "analyze-css": "^0.10.2",
     "bower-webpack-plugin": "^0.1.8",
     "browser-sync": "^2.4.0",
@@ -94,6 +96,7 @@
     "marked": "^0.3.5",
     "marked-to-md": "^1.0.1",
     "moment": "^2.10.3",
+    "mosaic-rest-js": "^0.4.0",
     "ng-annotate-webpack-plugin": "^0.1.2",
     "node-yaml-config": "0.0.3",
     "postcss-loader": "^0.8.1",

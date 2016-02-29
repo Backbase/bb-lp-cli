@@ -65,7 +65,8 @@ var BBCLI = cliparse.cli({
                     parser: cliparse.parsers.stringParser,
                     description: 'Template to use for standalone mode, default to local ' + 'index.dev.html'.green,
                     defaultValue: null
-                })
+                }),
+                cliparse.flag('import', { aliases: ['i'], description: 'Import item' })
             ]
         }, require('../lib/commands/common/start') ),
 
@@ -244,7 +245,7 @@ var BBCLI = cliparse.cli({
         }, require('../lib/commands/common/custom-build') ),
 
         /*----------------------------------------------------------------*/
-        /* Clean Widget
+        /* Clean Package
         /*----------------------------------------------------------------*/
         cliparse.command('clean', {
             description: 'Clean the widget/module dist folder',
@@ -252,6 +253,16 @@ var BBCLI = cliparse.cli({
             options: []
         }, require('../lib/commands/common/clean') ),
 
+        /*----------------------------------------------------------------*/
+        /* Import package
+        /*----------------------------------------------------------------*/
+        cliparse.command('import', {
+            description: 'Import package in CXP portal.',
+            args: [],
+            options: [
+                cliparse.flag('all', { aliases: ['a'], description: 'Import package plus dependencies.'})
+            ]
+        }, require('../lib/commands/common/import') ),
         /*----------------------------------------------------------------*/
         /* Build docs
         /*----------------------------------------------------------------*/
