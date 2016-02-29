@@ -281,7 +281,19 @@ var BBCLI = cliparse.cli({
                 cliparse.option('update', { description: 'Update manual checklist'})
 
             ]
-        }, require('../lib/commands/common/docs') )
+        }, require('../lib/commands/common/docs') ),
+        /*----------------------------------------------------------------*/
+        /* Commit - Commitizen hook
+        /*----------------------------------------------------------------*/
+        cliparse.command('commit', {
+            description: 'Use conventional commit messaged. Default will run git commit.',
+            args: [
+
+            ],
+            options: [
+
+            ]
+        }, require('../lib/commands/common/commit') )
     ]
 });
 
