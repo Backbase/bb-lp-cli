@@ -61,6 +61,10 @@ var BBCLI = cliparse.cli({
                     description: 'Server port',
                     defaultValue: null
                 }),
+                cliparse.flag('minify', {
+                    description: 'Minify js files',
+                    default: false
+                }),
                 cliparse.option('template', {
                     parser: cliparse.parsers.stringParser,
                     description: 'Template to use for standalone mode, default to local ' + 'index.dev.html'.green,
