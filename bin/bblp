@@ -259,7 +259,9 @@ var BBCLI = cliparse.cli({
         cliparse.command('import', {
             description: 'Import package in CXP portal.',
             args: [],
-            options: []
+            options: [
+                cliparse.flag('all', { aliases: ['a'], description: 'Import package plus dependencies.'})
+            ]
         }, require('../lib/commands/common/import') ),
         /*----------------------------------------------------------------*/
         /* Build docs
