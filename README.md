@@ -87,9 +87,10 @@ options:
     - silent will disable linting and notifications
     - debug/warn/ TODO
 - **--template** Template to use for standalone mode. `./index.dev.html` is the default. You can provide a custom path.
+- **-i --import** Import item into a running portal (see bblp import).
 
 ```bash
-bblp start [-a] [-p3030] [-l silent] [--template cxp]
+bblp start [-a] [-p3030] [-l silent] [--template cxp] [i]
 ```
 
 ### Test:
@@ -367,6 +368,39 @@ bblp unregister [npm] [-f]
 ```
 
 
+### Import:
+
+Import a package into a running portal.
+
+```bash
+bblp import [--all]
+```
+
+options:
+- **--all** Import all bower & npm dependencies before importing local package.
+
+The config for connecting to the portal is obtained by merging multiple configuration files by
+this order of importance:
+
+Local .bbrc files upwards the directory tree
+All .bbrc files upwards the directory tree
+.bbrc file located in user's home folder (~)
+
+The default config is:
+
+```json
+{
+  "scheme": "http",
+  "host": "localhost",
+  "port": "7777",
+  "context": "portalserver",
+  "username": "admin",
+  "password": "admin"
+}
+```
+
+When used through `bblp start -i` it will initially import all packages (including bower and
+npm dependencies), then watch just the local package and re-import on any changes.
 
 ### Configuration under the bower.json or package.json file
 
