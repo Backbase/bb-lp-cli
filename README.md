@@ -88,9 +88,10 @@ options:
     - debug/warn/ TODO
 - **--template** Template to use for standalone mode. `./index.dev.html` is the default. You can provide a custom path.
 - **-i --import** Import item into a running portal (see bblp import).
+- **-e --expand** Expand js, css assets (don't minify them)
 
 ```bash
-bblp start [-a] [-p3030] [-l silent] [--template cxp] [i]
+bblp start [-a] [-p3030] [-l silent] [--template cxp] [-i] [-e]
 ```
 
 ### Test:
