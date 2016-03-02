@@ -71,7 +71,7 @@ var BBCLI = cliparse.cli({
                     description: 'Template to use for standalone mode, default to local ' + 'index.dev.html'.green,
                     defaultValue: null
                 }),
-                cliparse.flag('import', { aliases: ['i'], description: 'Import item' })
+                cliparse.flag('deploy', { aliases: ['d'], description: 'Deploy item to running portal' })
             ]
         }, require('../lib/commands/common/start') ),
 
@@ -100,40 +100,50 @@ var BBCLI = cliparse.cli({
         /* Build Widget
         /*----------------------------------------------------------------*/
         cliparse.command('build', {
-            description: 'Builds package.',
+            description: 'Bundles pacakge resources.',
             args: [
-                cliparse.argument('config', {
-                    description: 'path to config file for components management',
-                    default: ''
-                }),
-                cliparse.argument('excludes', {
-                    description: 'array of components to exclude',
-                    default: ''
-                }),
-                cliparse.argument('destination', {
-                    description: 'name of target file',
-                    default: ''
-                })
+                // cliparse.argument('config', {
+                //     description: 'path to config file for components management',
+                //     default: ''
+                // }),
+                // cliparse.argument('excludes', {
+                //     description: 'array of components to exclude',
+                //     default: ''
+                // }),
+                // cliparse.argument('destination', {
+                //     description: 'name of target file',
+                //     default: ''
+                // })
             ],
             options: [
                 cliparse.flag('fullTest', { aliases: ['f'], description: 'Run a full test (unit/lint)'}),
-                cliparse.flag('skipClean', { aliases: ['r'], description: 'Skip clean'}),
-                cliparse.flag('all', { aliases: ['a'], description: 'Include all external dependencies.'}),
+                cliparse.flag('all', { aliases: ['a'], description: 'Include all external dependencies'}),
                 cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'}),
                 cliparse.flag('withModuleId', { aliases: ['m'], description: 'Build with AMD module ID in definition', default: true}),
-                cliparse.flag('withConfig', { aliases: ['c'], description: 'Build with config witch is passed as an argument'}),
-                cliparse.flag('withCustomEntry', { aliases: ['e'], description: 'Build with custom entry point (works with excludes)'}),
-                cliparse.flag('withExcludes', { aliases: ['x'], description: 'Exclude components from main file'}),
                 cliparse.flag('withPerformance', { aliases: ['p'], description: 'Parse performance annotations'}),
+                // cliparse.flag('skipClean', { aliases: ['r'], description: 'Skip clean'}),
+                //cliparse.flag('withConfig', { aliases: ['c'], description: 'Build with config witch is passed as an argument'}),
+                //cliparse.flag('withCustomEntry', { aliases: ['e'], description: 'Build with custom entry point (works with excludes)'}),
+               // cliparse.flag('withExcludes', { aliases: ['x'], description: 'Exclude components from main file'}),
+
                 cliparse.option('moduleDirectories', { description: 'A comma separated list of the shared components'})
             ]
         }, require('../lib/commands/common/build') ),
-
+        /*----------------------------------------------------------------*/
+        /* Deploy package
+        /*----------------------------------------------------------------*/
+        cliparse.command('deploy', {
+            description: 'Deploys package in CXP portal.',
+            args: [],
+            options: [
+                cliparse.flag('all', { aliases: ['a'], description: 'Deploy package plus dependencies.'})
+            ]
+        }, require('../lib/commands/common/deploy') ),
         /*----------------------------------------------------------------*/
         /* Bump bower version
         /*----------------------------------------------------------------*/
         cliparse.command('bump', {
-            description: 'Bump version in bower, README.md and CHANGELOG.md',
+            description: 'Bump package version will affect README.md and CHANGELOG.md',
             args: [
                 cliparse.argument('VERSION', {
                     description: [  'major'.gray + ' [X'.green + '.x.x]',
@@ -230,45 +240,33 @@ var BBCLI = cliparse.cli({
                 cliparse.flag('force', { aliases: ['f'], description: 'force', default: false})
             ]
         }, require('../lib/commands/common/unregister') ),
-
-        /*----------------------------------------------------------------*/
-        /* Custom Build
-        /*----------------------------------------------------------------*/
-        cliparse.command('custom-build', {
-            description: 'Builds the widget/module using custom entry points.',
-            args: [
-                cliparse.argument('config', {
-                    description: 'path to config file for components management',
-                    default: ''
-                })
-            ],
-            options: [
-                cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'}),
-                cliparse.flag('useUnminified', { aliases: ['u'], description: 'Build with unminified scripts'}),
-                cliparse.flag('verbose', { aliases: ['v'], description: 'Flag to turn on/off webpack output'}),
-                cliparse.flag('withPerformance', { aliases: ['p'], description: 'Parse performance annotations'})
-            ]
-        }, require('../lib/commands/common/custom-build') ),
-
-        /*----------------------------------------------------------------*/
+         /*----------------------------------------------------------------*/
         /* Clean Package
         /*----------------------------------------------------------------*/
         cliparse.command('clean', {
-            description: 'Clean the widget/module dist folder',
+            description: 'Clean the package generated folders',
             args: [],
             options: []
         }, require('../lib/commands/common/clean') ),
+        /*----------------------------------------------------------------*/
+        /* DEP Custom Build
+        /*----------------------------------------------------------------*/
+        // cliparse.command('custom-build', {
+        //     description: '[DEP] Builds the widget/module using custom entry points.',
+        //     args: [
+        //         cliparse.argument('config', {
+        //             description: 'path to config file for components management',
+        //             default: ''
+        //         })
+        //     ],
+        //     options: [
+        //         cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'}),
+        //         cliparse.flag('useUnminified', { aliases: ['u'], description: 'Build with unminified scripts'}),
+        //         cliparse.flag('verbose', { aliases: ['v'], description: 'Flag to turn on/off webpack output'}),
+        //         cliparse.flag('withPerformance', { aliases: ['p'], description: 'Parse performance annotations'})
+        //     ]
+        // }, require('../lib/commands/common/custom-build') ),
 
-        /*----------------------------------------------------------------*/
-        /* Import package
-        /*----------------------------------------------------------------*/
-        cliparse.command('import', {
-            description: 'Import package in CXP portal.',
-            args: [],
-            options: [
-                cliparse.flag('all', { aliases: ['a'], description: 'Import package plus dependencies.'})
-            ]
-        }, require('../lib/commands/common/import') ),
         /*----------------------------------------------------------------*/
         /* Build docs
         /*----------------------------------------------------------------*/
