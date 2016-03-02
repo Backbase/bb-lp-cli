@@ -87,9 +87,11 @@ options:
     - silent will disable linting and notifications
     - debug/warn/ TODO
 - **--template** Template to use for standalone mode. `./index.dev.html` is the default. You can provide a custom path.
+- **-i --import** Import item into a running portal (see bblp import).
+- **-e --expand** Expand js, css assets (don't minify them)
 
 ```bash
-bblp start [-a] [-p3030] [-l silent] [--template cxp]
+bblp start [-a] [-p3030] [-l silent] [--template cxp] [-i] [-e]
 ```
 
 ### Test:
@@ -317,22 +319,35 @@ bblp docs
 bblp docs --services https://my.domain.com/services/rest
 ```
 
-### Unregister:
-Unregister package to launchpad registry endpoints
+
+### Commit:
+Use conventional commit messaged. Default will run git commit.
 
 arguments:
-
-- **manager** npm or bower. Default to bower.
+- **NONE**
 
 options:
-- **--registry** Custom registry endpoint
-- **- f --force** - 'use the force' npm functionality.
+- **NONE**
 
 ```bash
-bblp unregister [npm] [-f]
+bblp commit
 ```
 
+How to add your commit convention adapter.
 
+```bash
+npm i cz-conventional-changelog -D
+```
+
+... configure it after inside the `package.json`
+
+```json
+"config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+```
 
 
 ### Register:
@@ -366,6 +381,39 @@ options:
 bblp unregister [npm] [-f]
 ```
 
+### Import:
+
+Import a package into a running portal.
+
+```bash
+bblp import [--all]
+```
+
+options:
+- **--all** Import all bower & npm dependencies before importing local package.
+
+The config for connecting to the portal is obtained by merging multiple configuration files by
+this order of importance:
+
+Local .bbrc files upwards the directory tree
+All .bbrc files upwards the directory tree
+.bbrc file located in user's home folder (~)
+
+The default config is:
+
+```json
+{
+  "scheme": "http",
+  "host": "localhost",
+  "port": "7777",
+  "context": "portalserver",
+  "username": "admin",
+  "password": "admin"
+}
+```
+
+When used through `bblp start -i` it will initially import all packages (including bower and
+npm dependencies), then watch just the local package and re-import on any changes.
 
 
 ### Configuration under the bower.json or package.json file
