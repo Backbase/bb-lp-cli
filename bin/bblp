@@ -19,10 +19,10 @@ var BBCLI = cliparse.cli({
         /* Generate Widget
         /*----------------------------------------------------------------*/
         cliparse.command('generate', {
-            description: 'Clone a git repository template. Default is using `widget-ng-template`.',
+            description: 'Template path can be a local folder or the repository url. Default is using `widget-ng-template`.',
             args: [
-                cliparse.argument('url', {
-                    description: 'Template repository url',
+                cliparse.argument('template', {
+                    description: 'Template path',
                     default: 'git@bitbucket.org:backbase/lpg-generator-widget-ng.git'
                 })
             ],

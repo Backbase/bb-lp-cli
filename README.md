@@ -61,14 +61,15 @@ bblp <command> --help
 Clone a git repository template. Default is using `widget-ng-template`
 
 arguments:
-    - url 'https://stash.backbase.com/scm/lpg/generator-widget-ng.git'
+    - **template** Can be a git repository url or a local folder. 
 options:
 - **-i --processImages** Process images by template engine. Images are excluded by default (they will be added to destination folder 'as it is').
 
 ```bash
-bblp generate <url>
+bblp generate <template>
 ```
 
+- default template is pointing to git@bitbucket.org:backbase/lpg-generator-widget-ng.git 
 
 ### Start
 
