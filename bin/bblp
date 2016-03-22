@@ -4,6 +4,7 @@ var parsers = cliparse.parsers;
 var pckJson = require('../package.json');
 var colors = require('colors');
 var utils = require('../lib/utils');
+var config = require('../lib/config');
 
 /*----------------------------------------------------------------*/
 /* #TODO parse the commands folder and auto generate commands
@@ -297,7 +298,12 @@ var BBCLI = cliparse.cli({
             options: [
 
             ]
-        }, require('../lib/commands/common/commit') )
+        }, require('../lib/commands/common/commit') ),
+
+         /*----------------------------------------------------------------*/
+        /* Launchpad theme Commands
+        /*----------------------------------------------------------------*/
+        cliparse.command('theme', require('../lib/commands/theme'))
     ]
 });
 
