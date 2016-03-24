@@ -61,7 +61,7 @@ bblp <command> --help
 Clone a git repository template. Default is using `widget-ng-template`
 
 arguments:
-    - **template** Can be a git repository url or a local folder. 
+    - **template** Can be a git repository url or a local folder.
 options:
 - **-i --processImages** Process images by template engine. Images are excluded by default (they will be added to destination folder 'as it is').
 
@@ -69,7 +69,7 @@ options:
 bblp generate <template>
 ```
 
-- default template is pointing to git@bitbucket.org:backbase/lpg-generator-widget-ng.git 
+- default template is pointing to git@bitbucket.org:backbase/lpg-generator-widget-ng.git
 
 ### Start
 
@@ -382,6 +382,35 @@ options:
 bblp unregister [npm] [-f]
 ```
 
+### Theme Build
+
+Builds a theme.
+Requires a bower.json file in the directory with a "main" pointing to the base less file
+
+```
+bblp theme-build
+```
+
+##### Arguments
+--target <string>                 .            Path to directory to build.
+--edition <string>                             Pass edition var to less.
+
+##### Options
+
+```
+-short, --name                         default      description
+
+     --base-path <string>                           Pass base-path var to less.
+     --sourcemaps                                   Whether to generate source maps.
+-w   --watch                                        Watch less files and rebuild on change.
+     --disable-compress                             Don't compress CSS into .min files.
+     --disable-ie                                   Don't create reworked .ie files for IE8.
+     --disable-assets                               Don't collect font/image assets.
+-i   --import                          true         Run bblp import after building.
+```
+
+
+
 ### Import:
 
 Import a package into a running portal.
@@ -442,7 +471,7 @@ This is the default config structure if is not specified otherwise in **bower.js
         ]
     },
     "proxies": {
-      
+
     },
 
     "eslint": "configs/eslint.conf.yaml",
