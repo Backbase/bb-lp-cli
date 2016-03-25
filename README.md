@@ -88,7 +88,7 @@ options:
     - silent will disable linting and notifications
     - debug/warn/ TODO
 - **--template** Template to use for standalone mode. `./index.dev.html` is the default. You can provide a custom path.
-- **-i --import** Import item into a running portal (see bblp import).
+- **-d --deploy** Deploy item into a running portal (see bblp deploy).
 - **-e --expand** Expand js, css assets (don't minify them)
 
 ```bash
@@ -387,40 +387,39 @@ bblp unregister [npm] [-f]
 Builds a theme.
 Requires a bower.json file in the directory with a "main" pointing to the base less file
 
-```
-bblp theme-build
-```
-
-##### Arguments
---target <string>                 .            Path to directory to build.
---edition <string>                             Pass edition var to less.
-
-##### Options
-
-```
--short, --name                         default      description
-
-     --base-path <string>                           Pass base-path var to less.
-     --sourcemaps                                   Whether to generate source maps.
--w   --watch                                        Watch less files and rebuild on change.
-     --disable-compress                             Don't compress CSS into .min files.
-     --disable-ie                                   Don't create reworked .ie files for IE8.
-     --disable-assets                               Don't collect font/image assets.
--i   --import                          true         Run bblp import after building.
+```bash
+bblp theme build
 ```
 
+arguments:
 
+- **entry** Path to directory to build.
+- **collection** Pass collection variable to less.
 
-### Import:
+options:
 
-Import a package into a running portal.
+- **base-path** Pass base-path var to less.
+- **sourcemaps** Whether to generate source maps.
+- **w, watch** Watch less files and rebuild on change.
+- **disable-compress** Don't compress CSS into .min files.
+- **disable-ie** Don't create reworked .ie files for IE8.
+- **disable-assets** Don't collect font/image assets.
+- **d, deploy** Run bblp deploy after building.
 
 ```bash
-bblp import [--all]
+bblp theme build retail [-w --disable-compress -d]
+```
+
+### Deploy:
+
+Deploy a package into a running portal.
+
+```bash
+bblp deploy [--all]
 ```
 
 options:
-- **--all** Import all bower & npm dependencies before importing local package.
+- **--all** Deploy all bower & npm dependencies before deploying local package.
 
 The config for connecting to the portal is obtained by merging multiple configuration files by
 this order of importance:
@@ -442,8 +441,8 @@ The default config is:
 }
 ```
 
-When used through `bblp start -i` it will initially import all packages (including bower and
-npm dependencies), then watch just the local package and re-import on any changes.
+When used through `bblp start -d` it will initially deploy all packages (including bower and
+npm dependencies), then watch just the local package and re-deploy on any changes.
 
 
 ### Configuration under the bower.json or package.json file
