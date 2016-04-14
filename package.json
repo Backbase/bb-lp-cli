@@ -110,6 +110,7 @@
     "moment": "^2.10.3",
     "mosaic-rest-js": "^0.4.0",
     "ng-annotate-webpack-plugin": "git+https://github.com/sorohan/ng-annotate-webpack-plugin.git",
+    "node-sass": "^3.4.2",
     "node-yaml-config": "0.0.3",
     "postcss-loader": "^0.8.1",
     "promise": "^6.1.0",
