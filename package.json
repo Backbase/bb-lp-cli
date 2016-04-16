@@ -49,6 +49,7 @@
     "findit": "^2.0.0",
     "fs-extra-promise": "^0.2.0",
     "git-config": "0.0.7",
+    "glob": "^7.0.3",
     "gulp": "^3.8.11",
     "gulp-cached": "^1.1.0",
     "gulp-changed": "^1.2.1",

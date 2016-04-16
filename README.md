@@ -584,11 +584,11 @@ http://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windo
 ## Tested
 
 MacOS
-- node: 0.12.x, 4.0.0
+- node: 0.12.x, 4.x
 - npm: 2.x 3.x
 
 Win7
-- node: 0.12.x, 4.1.x
+- node: 0.12.x, 4.x
 - npm: 2.14.x
 
 ### Important Notes
@@ -647,6 +647,14 @@ and then use it to install the command line tools (under Preferences -> Download
 
 Check [node-gyp](https://github.com/nodejs/node-gyp) project for more info.
 
+
+### root/Administrator error
+
+- Please try running this command again as root/Administrator
+
+> npm ERR! Please try running this command again as root/Administrator.
+
+It turns out that you don’t have to run the command again as Administrator, and doing so won’t fix the problem.  Try npm cache clean first.  If that doesn’t fix things, take a look in %APPDATA%\npm-cache, or if you’re using PowerShell, $env:APPDATA\npm-cache.  After cleaning the cache, you may still be left with remnants.  Manually remove everything in that directory, and try again.  
 
 [windows-python]: http://www.python.org/getit/windows
 [windows-python-v2.7.3]: http://www.python.org/download/releases/2.7.3#download
