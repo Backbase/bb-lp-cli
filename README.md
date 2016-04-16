@@ -650,6 +650,8 @@ Check [node-gyp](https://github.com/nodejs/node-gyp) project for more info.
 
 ### root/Administrator error
 
+https://docs.npmjs.com/getting-started/fixing-npm-permissions
+
 - Please try running this command again as root/Administrator
 
 > npm ERR! Please try running this command again as root/Administrator.
