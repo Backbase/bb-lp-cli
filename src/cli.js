@@ -76,7 +76,20 @@ var BBCLI = cliparse.cli({
                     description: 'Template to use for standalone mode, default to local ' + 'index.dev.html'.green,
                     defaultValue: null
                 }),
-                cliparse.flag('deploy', { aliases: ['d'], description: 'Deploy item to running portal' })
+                cliparse.flag('deploy', {
+                    aliases: ['d'],
+                    description: 'Deploy item to running portal'
+                }),
+                cliparse.option('entry', {
+                    parser: function(input) {
+                        config.entry = utils.defaults(input, {
+                            name: config.entry.name,
+                            path: config.entry.path
+                        });
+                        return parsers.success(config.entry);
+                    },
+                    description: 'Javascript entry config option'
+                })
             ]
         }, require('../lib/commands/common/start') ),
 
