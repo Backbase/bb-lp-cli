@@ -34,7 +34,7 @@
     "browser-sync": "^2.4.0",
     "cliparse": "^0.2.5",
     "colors": "^1.0.3",
-    "commitizen": "^2.5.0",
+    "commitizen": "2.8.1",
     "connect-modrewrite": "^0.8.1",
     "css": "^2.2.1",
     "css-loader": "^0.21.0",
