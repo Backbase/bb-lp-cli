@@ -107,7 +107,16 @@ var BBCLI = cliparse.cli({
             ],
             options: [
                 cliparse.flag('watch', { aliases: ['w'], description: 'Watch files'}),
-                cliparse.flag('coverage', { aliases: ['c'], description: 'With coverage'}),
+                cliparse.option('coverage', {
+                    aliases: ['c'],
+                    description: 'With coverage',
+                    parser: function(v) {
+                        if (['text-summary', 'text'].indexOf(v) === -1) {
+                            v = 'text-summary';
+                        }
+                        return {success: v};
+                    }
+                }),
                 cliparse.option('config', { description: 'Custom karma configuration file'}),
                 cliparse.option('browsers', { description: 'A comma separated list of browsers to launch and capture'}),
                 cliparse.option('moduleDirectories', { description: 'A comma separated list of the shared components'})
