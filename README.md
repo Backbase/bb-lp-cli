@@ -150,6 +150,7 @@ bblp build --moduleDirectories '../../portal/myportal/statics/dist/itemRoot/stat
 
 
 **Compile & build styles:**
+
 Some convention is required to compile styles files (less, scss, css). The name of the main file should be named as:
 - **styles/base.less** (for less file)
 - **styles/index.scss** (for scss file)
@@ -158,125 +159,17 @@ Some convention is required to compile styles files (less, scss, css). The name 
 
 With custom configuration:
 
-- **config** path to config file for components management. E.g. `bblp build -c ./my-conf.json`.
-If config contains entryPoint and excludes whey are going to be used instead of corresponding arguments. Here is the config example for UI module:
+You can specify the [autoprefixer query configuration](https://github.com/ai/browserslist#queries)
 
-```javascript
-{
-    "entryPoint": "./scripts/custom-ui.js",
-    "excludes": [
-        "input-overflow",
-        "touch",
-        "amount",
-        "list",
-        "field",
-        "responsive",
-        "wizard",
-        "timer",
-        "switcher",
-        "card",
-        "modal-dialog",
-        "scrolling-hook",
-        "smartsuggest",
-        "placeholder",
-        "infinite-scroll",
-        "element-resize"
+```json
+"autoprefixer": {
+    "browsers": [
+        "last 2 versions"
     ]
-
 }
 ```
 
-- **excludes** Array of components to exclude. Please note, that if custom entry point isn't specified current main is used.
-Usage example: `bblp build -x touch,color-picker,focus`.
-
-- **entryPoint** name of entry point file. It is used to create custom entry point due to the excludes array and corresponding dest file.
-Usage example: `bblp build -ex touch,color-picker,focus ./scripts/my-custom-dist-file.js`.
-
-### Custom build [DEP] - will be revisited
-
-
-```bash
-bblp custom-build <config>
-```
-
-options:
-
-- **- t --withTemplates** Bundle HTML templates into build file (for widgets)
-- **- u --useUnminified** Build with unminified scripts
-- **- v --useDist** Flag to turn on/off webpack output
-- **- p --withPerformance** Build with performance annotations converted into performance module API calls
-
-Description:
-
-Custom build is aimed at reducing number of scripts on a page. It combines several widgets and their dependencies into a single bundle using configuration. As a result you'll get the bundle and custom requirejs config which defines paths to concatenated widgets and dependencies.
-
-Arguments:
-
-- **config** - path to config file for components customization
-
-Here is the config example:
-
-```javascript
-{
-    "dist": "./bundles",
-    "base": "launchpad",
-    "componentBase": "bower_components",
-    "componentMain": "scripts/main.js",
-    "componentDistModule": "dist/scripts/main",
-    "bundles": {
-        "login-page": {
-            "widgets": [
-                "widget-login-multifactor-engage",
-                "widget-device-dna"
-            ],
-            "customComponents": {
-                "ui": {
-                    "excludes": [
-                        "input-overflow",
-                        "touch",
-                        "amount",
-                        "list",
-                        "field",
-                        "responsive",
-                        "wizard",
-                        "timer",
-                        "switcher",
-                        "card",
-                        "aria",
-                        "number-input",
-                        "nav-icon",
-                        "modal-dialog",
-                        "scrolling-hook",
-                        "smartsuggest",
-                        "placeholder",
-                        "color-picker",
-                        "infinite-scroll",
-                        "element-resize"
-                    ]
-                }
-            }
-        }
-    },
-    "externals": ["angular", {"name": "jquery", "value": "jQuery"}],
-    "bundlesConfigPath": "./config/bundles-conf.js"
-}
-```
-
-Config description:
-
- - `config.dist` (String) - path to bundles destination folder;
- - `config.componentBase` (String) - path to used components;
- - `config.componentMain` (String) - path to main script file;
- - `config.componentDistModule` (String) - path to destination main file;
- - `config.bundles` (Object) - set of bundles configuration;
- - `config.bundle[NAME]` (String) NAME is a bundle identifier wich is used to create chunk;
- - `config.bundle[NAME].widgets` (Array) - array of widget names which are going to be used as an entry points;
- - `config.bundle[NAME].customComponents` (Object) - set of customised components;
- - `config.bundle[NAME].customComponents[CNAME]` (String) CNAME is a name of customised component;
- - `config.bundle[NAME].customComponents[CNAME].excludes` (Array) - Array of components to exclude;
- - `config.externals` (Array) - exterlan libraries array. Values can be both "String" and {"name": "libName", "value": "libGlobalName"} objects. If value is a String - module name is going to be used as a global name for the dependency, overwise passed value is going to be used;
- - `config.bundlesConfigPath` (String) - path to require config output.
-
+By default is "last 2 versions".
 
 ### Bump:
 Bump version in package.json, model.xml, bower.json, README.md and CHANGELOG.md
