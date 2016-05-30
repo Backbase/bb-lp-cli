@@ -28,7 +28,7 @@ var BBCLI = cliparse.cli({
                 }),
                 cliparse.argument('target', {
                     description: 'Target Folder',
-                    default: './'
+                    default: utils.projectPath()
                 })
             ],
             options: [
