@@ -146,7 +146,15 @@ var BBCLI = cliparse.cli({
                 cliparse.flag('fullTest', { aliases: ['f'], description: 'Run a full test (unit/lint)'}),
                 cliparse.flag('all', { aliases: ['a'], description: 'Include all external dependencies'}),
                 cliparse.flag('withTemplates', { aliases: ['t'], description: 'Bundle HTML templates into build file (for widgets)'}),
-                cliparse.flag('withModuleId', { aliases: ['m'], description: 'Build with AMD module ID in definition', default: true}),
+                cliparse.option('withModuleId', {
+                    aliases: ['m'],
+                    description: 'Build with AMD module ID in definition',
+                    default: true,
+                    parser: function(v) {
+                        if (typeof v === 'string' ) return {success: v};
+                        else return {error: 'Wrong module id name!'.red};
+                    }
+                }),
                 cliparse.flag('withPerformance', { aliases: ['p'], description: 'Parse performance annotations'}),
                 cliparse.flag('expand', { aliases: ['e'], description: 'Do not minify files.'}),
                 //cliparse.flag('withConfig', { aliases: ['c'], description: 'Build with config witch is passed as an argument'}),
