@@ -87,12 +87,13 @@ options:
     - info is the default setting
     - silent will disable linting and notifications
     - debug/warn/ TODO
-- **--template** Template to use for standalone mode. `./index.dev.html` is the default. You can provide a custom path.
 - **-d --deploy** Deploy item into a running portal (see bblp deploy).
 - **-e --expand** Expand js, css assets (don't minify them)
+- **-m --withModuleId** Build with AMD module ID in definition. Default **false**
+- **--template** Template to use for standalone mode. `./index.dev.html` is the default. You can provide a custom path.
 
 ```bash
-bblp start [-a] [-p3030] [-l silent] [--template cxp] [-i] [-e]
+bblp start [-a] [-p3030] [-l silent] [--template cxp] [-i] [-e] [-m]
 ```
 
 ### Test:
@@ -130,7 +131,7 @@ options:
 
 - **- f --fulltest** with unit tests and linting
 - **- t --withTemplates** Bundle HTML templates into build file (for widgets)
-- **- m --withModuleId** Build with AMD module ID in definition. Default **true**
+- **- m --withModuleId** Build with AMD module ID in definition. Default **false**
 - **- c --withConfig** Build with config using path from arguments
 - **- e --withCustomEntry** Build using specified custom entry point (works with excludes)
 - **- x --withExcludes** Exclude components from main file due to specified as an argument excludes array
