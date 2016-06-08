@@ -158,10 +158,9 @@ var BBCLI = cliparse.cli({
                 }),
                 cliparse.flag('withPerformance', { aliases: ['p'], description: 'Parse performance annotations'}),
                 cliparse.flag('expand', { aliases: ['e'], description: 'Do not minify files.'}),
-                //cliparse.flag('withConfig', { aliases: ['c'], description: 'Build with config witch is passed as an argument'}),
-                //cliparse.flag('withCustomEntry', { aliases: ['e'], description: 'Build with custom entry point (works with excludes)'}),
-               // cliparse.flag('withExcludes', { aliases: ['x'], description: 'Exclude components from main file'}),
-
+                cliparse.option('webpackconfig', {
+                    description: 'Build with a different webpack config'
+                }),
                 cliparse.option('moduleDirectories', { description: 'A comma separated list of the shared components'})
             ]
         }, require('../lib/commands/common/build') ),

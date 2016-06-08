@@ -132,12 +132,11 @@ options:
 - **- f --fulltest** with unit tests and linting
 - **- t --withTemplates** Bundle HTML templates into build file (for widgets)
 - **- m --withModuleId** Build with AMD module ID in definition. Default **false**
-- **- c --withConfig** Build with config using path from arguments
-- **- e --withCustomEntry** Build using specified custom entry point (works with excludes)
-- **- x --withExcludes** Exclude components from main file due to specified as an argument excludes array
+
 - **- p --withPerformance** Build with performance annotations converted into performance module API calls
 - **--moduleDirectories** A comma separated list of the shared components
     + `--moduleDirectories 'target/bower_components'`
+- **--webpackconfig** Build with custom webpack config
 
 ```bash
 bblp build
