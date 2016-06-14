@@ -184,9 +184,10 @@ options:
 
 - **--suffix** - Prerelease suffix name EX. .pre, .beta, .rc, **Default .pre**
 - **--changelog** - CHANGELOG file name  **Default CHANGELOG.md**
+- **--interactive** - Confirm next package version **Default true**
 
 ```bash
-bblp bump minor [increment] "Some relevant message"
+bblp bump minor [increment] "Some relevant message" [--interactive false]
 ```
 
 ### Docs:

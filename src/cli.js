@@ -205,6 +205,17 @@ var BBCLI = cliparse.cli({
                     description: 'Pre-release suffix. Ex: -beta.0, -rc.0',
                     default: 'pre'
                 }),
+                cliparse.option('interactive', {
+                    description: 'Non interactive bumping',
+                    default: true,
+                    parser: function(v) {
+                        val = true;
+                        try{
+                            val = JSON.parse(v);
+                        } catch (err) { /* do not handle just use default*/ }
+                        return {success: val}
+                    }
+                }),
                 /**
                  * @todo
                  *  - template
