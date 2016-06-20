@@ -1,7 +1,7 @@
 {
   "name": "bb-lp-cli",
   "preferGlobal": true,
-  "version": "1.9.11",
+  "version": "1.9.12",
   "main": "src/cli",
   "bin": {
     "bblp": "bin/bblp"
