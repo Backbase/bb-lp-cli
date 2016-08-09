@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@backbase/cli-config": "^1.0.0-alpha.0",
-    "@backbase/import": "^1.0.0-alpha.6",
+    "@backbase/import": "^2.0.0-alpha.0",
     "analyze-css": "^0.10.2",
     "autoprefixer": "^6.3.3",
     "babel-core": "^6.6.0",
