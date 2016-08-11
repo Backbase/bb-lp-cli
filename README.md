@@ -61,14 +61,15 @@ bblp <command> --help
 Clone a git repository template. Default is using `widget-ng-template`
 
 arguments:
-    - url 'https://stash.backbase.com/scm/lpg/generator-widget-ng.git'
+    - **template** Can be a git repository url or a local folder.
 options:
 - **-i --processImages** Process images by template engine. Images are excluded by default (they will be added to destination folder 'as it is').
 
 ```bash
-bblp generate <url>
+bblp generate <template>
 ```
 
+- default template is pointing to git@bitbucket.org:backbase/lpg-generator-widget-ng.git
 
 ### Start
 
@@ -86,12 +87,13 @@ options:
     - info is the default setting
     - silent will disable linting and notifications
     - debug/warn/ TODO
-- **--template** Template to use for standalone mode. `./index.dev.html` is the default. You can provide a custom path.
-- **-i --import** Import item into a running portal (see bblp import).
+- **-d --deploy** Deploy item into a running portal (see bblp deploy).
 - **-e --expand** Expand js, css assets (don't minify them)
+- **-m --withModuleId** Build with AMD module ID in definition. Default **false**
+- **--template** Template to use for standalone mode. `./index.dev.html` is the default. You can provide a custom path.
 
 ```bash
-bblp start [-a] [-p3030] [-l silent] [--template cxp] [-i] [-e]
+bblp start [-a] [-p3030] [-l silent] [--template cxp] [-i] [-e] [-m]
 ```
 
 ### Test:
@@ -129,13 +131,12 @@ options:
 
 - **- f --fulltest** with unit tests and linting
 - **- t --withTemplates** Bundle HTML templates into build file (for widgets)
-- **- m --withModuleId** Build with AMD module ID in definition. Default **true**
-- **- c --withConfig** Build with config using path from arguments
-- **- e --withCustomEntry** Build using specified custom entry point (works with excludes)
-- **- x --withExcludes** Exclude components from main file due to specified as an argument excludes array
+- **- m --withModuleId** Build with AMD module ID in definition. Default **false**
+
 - **- p --withPerformance** Build with performance annotations converted into performance module API calls
 - **--moduleDirectories** A comma separated list of the shared components
     + `--moduleDirectories 'target/bower_components'`
+- **--webpackconfig** Build with custom webpack config
 
 ```bash
 bblp build
@@ -149,6 +150,7 @@ bblp build --moduleDirectories '../../portal/myportal/statics/dist/itemRoot/stat
 
 
 **Compile & build styles:**
+
 Some convention is required to compile styles files (less, scss, css). The name of the main file should be named as:
 - **styles/base.less** (for less file)
 - **styles/index.scss** (for scss file)
@@ -157,125 +159,17 @@ Some convention is required to compile styles files (less, scss, css). The name 
 
 With custom configuration:
 
-- **config** path to config file for components management. E.g. `bblp build -c ./my-conf.json`.
-If config contains entryPoint and excludes whey are going to be used instead of corresponding arguments. Here is the config example for UI module:
+You can specify the [autoprefixer query configuration](https://github.com/ai/browserslist#queries)
 
-```javascript
-{
-    "entryPoint": "./scripts/custom-ui.js",
-    "excludes": [
-        "input-overflow",
-        "touch",
-        "amount",
-        "list",
-        "field",
-        "responsive",
-        "wizard",
-        "timer",
-        "switcher",
-        "card",
-        "modal-dialog",
-        "scrolling-hook",
-        "smartsuggest",
-        "placeholder",
-        "infinite-scroll",
-        "element-resize"
+```json
+"autoprefixer": {
+    "browsers": [
+        "last 2 versions"
     ]
-
 }
 ```
 
-- **excludes** Array of components to exclude. Please note, that if custom entry point isn't specified current main is used.
-Usage example: `bblp build -x touch,color-picker,focus`.
-
-- **entryPoint** name of entry point file. It is used to create custom entry point due to the excludes array and corresponding dest file.
-Usage example: `bblp build -ex touch,color-picker,focus ./scripts/my-custom-dist-file.js`.
-
-### Custom build [DEP] - will be revisited
-
-
-```bash
-bblp custom-build <config>
-```
-
-options:
-
-- **- t --withTemplates** Bundle HTML templates into build file (for widgets)
-- **- u --useUnminified** Build with unminified scripts
-- **- v --useDist** Flag to turn on/off webpack output
-- **- p --withPerformance** Build with performance annotations converted into performance module API calls
-
-Description:
-
-Custom build is aimed at reducing number of scripts on a page. It combines several widgets and their dependencies into a single bundle using configuration. As a result you'll get the bundle and custom requirejs config which defines paths to concatenated widgets and dependencies.
-
-Arguments:
-
-- **config** - path to config file for components customization
-
-Here is the config example:
-
-```javascript
-{
-    "dist": "./bundles",
-    "base": "launchpad",
-    "componentBase": "bower_components",
-    "componentMain": "scripts/main.js",
-    "componentDistModule": "dist/scripts/main",
-    "bundles": {
-        "login-page": {
-            "widgets": [
-                "widget-login-multifactor-engage",
-                "widget-device-dna"
-            ],
-            "customComponents": {
-                "ui": {
-                    "excludes": [
-                        "input-overflow",
-                        "touch",
-                        "amount",
-                        "list",
-                        "field",
-                        "responsive",
-                        "wizard",
-                        "timer",
-                        "switcher",
-                        "card",
-                        "aria",
-                        "number-input",
-                        "nav-icon",
-                        "modal-dialog",
-                        "scrolling-hook",
-                        "smartsuggest",
-                        "placeholder",
-                        "color-picker",
-                        "infinite-scroll",
-                        "element-resize"
-                    ]
-                }
-            }
-        }
-    },
-    "externals": ["angular", {"name": "jquery", "value": "jQuery"}],
-    "bundlesConfigPath": "./config/bundles-conf.js"
-}
-```
-
-Config description:
-
- - `config.dist` (String) - path to bundles destination folder;
- - `config.componentBase` (String) - path to used components;
- - `config.componentMain` (String) - path to main script file;
- - `config.componentDistModule` (String) - path to destination main file;
- - `config.bundles` (Object) - set of bundles configuration;
- - `config.bundle[NAME]` (String) NAME is a bundle identifier wich is used to create chunk;
- - `config.bundle[NAME].widgets` (Array) - array of widget names which are going to be used as an entry points;
- - `config.bundle[NAME].customComponents` (Object) - set of customised components;
- - `config.bundle[NAME].customComponents[CNAME]` (String) CNAME is a name of customised component;
- - `config.bundle[NAME].customComponents[CNAME].excludes` (Array) - Array of components to exclude;
- - `config.externals` (Array) - exterlan libraries array. Values can be both "String" and {"name": "libName", "value": "libGlobalName"} objects. If value is a String - module name is going to be used as a global name for the dependency, overwise passed value is going to be used;
- - `config.bundlesConfigPath` (String) - path to require config output.
-
+By default is "last 2 versions".
 
 ### Bump:
 Bump version in package.json, model.xml, bower.json, README.md and CHANGELOG.md
@@ -290,9 +184,10 @@ options:
 
 - **--suffix** - Prerelease suffix name EX. .pre, .beta, .rc, **Default .pre**
 - **--changelog** - CHANGELOG file name  **Default CHANGELOG.md**
+- **--interactive** - Confirm next package version **Default true**
 
 ```bash
-bblp bump minor [increment] "Some relevant message"
+bblp bump minor [increment] "Some relevant message" [--interactive false]
 ```
 
 ### Docs:
@@ -381,16 +276,44 @@ options:
 bblp unregister [npm] [-f]
 ```
 
-### Import:
+### Theme Build
 
-Import a package into a running portal.
+Builds a theme.
+Requires a bower.json file in the directory with a "main" pointing to the base less file
 
 ```bash
-bblp import [--all]
+bblp theme build
+```
+
+arguments:
+
+- **entry** Path to directory to build.
+- **collection** Pass collection variable to less.
+
+options:
+
+- **base-path** Pass base-path var to less.
+- **sourcemaps** Whether to generate source maps.
+- **w, watch** Watch less files and rebuild on change.
+- **disable-compress** Don't compress CSS into .min files.
+- **disable-ie** Don't create reworked .ie files for IE8.
+- **disable-assets** Don't collect font/image assets.
+- **d, deploy** Run bblp deploy after building.
+
+```bash
+bblp theme build retail [-w --disable-compress -d]
+```
+
+### Deploy:
+
+Deploy a package into a running portal.
+
+```bash
+bblp deploy [--all]
 ```
 
 options:
-- **--all** Import all bower & npm dependencies before importing local package.
+- **--all** Deploy all bower & npm dependencies before deploying local package.
 
 The config for connecting to the portal is obtained by merging multiple configuration files by
 this order of importance:
@@ -412,8 +335,8 @@ The default config is:
 }
 ```
 
-When used through `bblp start -i` it will initially import all packages (including bower and
-npm dependencies), then watch just the local package and re-import on any changes.
+When used through `bblp start -d` it will initially deploy all packages (including bower and
+npm dependencies), then watch just the local package and re-deploy on any changes.
 
 
 ### Configuration under the bower.json or package.json file
@@ -441,7 +364,7 @@ This is the default config structure if is not specified otherwise in **bower.js
         ]
     },
     "proxies": {
-      
+
     },
 
     "eslint": "configs/eslint.conf.yaml",
@@ -555,11 +478,11 @@ http://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windo
 ## Tested
 
 MacOS
-- node: 0.12.x, 4.0.0
+- node: 0.12.x, 4.x
 - npm: 2.x 3.x
 
 Win7
-- node: 0.12.x, 4.1.x
+- node: 0.12.x, 4.x
 - npm: 2.14.x
 
 ### Important Notes
@@ -618,6 +541,16 @@ and then use it to install the command line tools (under Preferences -> Download
 
 Check [node-gyp](https://github.com/nodejs/node-gyp) project for more info.
 
+
+### root/Administrator error
+
+https://docs.npmjs.com/getting-started/fixing-npm-permissions
+
+- Please try running this command again as root/Administrator
+
+> npm ERR! Please try running this command again as root/Administrator.
+
+It turns out that you don’t have to run the command again as Administrator, and doing so won’t fix the problem.  Try npm cache clean first.  If that doesn’t fix things, take a look in %APPDATA%\npm-cache, or if you’re using PowerShell, $env:APPDATA\npm-cache.  After cleaning the cache, you may still be left with remnants.  Manually remove everything in that directory, and try again.  
 
 [windows-python]: http://www.python.org/getit/windows
 [windows-python-v2.7.3]: http://www.python.org/download/releases/2.7.3#download

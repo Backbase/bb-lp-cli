@@ -147,7 +147,7 @@
 			],
 			"properties": {
 				"text": {
-					"pattern": "Dependencies"
+					"pattern": "^Dependencies"
 				}
 			},
 			"required": [
@@ -166,7 +166,7 @@
 			],
 			"properties": {
 				"text": {
-					"pattern": "Dev Dependencies"
+					"pattern": "^Dev(?:elopment)? Dependencies"
 				}
 			},
 			"required": [
