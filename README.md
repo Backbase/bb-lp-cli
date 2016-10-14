@@ -9,6 +9,7 @@ CLI development tool for widgets / modules
 |------------|---|
 | Bundle     | tools |
 | Status     | node >=0.12.x < 5.0.x |
+| Recommended| node 4.6.0 npm 3.x |
 
 
 ## Requirements
@@ -27,8 +28,10 @@ Dev - Server
 
 ## Install
 
-```
+```bash
 npm i bb-lp-cli -g
+or
+yarn global add  bb-lp-cli
 ```
 
 ## Usage
@@ -468,24 +471,31 @@ A. They are two options: Global and Inline.
     /*eslint-disable */
 
 
+### Windows 
+- the easy way
 
-## HOWTO
+Install https://chocolatey.org as a good option to use.
 
-- Windows
-### Adding environments paths for python
-http://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7
 
-## Tested
+```
+choco install git -y
+choco install nodist -y
+choco install python2 -y
+choco install visualstudio2013ultimate -y
+```
 
-MacOS
-- node: 0.12.x, 4.x
-- npm: 2.x 3.x
+...open cmd as "Run as administrator"
 
-Win7
-- node: 0.12.x, 4.x
-- npm: 2.14.x
+```
+npm config set msvs_version 2013 --global
+npm config set python /path/to/executable/python2.7
+```
 
-### Important Notes
+
+--[the hard way](docs/windows-8-installation-guide.pdf)
+
+
+### Extra Notes
 The cli uses [node-gyp](https://github.com/nodejs/node-gyp)
 
 You will also need to install:
@@ -531,28 +541,3 @@ If `node-gyp` is called by way of `npm` *and* you have multiple versions of
 Python installed, then you can set `npm`'s 'python' config key to the appropriate
 value:
 
-``` bash
-$ npm config set python /path/to/executable/python2.7
-```
-
-Note that OS X is just a flavour of Unix and so needs `python`, `make`, and C/C++.
-An easy way to obtain these is to install XCode from Apple,
-and then use it to install the command line tools (under Preferences -> Downloads).
-
-Check [node-gyp](https://github.com/nodejs/node-gyp) project for more info.
-
-
-### root/Administrator error
-
-https://docs.npmjs.com/getting-started/fixing-npm-permissions
-
-- Please try running this command again as root/Administrator
-
-> npm ERR! Please try running this command again as root/Administrator.
-
-It turns out that you don’t have to run the command again as Administrator, and doing so won’t fix the problem.  Try npm cache clean first.  If that doesn’t fix things, take a look in %APPDATA%\npm-cache, or if you’re using PowerShell, $env:APPDATA\npm-cache.  After cleaning the cache, you may still be left with remnants.  Manually remove everything in that directory, and try again.  
-
-[windows-python]: http://www.python.org/getit/windows
-[windows-python-v2.7.3]: http://www.python.org/download/releases/2.7.3#download
-[msvc2013]: http://www.microsoft.com/en-gb/download/details.aspx?id=44914
-[win7sdk]: http://www.microsoft.com/en-us/download/details.aspx?id=8279
